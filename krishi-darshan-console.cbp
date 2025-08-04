@@ -34,6 +34,11 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="user.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="user.h" />
+		<Unit filename="users.txt" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
