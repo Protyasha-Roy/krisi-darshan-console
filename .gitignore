@@ -7,8 +7,13 @@ obj/
 *.dll
 *.out
 <<<<<<< HEAD
+<<<<<<< HEAD
 bin/Debug
 obj/Debug
 =======
 
 >>>>>>> 42b65152c7aea547fbaa8dad74215d307114451d
+=======
+bin/Debug
+obj/Debug
+>>>>>>> 88ba2c259683016f7d2284ecbcce3ef1c238259f
