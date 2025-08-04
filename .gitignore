@@ -6,4 +6,5 @@ obj/
 *.so
 *.dll
 *.out
-
+bin/Debug
+obj/Debug
