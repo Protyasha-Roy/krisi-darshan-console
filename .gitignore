@@ -15,7 +15,7 @@ build/
 *.depend
 *.layout
 *.cbp.save
-*.cpb
+*.cbp
 
 # === IDE junk ===
 *.user
