@@ -31,14 +31,22 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename=".gitignore" />
+		<Unit filename="Admins.txt" />
+		<Unit filename="Agents.txt" />
+		<Unit filename="Farmers.txt" />
+		<Unit filename="README.md" />
+		<Unit filename="login.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="login.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="user.c">
+		<Unit filename="menus.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="user.h" />
-		<Unit filename="users.txt" />
+		<Unit filename="menus.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

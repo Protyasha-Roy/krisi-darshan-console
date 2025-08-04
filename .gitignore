@@ -1,1 +1,10 @@
-
+bin/
+obj/
+*.exe
+*.o
+*.a
+*.so
+*.dll
+*.out
+bin/Debug
+obj/Debug
