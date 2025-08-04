@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "login.h"
 
-void loginMenu() {
+void loginMenu()
+{
     int chosenOption;
 
     printf("1: Login as a farmer\n");
@@ -14,27 +15,23 @@ void loginMenu() {
     printf("Choose an option: ");
     scanf("%d", &chosenOption);
 
-    switch(chosenOption) {
-    case 1:
-        loginForm('F');
-        break;
-    case 2:
-        loginForm('t');
-        break;
-    case 3:
-        loginForm('a');
-        break;
-    case 4:
-        loginForm('r');
-        break;
-    case 5:
-        loginForm('j');
-        break;
-    case 6:
-        loginForm('e');
-        break;
-    default:
+    if((chosenOption >= 1) && (chosenOption <= 3))
+    {
+        loginForm(chosenOption);
+    }
+    else if(chosenOption == 4) {
+        printf("Register");
+    }
+    else if(chosenOption == 5)
+    {
+        printf("Get information");
+    }
+    else if(chosenOption == 6)
+    {
+        printf("Exit");
+    }
+    else
+    {
         printf("Please enter a valid option(1-6).");
-        break;
     }
 }

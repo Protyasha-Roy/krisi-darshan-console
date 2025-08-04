@@ -1,7 +1,7 @@
 #ifndef LOGIN_H_INCLUDED
 #define LOGIN_H_INCLUDED
 
-struct Farmer {
+typedef struct {
     int id;
     char fullName[100];
     char dob[15];
@@ -12,7 +12,7 @@ struct Farmer {
     char email[50];
     char address[300];
     int postal_code;
-    int farming_experience;
+    float farming_experience;
     float area;
     int land_parcels;
     char crops[100];
@@ -21,14 +21,16 @@ struct Farmer {
     char bank_name[50];
     int branch_code;
     char linked_number[20];
-};
+} Farmer;
 
 typedef struct {
     int id;
     char password[20];
-} LoginForm;
+    char type;
+} User;
 
-void loginForm(char option);
-void login(char option, int id, char password[]);
+
+void loginForm(int option);
+void login(int option, int id, char password[]);
 
 #endif // LOGIN_H_INCLUDED
