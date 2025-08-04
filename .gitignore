@@ -1,12 +1,30 @@
+# === Compiled files ===
 *.o
 *.out
 *.exe
 *.a
 *.so
 *.dll
-*.log
-*.tmp
+
+# === Build folders ===
 obj/
 bin/
 build/
+
+# === Code::Blocks specific ===
+*.depend
+*.layout
+*.cbp.save
+*.cpb
+
+# === IDE junk ===
+*.user
+*.suo
+*.vcxproj.user
+*.DS_Store
+Thumbs.db
+
+# === Misc ===
+*.log
+*.tmp
 
