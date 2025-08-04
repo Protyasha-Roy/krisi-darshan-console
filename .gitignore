@@ -6,5 +6,9 @@ obj/
 *.so
 *.dll
 *.out
+<<<<<<< HEAD
 bin/Debug
 obj/Debug
+=======
+
+>>>>>>> 42b65152c7aea547fbaa8dad74215d307114451d
