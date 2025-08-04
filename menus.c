@@ -28,7 +28,7 @@ void loginMenu() {
         loginForm('r');
         break;
     case 5:
-        loginForm('i');
+        loginForm('j');
         break;
     case 6:
         loginForm('e');
