@@ -32,5 +32,6 @@ typedef struct {
 
 void loginForm(int option);
 void login(int option, int id, char password[]);
+void registration();
 
 #endif // LOGIN_H_INCLUDED

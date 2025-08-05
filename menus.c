@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "login.h"
+#include "utils.h"
 
 void loginMenu()
 {
@@ -20,7 +21,7 @@ void loginMenu()
         loginForm(chosenOption);
     }
     else if(chosenOption == 4) {
-        printf("Register");
+        registration();
     }
     else if(chosenOption == 5)
     {
