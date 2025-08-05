@@ -14,8 +14,6 @@ build/
 # === Code::Blocks specific ===
 *.depend
 *.layout
-*.cbp.save
-*.cbp
 
 # === IDE junk ===
 *.user
