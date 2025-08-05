@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "login.h"
+#include "menus.h"
 
 //        while(fscanf(fp,
 //                     "%d|%s|%s|%c|%s|%s|%s|%s|%s|%d|%f|%f|%d|%s|%c|%s|%s|%d|%s",
@@ -39,6 +40,7 @@ void checkIdPassword(char filename[], char mode[], char type, int option, int id
     if(loggedIn == 1)
     {
         printf("Logged in");
+        adminMenu();
     }
     else
     {
