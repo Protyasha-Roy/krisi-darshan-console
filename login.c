@@ -13,6 +13,42 @@
 //            registeredFarmer.fullName = farmer.fullName;
 //        }
 
+
+void checkIdPassword(char filename[], char mode[], char type, int option, int id, char password[])
+{
+    User user;
+    FILE *fp;
+
+    fp = fopen(filename, mode);
+    int loggedIn = 0;
+
+    if(fp == NULL)
+    {
+        printf("FIle not found");
+    }
+
+    while(fscanf(fp, "%d %s %c", &user.id, user.password, &user.type) != EOF)
+    {
+        if((id == user.id) && (strcmp(password, user.password) == 0) && (user.type == type))
+        {
+            loggedIn = 1;
+            break;
+        }
+    }
+
+    if(loggedIn == 1)
+    {
+        printf("Logged in");
+    }
+    else
+    {
+        printf("Did not match\n");
+        loginForm(option);
+    }
+
+    fclose(fp);
+}
+
 void login(int option, int id, char password[])
 {
     User user;
@@ -22,40 +58,16 @@ void login(int option, int id, char password[])
     switch(option)
     {
     case 1:
-        fp = fopen("Users.txt", "r");
-        int loggedIn = 0;
-
-        if(fp == NULL)
-        {
-            printf("FIle not found");
-        }
-
-        while(fscanf(fp, "%d %s %c", &user.id, user.password, &user.type) != EOF)
-        {
-            if((id == user.id) && (strcmp(password, user.password) == 0))
-            {
-                loggedIn = 1;
-                break;
-            }
-        }
-
-        if(loggedIn == 1) {
-            printf("Logged in");
-        }
-        else {
-            printf("Did not match");
-        }
-
-        fclose(fp);
+        checkIdPassword("Users.txt", "r", 'f', option, id, password);
         break;
     case 2:
-        printf("Login as agent");
+        checkIdPassword("Users.txt", "r", 't', option, id, password);
         break;
     case 3:
-        printf("Login as admin");
+        checkIdPassword("Users.txt", "r", 'a', option, id, password);
         break;
     default:
-        printf("Invalid");
+        printf("Invalid Option chosen!\n");
         break;
     }
 }
