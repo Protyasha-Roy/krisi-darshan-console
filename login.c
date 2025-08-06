@@ -43,7 +43,7 @@ void login(int option, int id, char password[])
         break;
     case 2:
         loggedIn = checkIdPassword("Users.txt", "r", 't', id, password);
-        loggedIn ? printf("Logged in as admin") : (printf("ID or password is wrong. Try again!\n"), loginForm(2));
+        loggedIn ? printf("Logged in as agent") : (printf("ID or password is wrong. Try again!\n"), loginForm(2));
         break;
     case 3:
         loggedIn = checkIdPassword("Users.txt", "r", 'a', id, password);
