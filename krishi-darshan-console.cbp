@@ -35,6 +35,10 @@
 		<Unit filename="Agents.txt" />
 		<Unit filename="Farmers.txt" />
 		<Unit filename="Users.txt" />
+		<Unit filename="admin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="admin.h" />
 		<Unit filename="login.c">
 			<Option compilerVar="CC" />
 		</Unit>
