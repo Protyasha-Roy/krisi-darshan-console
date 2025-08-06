@@ -4,7 +4,7 @@
 #include "menus.h"
 #include "utils.h"
 
-void checkIdPassword(char filename[], char mode[], char type, int option, int id, char password[])
+int checkIdPassword(char filename[], char mode[], char type, int option, int id, char password[])
 {
     User user;
     FILE *fp;
@@ -26,32 +26,28 @@ void checkIdPassword(char filename[], char mode[], char type, int option, int id
         }
     }
 
-    if(loggedIn == 1)
-    {
-        adminMenu();
-        printf("Logged in\n");
-    }
-    else
-    {
-        printf("Did not match\n");
-        loginForm(option);
-    }
-
     fclose(fp);
+    return loggedIn;
 }
 
 void login(int option, int id, char password[])
 {
+    int loggedIn;
+
     switch(option)
     {
     case 1:
-        checkIdPassword("Users.txt", "r", 'f', option, id, password);
+        loggedIn = checkIdPassword("Users.txt", "r", 'f', option, id, password);
+        loggedIn ? printf("Farmer logged in.\n") : (printf("ID or password is wrong. Try again!\n"), loginForm(1));
+
         break;
     case 2:
-        checkIdPassword("Users.txt", "r", 't', option, id, password);
+        loggedIn = checkIdPassword("Users.txt", "r", 't', option, id, password);
+        loggedIn ? printf("Logged in as admin") : (printf("ID or password is wrong. Try again!\n"), loginForm(2));
         break;
     case 3:
         checkIdPassword("Users.txt", "r", 'a', option, id, password);
+        loggedIn ? adminMenu() : (printf("ID or password is wrong. Try again!\n"), loginForm(3));
         break;
 
     default:
@@ -66,8 +62,11 @@ void loginForm(int option)
 
     printf("Enter your ID: ");
     scanf("%d", &user.id);
+
+    getchar();
     printf("Enter your password: ");
     scanf("%s", user.password);
+    getchar();
 
     login(option, user.id, user.password);
 }
