@@ -73,93 +73,120 @@ void loginForm(int option)
     login(option, user.id, user.password);
 }
 
+int checkIdDuplication(FILE *fp2, int *farmerId) {
+    int id;
+    while(fscanf(fp2, "%d", id) != EOF) {
+        if(id != farmerId) {
+            return 0;
+        }
+        else {
+            return 1;
+        }
+    }
+}
+
 void registration() {
     FILE *fp;
+    FILE *fp2;
+
     fp = fopen("Farmers.txt", "a");
+    fp2 = fopen("Users.txt", "a");
 
     Farmer farmer;
+    User user;
 
-    farmer.id = generateId(0, 2147483640);
+    do {
+        farmer.id = generateId(0, 2147483640);
+
+    } while(checkIdDuplication(fp2, &farmer.id) == 1);
+
+    user.id = farmer.id;
+    user.type = 'f';
 
     printf("Register as a farmer\n\n");
 
     printf("\tPERSONAL DETAILS\n");
 
+    getchar();
     printf("Enter your full name: ");
     fgets(farmer.fullName, sizeof(farmer.fullName), stdin);
-    getchar();
+    farmer.fullName[strcspn(farmer.fullName, "\n")] = '\0';
 
     printf("Enter your DOB(YYYY-MM-DD): ");
     fgets(farmer.dob, sizeof(farmer.dob), stdin);
-    getchar();
+    farmer.dob[strcspn(farmer.dob, "\n")] = '\0';
 
     printf("Enter your gender(M/F/O): ");
     scanf("%c", &farmer.gender);
-    getchar();
 
+    getchar();
     printf("Enter your NID: ");
     fgets(farmer.nid, sizeof(farmer.nid), stdin);
-    getchar();
+    farmer.nid[strcspn(farmer.nid, "\n")] = '\0';
 
     printf("Enter your literacy level: ");
     fgets(farmer.literacy, sizeof(farmer.literacy), stdin);
-    getchar();
+    farmer.literacy[strcspn(farmer.literacy, "\n")] = '\0';
 
     printf("Enter your mobile number: ");
     fgets(farmer.mobile, sizeof(farmer.mobile), stdin);
-    getchar();
+    farmer.mobile[strcspn(farmer.mobile, "\n")] = '\0';
 
     printf("Enter your email: ");
     fgets(farmer.email, sizeof(farmer.email), stdin);
-    getchar();
+    farmer.email[strcspn(farmer.email, "\n")] = '\0';
 
     printf("Enter your full address: ");
     fgets(farmer.address, sizeof(farmer.address), stdin);
-    getchar();
+    farmer.address[strcspn(farmer.address, "\n")] = '\0';
 
     printf("Enter your postal code: ");
     scanf("%d", &farmer.postal_code);
-    getchar();
 
+    getchar();
     printf("Total years of experience: ");
     scanf("%f", &farmer.farming_experience);
-    getchar();
 
     printf("\n\tFARMING DETAILS\n");
 
+    getchar();
     printf("Total area of land: ");
     scanf("%f", &farmer.area);
-    getchar();
 
+    getchar();
     printf("Main crops grown: ");
     fgets(farmer.crops, sizeof(farmer.crops), stdin);
-    getchar();
+    farmer.crops[strcspn(farmer.crops, "\n")] = '\0';
 
     printf("Number of land parcels: ");
     scanf("%d", &farmer.land_parcels);
-    getchar();
 
+    getchar();
     printf("Ownership type(O/L/S): ");
     scanf("%c", &farmer.ownership);
-    getchar();
 
     printf("\n\tBANK DETAILS\n");
 
+    getchar();
     printf("Enter bank account number: ");
     fgets(farmer.bank_number, sizeof(farmer.bank_number), stdin);
-    getchar();
+    farmer.bank_number[strcspn(farmer.bank_number, "\n")] = '\0';
 
     printf("Branch code: ");
     scanf("%d", &farmer.branch_code);
-    getchar();
 
+    getchar();
     printf("Enter name of the bank: ");
     fgets(farmer.bank_name, sizeof(farmer.bank_name), stdin);
-    getchar();
+    farmer.bank_name[strcspn(farmer.bank_name, "\n")] = '\0';
 
     printf("Enter linked mobile number: ");
     fgets(farmer.linked_number, sizeof(farmer.linked_number), stdin);
-    getchar();
+    farmer.linked_number[strcspn(farmer.linked_number, "\n")] = '\0';
+
+    printf("Now create password for your Krishi-Darshan account: ");
+    fgets(user.password, sizeof(user.password), stdin);
+    user.password[strcspn(user.password, "\n")] = '\0';
 
     fprintf(fp,
         "%d|%s|%s|%c|%s|%s|%s|%s|%s|%d|%.2f|%.2f|%d|%s|%c|%s|%s|%d|%s\n",
@@ -184,7 +211,10 @@ void registration() {
         farmer.linked_number
     );
 
-    fclose(fp);
+    fprintf(fp2, "%d %s %c\n", user.id, user.password, user.type);
 
-    printf("\nFarmer data saved.\n");
+    fclose(fp);
+    fclose(fp2);
+
+    printf("\nYour registration is complete. Your ID is: %d. Use this ID to login.\n", user.id);
 }
