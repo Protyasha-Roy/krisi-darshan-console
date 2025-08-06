@@ -35,6 +35,7 @@
 		<Unit filename="Agents.txt" />
 		<Unit filename="Farmers.txt" />
 		<Unit filename="Users.txt" />
+<<<<<<< HEAD
 		<Unit filename="agents.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -43,6 +44,12 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="farmer.h" />
+=======
+		<Unit filename="admin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="admin.h" />
+>>>>>>> origin/main
 		<Unit filename="login.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -54,6 +61,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="menus.h" />
+		<Unit filename="utils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="utils.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

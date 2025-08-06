@@ -2,6 +2,46 @@
 #include "login.h"
 #include "farmer.h"
 #include "agents.h"
+#include "admin.h"
+#include "utils.h"
+
+void adminMenu()
+{
+    int chosenOption;
+
+    printf("1: Manage farmer's profiles.\n");
+    printf("2: Manage land parcels.\n");
+    printf("3: Apply for loans and subsidy.\n");
+    printf("4: Configuration.\n");
+    printf("5: Back.\n\n");
+
+    printf("Choose an option: ");
+    scanf("%d", &chosenOption);
+
+
+    switch(chosenOption)
+    {
+    case 1:
+       manage_farmers_profile();
+       break;
+    case 2:
+        manage_land_parcels();
+        break;
+    case 3:
+        apply_for_loan_and_subsidy();
+        break;
+    case 4:
+        configuration();
+        break;
+    case 5:
+        printf("Back\n");
+        break;
+    default:
+        printf("Invalid Option chosen!\n");
+        break;
+    }
+
+}
 
 void loginMenu()
 {
@@ -22,7 +62,7 @@ void loginMenu()
         loginForm(chosenOption);
     }
     else if(chosenOption == 4) {
-        printf("Register");
+        registration();
     }
     else if(chosenOption == 5)
     {
