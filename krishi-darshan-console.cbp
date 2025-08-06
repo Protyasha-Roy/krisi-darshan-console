@@ -31,17 +31,18 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-<<<<<<< HEAD
-		<Unit filename=".gitignore" />
 		<Unit filename="Admins.txt" />
 		<Unit filename="Agents.txt" />
 		<Unit filename="Farmers.txt" />
-		<Unit filename="README.md" />
-=======
-		<Unit filename="Admins.txt" />
-		<Unit filename="Agents.txt" />
-		<Unit filename="Farmers.txt" />
->>>>>>> 42b65152c7aea547fbaa8dad74215d307114451d
+		<Unit filename="Users.txt" />
+		<Unit filename="agents.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="agents.h" />
+		<Unit filename="farmer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="farmer.h" />
 		<Unit filename="login.c">
 			<Option compilerVar="CC" />
 		</Unit>
