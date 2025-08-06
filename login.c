@@ -4,18 +4,6 @@
 #include "menus.h"
 #include "utils.h"
 
-//        while(fscanf(fp,
-//                     "%d|%s|%s|%c|%s|%s|%s|%s|%s|%d|%f|%f|%d|%s|%c|%s|%s|%d|%s",
-//                     &farmer.id, farmer.fullName, farmer.dob, &farmer.gender, farmer.nid,
-//                      farmer.literacy, farmer.mobile, farmer.email, farmer.address, &farmer.postal_code,
-//                      farmer.farming_experience, &farmer.area, &farmer.land_parcels, farmer.crops, &farmer.ownership,
-//                      farmer.bank_number, farmer.bank_name, &farmer.branch_code, farmer.linked_number) != EOF)
-//        {
-//            registeredFarmer.id = farmer.id;
-//            registeredFarmer.fullName = farmer.fullName;
-//        }
-
-
 void checkIdPassword(char filename[], char mode[], char type, int option, int id, char password[])
 {
     User user;
@@ -54,9 +42,6 @@ void checkIdPassword(char filename[], char mode[], char type, int option, int id
 
 void login(int option, int id, char password[])
 {
-    User user;
-    FILE *fp;
-
     switch(option)
     {
     case 1:
@@ -87,9 +72,9 @@ void loginForm(int option)
     login(option, user.id, user.password);
 }
 
-int checkIdDuplication(FILE *fp2, int *farmerId) {
+int checkIdDuplication(FILE *fp2, int farmerId) {
     int id;
-    while(fscanf(fp2, "%d", id) != EOF) {
+    while(fscanf(fp2, "%d", &id) != EOF) {
         if(id != farmerId) {
             return 0;
         }
@@ -111,8 +96,7 @@ void registration() {
 
     do {
         farmer.id = generateId(0, 2147483640);
-
-    } while(checkIdDuplication(fp2, &farmer.id) == 1);
+    } while(checkIdDuplication(fp2, farmer.id) == 1);
 
     user.id = farmer.id;
     user.type = 'f';
