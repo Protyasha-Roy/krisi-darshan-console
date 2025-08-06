@@ -4,7 +4,7 @@
 #include "menus.h"
 #include "utils.h"
 
-int checkIdPassword(char filename[], char mode[], char type, int option, int id, char password[])
+int checkIdPassword(char filename[], char mode[], char type, int id, char password[])
 {
     User user;
     FILE *fp;
@@ -37,16 +37,16 @@ void login(int option, int id, char password[])
     switch(option)
     {
     case 1:
-        loggedIn = checkIdPassword("Users.txt", "r", 'f', option, id, password);
+        loggedIn = checkIdPassword("Users.txt", "r", 'f', id, password);
         loggedIn ? printf("Farmer logged in.\n") : (printf("ID or password is wrong. Try again!\n"), loginForm(1));
 
         break;
     case 2:
-        loggedIn = checkIdPassword("Users.txt", "r", 't', option, id, password);
+        loggedIn = checkIdPassword("Users.txt", "r", 't', id, password);
         loggedIn ? printf("Logged in as admin") : (printf("ID or password is wrong. Try again!\n"), loginForm(2));
         break;
     case 3:
-        checkIdPassword("Users.txt", "r", 'a', option, id, password);
+        loggedIn = checkIdPassword("Users.txt", "r", 'a', id, password);
         loggedIn ? adminMenu() : (printf("ID or password is wrong. Try again!\n"), loginForm(3));
         break;
 
