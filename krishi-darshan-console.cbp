@@ -39,6 +39,14 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="admin.h" />
+		<Unit filename="agents.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="agents.h" />
+		<Unit filename="farmer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="farmer.h" />
 		<Unit filename="login.c">
 			<Option compilerVar="CC" />
 		</Unit>

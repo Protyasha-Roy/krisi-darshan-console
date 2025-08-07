@@ -14,7 +14,7 @@ int checkIdPassword(char filename[], char mode[], char type, int id, char passwo
 
     if(fp == NULL)
     {
-        printf("FIle not found");
+        printf("File not found");
     }
 
     while(fscanf(fp, "%d %s %c", &user.id, user.password, &user.type) != EOF)
@@ -39,11 +39,10 @@ void login(int option, int id, char password[])
     case 1:
         loggedIn = checkIdPassword("Users.txt", "r", 'f', id, password);
         loggedIn ? printf("Farmer logged in.\n") : (printf("ID or password is wrong. Try again!\n"), loginForm(1));
-
         break;
     case 2:
         loggedIn = checkIdPassword("Users.txt", "r", 't', id, password);
-        loggedIn ? printf("Logged in as agent") : (printf("ID or password is wrong. Try again!\n"), loginForm(2));
+        loggedIn ? printf("Logged in as agent.\n") : (printf("ID or password is wrong. Try again!\n"), loginForm(2));
         break;
     case 3:
         loggedIn = checkIdPassword("Users.txt", "r", 'a', id, password);
