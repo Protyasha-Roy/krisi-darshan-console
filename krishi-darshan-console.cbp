@@ -34,11 +34,16 @@
 		<Unit filename="Admins.txt" />
 		<Unit filename="Agents.txt" />
 		<Unit filename="Farmers.txt" />
+		<Unit filename="Parcels.txt" />
 		<Unit filename="Users.txt" />
 		<Unit filename="admin.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="admin.h" />
+		<Unit filename="admin_utils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="admin_utils.h" />
 		<Unit filename="agents.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -58,6 +63,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="menus.h" />
+		<Unit filename="parcels.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="parcels.h" />
 		<Unit filename="utils.c">
 			<Option compilerVar="CC" />
 		</Unit>

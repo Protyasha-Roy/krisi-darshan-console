@@ -5,7 +5,7 @@ void personal_details(int id)
     printf("Personal details for Farmer ID %d\n", id);
 }
 
-void land_parcels (int id)
+void farmer_land_parcels (int id)
 {
     printf("Land Parcels for Farmer ID %d\n", id);
 }

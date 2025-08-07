@@ -99,7 +99,7 @@ void FarmerMenu(int id)
         personal_details(id);
         break;
     case 2:
-        land_parcels(id);
+        farmer_land_parcels(id);
         break;
     case 3:
         application_schemes(id);
