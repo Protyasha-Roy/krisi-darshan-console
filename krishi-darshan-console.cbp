@@ -31,9 +31,11 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename=".gitignore" />
 		<Unit filename="Admins.txt" />
 		<Unit filename="Agents.txt" />
 		<Unit filename="Farmers.txt" />
+		<Unit filename="README.md" />
 		<Unit filename="Users.txt" />
 		<Unit filename="admin.c">
 			<Option compilerVar="CC" />
@@ -47,6 +49,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="farmer.h" />
+		<Unit filename="krishi-darshan-console.cbp" />
+		<Unit filename="krishi-darshan-console.depend" />
+		<Unit filename="krishi-darshan-console.layout" />
 		<Unit filename="login.c">
 			<Option compilerVar="CC" />
 		</Unit>
