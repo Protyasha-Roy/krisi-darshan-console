@@ -53,7 +53,7 @@ void list_farmers() {
 }
 
 void search_farmer() {
-    char id[];
+//    char id[];
 
     printf("Enter farmer's ID to see details: ");
 }

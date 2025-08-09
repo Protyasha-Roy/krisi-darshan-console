@@ -4,6 +4,7 @@
 #include "agents.h"
 #include "admin.h"
 #include "utils.h"
+#include "info.h"
 
 void adminMenu()
 {
@@ -67,7 +68,7 @@ void loginMenu()
     }
     else if(chosenOption == 5)
     {
-        printf("Get information");
+        get_info();
     }
     else if(chosenOption == 6)
     {

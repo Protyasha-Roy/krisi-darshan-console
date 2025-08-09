@@ -38,7 +38,7 @@ void login(int option, int id, char password[])
     {
     case 1:
         loggedIn = checkIdPassword("Users.txt", "r", 'f', id, password);
-        loggedIn ? printf("Farmer logged in.\n") : (printf("ID or password is wrong. Try again!\n"), loginForm(1));
+        loggedIn ? FarmerMenu(id) : (printf("ID or password is wrong. Try again!\n"), loginForm(1));
         break;
     case 2:
         loggedIn = checkIdPassword("Users.txt", "r", 't', id, password);
