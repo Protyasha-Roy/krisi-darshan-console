@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "assigned_parcel.h"
 #include "agents.h"
 
@@ -56,7 +57,51 @@ void assigned_parcels(int id)
 
 void upload_report(int id)
 {
-    printf("Upload your report on the land parcel: ");
+    FILE *fp = fopen("Land_Parcel_Report.txt", "a");
+
+    if(fp==NULL)
+    {
+        printf("Error! File not found.\n");
+        return;
+    }
+    UploadReport uploadReport;
+
+    printf("Enter parcel Id:");
+    scanf("%d",&uploadReport.parcelId);
+    getchar();
+
+    printf("Enter farmer's name:");
+    fgets(uploadReport.farmerName, sizeof(uploadReport.farmerName), stdin);
+    uploadReport.farmerName[strcspn(uploadReport.farmerName, "\n")]='\0';
+
+    printf("Enter date of visit:");
+    fgets(uploadReport.dov, sizeof(uploadReport.dov), stdin);
+    uploadReport.dov[strcspn(uploadReport.dov, "\n")]='\0';
+
+    printf("Enter observation:");
+    fgets(uploadReport.observation, sizeof(uploadReport.observation), stdin);
+    uploadReport.observation[strcspn(uploadReport.observation, "\n")]='\0';
+
+    printf("Report result:");
+    fgets(uploadReport.reportResul, sizeof(uploadReport.reportResul), stdin);
+    uploadReport.reportResul[strcspn(uploadReport.reportResul, "\n")]='\0';
+
+    printf("Enter recomendetion:");
+    fgets(uploadReport.recomendation, sizeof(uploadReport.recomendation), stdin);
+    uploadReport.recomendation[strcspn(uploadReport.recomendation, "\n")]='\0';
+
+
+    fprintf(fp, "%d|%s|%s|%s|%s|%s\n",
+            uploadReport.parcelId,
+            uploadReport.farmerName,
+            uploadReport.dov,
+            uploadReport.observation,
+            uploadReport.reportResul,
+            uploadReport.recomendation);
+
+    fclose(fp);
+
+    printf("Report upload successful.");
 }
 
 void manage_report(int id)

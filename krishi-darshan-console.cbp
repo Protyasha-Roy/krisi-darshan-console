@@ -35,6 +35,7 @@
 		<Unit filename="Agents.txt" />
 		<Unit filename="Assigned_Parcel.txt" />
 		<Unit filename="Farmers.txt" />
+		<Unit filename="Land_Parcel_Report.txt" />
 		<Unit filename="Parcels.txt" />
 		<Unit filename="Users.txt" />
 		<Unit filename="admin.c">
@@ -69,10 +70,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="menus.h" />
-		<Unit filename="parcels.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="parcels.h" />
 		<Unit filename="utils.c">
 			<Option compilerVar="CC" />
 		</Unit>

@@ -13,4 +13,15 @@ typedef struct {
     char crops[50];
 } AssignedParcel;
 
+typedef struct {
+
+  int parcelId;
+  char farmerName[100];
+  char dov[15];
+  char observation[500];
+  char reportResul[500];
+  char recomendation[100];
+
+} UploadReport;
+
 #endif // ASSIGNED_PARCEL_H_INCLUDED

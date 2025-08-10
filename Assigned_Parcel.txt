@@ -1,4 +1,4 @@
-101|1|1461801856|I|Green Valley|2.5|2023-03-15|Loamy|Wheat, Corn
+001|1|1461801856|I|Green Valley|2.5|2023-03-15|Loamy|Wheat, Corn
 102|2|1002|P|Sunset Farm|1.2|2022-11-02|Sandy|Tomatoes
 103|3|1003|C|Riverbend|3.8|2024-05-10|Clay|Rice, Lentils
 104|4|1004|I|Mountain Ridge|4.0|2021-08-21|Silt|Barley, Oats
