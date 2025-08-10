@@ -29,7 +29,7 @@ void get_info()
   printf("\t3.Enter your registered username and password.\n");
   printf("\t4.If you forget your password, use Forgot Password to reset via registered email.\n\n");
 
-   printf("5.WHAT FUNCTIONALITIES ARE AVAILABLE TO THE FARMERS?\n\n");
+  printf("5.WHAT FUNCTIONALITIES ARE AVAILABLE TO THE FARMERS?\n\n");
   printf("\t1.Profile Management: View/update personal, bank, and contact details.\n");
   printf("\t2.Land Parcels: Add, view, or remove parcels.\n");
   printf("\t3.Applications: Submit and track loan, subsidy, or scheme requests.\n");

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "utils.h"
 #include "admin_utils.h"
+#include "menus.h"
 
 void manage_farmers_profile()
 {
@@ -30,7 +31,8 @@ void manage_farmers_profile()
         delete_farmer();
         break;
     case 4:
-        printf("Back\n");
+        clear_screen();
+        adminMenu();
         break;
     default:
         printf("Invalid Option chosen!\n");
