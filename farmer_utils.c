@@ -32,27 +32,29 @@ void list_farmers()
                 ) != EOF)
     {
 
-        printf("\t\t PERSONAL DETAILS OF FARMER %s\n", farmer.fullName);
-        printf("ID:  %d\n", farmer.id);
-        printf("Full name:  %s\n", farmer.fullName);
-        printf("Date of birth:  %s\n", farmer.dob);
-        printf("Gender:  %c\n", farmer.gender);
-        printf("NID:  %s\n", farmer.nid);
-        printf("Literacy level:  %s\n", farmer.literacy);
-        printf("Mobile Number:  %s\n", farmer.mobile);
-        printf("Email address:  %s\n", farmer.email);
-        printf("Address:  %s\n", farmer.address);
-        printf("Postal Code:  %d\n", farmer.postal_code);
-        printf("Farming Experience:  %.2f\n", farmer.farming_experience);
-        printf("Area of Land Parcels:  %.2f\n", farmer.area);
-        printf("Number of Land Parcels:  %d\n", farmer.land_parcels);
-        printf("Types of crops:  %s\n", farmer.crops);
-        printf("Ownership Type:  %c\n", farmer.ownership);
-        printf("Bank Account Number:  %s\n", farmer.bank_number);
-        printf("Bank Name:  %s\n", farmer.bank_name);
-        printf("Branch Code:  %d\n", farmer.branch_code);
-        printf("Linked Number to the Bank:  %s\n\n", farmer.linked_number);
+        printf("\t\t PERSONAL DETAILS OF FARMER: %s\n", farmer.fullName);
+        printf("ID:                             %d\n", farmer.id);
+        printf("Full name:                      %s\n", farmer.fullName);
+        printf("Date of birth:                  %s\n", farmer.dob);
+        printf("Gender:                         %c\n", farmer.gender);
+        printf("NID:                            %s\n", farmer.nid);
+        printf("Literacy level:                 %s\n", farmer.literacy);
+        printf("Mobile Number:                  %s\n", farmer.mobile);
+        printf("Email address:                  %s\n", farmer.email);
+        printf("Address:                        %s\n", farmer.address);
+        printf("Postal Code:                    %d\n", farmer.postal_code);
+        printf("Farming Experience:             %.2f\n", farmer.farming_experience);
+        printf("Area of Land Parcels:           %.2f\n", farmer.area);
+        printf("Number of Land Parcels:         %d\n", farmer.land_parcels);
+        printf("Types of crops:                 %s\n", farmer.crops);
+        printf("Ownership Type:                 %c\n", farmer.ownership);
+        printf("Bank Account Number:            %s\n", farmer.bank_number);
+        printf("Bank Name:                      %s\n", farmer.bank_name);
+        printf("Branch Code:                    %d\n", farmer.branch_code);
+        printf("Linked Number to the Bank:      %s\n\n", farmer.linked_number);
     }
+
+    fclose(fp);
 }
 
 void search_by_id(FILE *fp, Farmer farmer)
@@ -91,27 +93,26 @@ void search_by_id(FILE *fp, Farmer farmer)
         {
             id_matched = 1;
 
-            printf("\t\t PERSONAL DETAILS OF FARMER %d\n", id);
-            printf("ID:  %d\n", farmer.id);
-            printf("Full name:  %s\n", farmer.fullName);
-            printf("Date of birth:  %s\n", farmer.dob);
-            printf("Gender:  %c\n", farmer.gender);
-            printf("NID:  %s\n", farmer.nid);
-            printf("Literacy level:  %s\n", farmer.literacy);
-            printf("Mobile Number:  %s\n", farmer.mobile);
-            printf("Email address:  %s\n", farmer.email);
-            printf("Address:  %s\n", farmer.address);
-            printf("Postal Code:  %d\n", farmer.postal_code);
-            printf("Farming Experience:  %.2f\n", farmer.farming_experience);
-            printf("Area of Land Parcels:  %.2f\n", farmer.area);
-            printf("Number of Land Parcels:  %d\n", farmer.land_parcels);
-            printf("Types of crops:  %s\n", farmer.crops);
-            printf("Ownership Type:  %c\n", farmer.ownership);
-            printf("Bank Account Number:  %s\n", farmer.bank_number);
-            printf("Bank Name:  %s\n", farmer.bank_name);
-            printf("Branch Code:  %d\n", farmer.branch_code);
-            printf("Linked Number to the Bank:  %s\n\n", farmer.linked_number);
-
+            printf("\t\t PERSONAL DETAILS OF FARMER: %d\n", id);
+            printf("ID:                             %d\n", farmer.id);
+            printf("Full name:                      %s\n", farmer.fullName);
+            printf("Date of birth:                  %s\n", farmer.dob);
+            printf("Gender:                         %c\n", farmer.gender);
+            printf("NID:                            %s\n", farmer.nid);
+            printf("Literacy level:                 %s\n", farmer.literacy);
+            printf("Mobile Number:                  %s\n", farmer.mobile);
+            printf("Email address:                  %s\n", farmer.email);
+            printf("Address:                        %s\n", farmer.address);
+            printf("Postal Code:                    %d\n", farmer.postal_code);
+            printf("Farming Experience:             %.2f\n", farmer.farming_experience);
+            printf("Area of Land Parcels:           %.2f\n", farmer.area);
+            printf("Number of Land Parcels:         %d\n", farmer.land_parcels);
+            printf("Types of crops:                 %s\n", farmer.crops);
+            printf("Ownership Type:                 %c\n", farmer.ownership);
+            printf("Bank Account Number:            %s\n", farmer.bank_number);
+            printf("Bank Name:                      %s\n", farmer.bank_name);
+            printf("Branch Code:                    %d\n", farmer.branch_code);
+            printf("Linked Number to the Bank:      %s\n\n", farmer.linked_number);
             break;
         }
     }
@@ -162,27 +163,26 @@ void search_by_name(FILE *fp, Farmer farmer)
         {
             name_matched = 1;
 
-            printf("\t\t PERSONAL DETAILS OF FARMER %s\n", farmer.fullName);
-            printf("ID:  %d\n", farmer.id);
-            printf("Full name:  %s\n", farmer.fullName);
-            printf("Date of birth:  %s\n", farmer.dob);
-            printf("Gender:  %c\n", farmer.gender);
-            printf("NID:  %s\n", farmer.nid);
-            printf("Literacy level:  %s\n", farmer.literacy);
-            printf("Mobile Number:  %s\n", farmer.mobile);
-            printf("Email address:  %s\n", farmer.email);
-            printf("Address:  %s\n", farmer.address);
-            printf("Postal Code:  %d\n", farmer.postal_code);
-            printf("Farming Experience:  %.2f\n", farmer.farming_experience);
-            printf("Area of Land Parcels:  %.2f\n", farmer.area);
-            printf("Number of Land Parcels:  %d\n", farmer.land_parcels);
-            printf("Types of crops:  %s\n", farmer.crops);
-            printf("Ownership Type:  %c\n", farmer.ownership);
-            printf("Bank Account Number:  %s\n", farmer.bank_number);
-            printf("Bank Name:  %s\n", farmer.bank_name);
-            printf("Branch Code:  %d\n", farmer.branch_code);
-            printf("Linked Number to the Bank:  %s\n\n", farmer.linked_number);
-
+            printf("\t\t PERSONAL DETAILS OF FARMER: %s\n", farmer.fullName);
+            printf("ID:                             %d\n", farmer.id);
+            printf("Full name:                      %s\n", farmer.fullName);
+            printf("Date of birth:                  %s\n", farmer.dob);
+            printf("Gender:                         %c\n", farmer.gender);
+            printf("NID:                            %s\n", farmer.nid);
+            printf("Literacy level:                 %s\n", farmer.literacy);
+            printf("Mobile Number:                  %s\n", farmer.mobile);
+            printf("Email address:                  %s\n", farmer.email);
+            printf("Address:                        %s\n", farmer.address);
+            printf("Postal Code:                    %d\n", farmer.postal_code);
+            printf("Farming Experience:             %.2f\n", farmer.farming_experience);
+            printf("Area of Land Parcels:           %.2f\n", farmer.area);
+            printf("Number of Land Parcels:         %d\n", farmer.land_parcels);
+            printf("Types of crops:                 %s\n", farmer.crops);
+            printf("Ownership Type:                 %c\n", farmer.ownership);
+            printf("Bank Account Number:            %s\n", farmer.bank_number);
+            printf("Bank Name:                      %s\n", farmer.bank_name);
+            printf("Branch Code:                    %d\n", farmer.branch_code);
+            printf("Linked Number to the Bank:      %s\n\n", farmer.linked_number);
             break;
         }
     }
@@ -232,26 +232,26 @@ void search_partially(FILE *fp, Farmer farmer)
         {
             string_matched = 1;
 
-            printf("\t\t PERSONAL DETAILS OF FARMER %s\n", farmer.fullName);
-            printf("ID:  %d\n", farmer.id);
-            printf("Full name:  %s\n", farmer.fullName);
-            printf("Date of birth:  %s\n", farmer.dob);
-            printf("Gender:  %c\n", farmer.gender);
-            printf("NID:  %s\n", farmer.nid);
-            printf("Literacy level:  %s\n", farmer.literacy);
-            printf("Mobile Number:  %s\n", farmer.mobile);
-            printf("Email address:  %s\n", farmer.email);
-            printf("Address:  %s\n", farmer.address);
-            printf("Postal Code:  %d\n", farmer.postal_code);
-            printf("Farming Experience:  %.2f\n", farmer.farming_experience);
-            printf("Area of Land Parcels:  %.2f\n", farmer.area);
-            printf("Number of Land Parcels:  %d\n", farmer.land_parcels);
-            printf("Types of crops:  %s\n", farmer.crops);
-            printf("Ownership Type:  %c\n", farmer.ownership);
-            printf("Bank Account Number:  %s\n", farmer.bank_number);
-            printf("Bank Name:  %s\n", farmer.bank_name);
-            printf("Branch Code:  %d\n", farmer.branch_code);
-            printf("Linked Number to the Bank:  %s\n\n", farmer.linked_number);
+            printf("\t\t PERSONAL DETAILS OF FARMER: %s\n", farmer.fullName);
+            printf("ID:                             %d\n", farmer.id);
+            printf("Full name:                      %s\n", farmer.fullName);
+            printf("Date of birth:                  %s\n", farmer.dob);
+            printf("Gender:                         %c\n", farmer.gender);
+            printf("NID:                            %s\n", farmer.nid);
+            printf("Literacy level:                 %s\n", farmer.literacy);
+            printf("Mobile Number:                  %s\n", farmer.mobile);
+            printf("Email address:                  %s\n", farmer.email);
+            printf("Address:                        %s\n", farmer.address);
+            printf("Postal Code:                    %d\n", farmer.postal_code);
+            printf("Farming Experience:             %.2f\n", farmer.farming_experience);
+            printf("Area of Land Parcels:           %.2f\n", farmer.area);
+            printf("Number of Land Parcels:         %d\n", farmer.land_parcels);
+            printf("Types of crops:                 %s\n", farmer.crops);
+            printf("Ownership Type:                 %c\n", farmer.ownership);
+            printf("Bank Account Number:            %s\n", farmer.bank_number);
+            printf("Bank Name:                      %s\n", farmer.bank_name);
+            printf("Branch Code:                    %d\n", farmer.branch_code);
+            printf("Linked Number to the Bank:      %s\n\n", farmer.linked_number);
         }
     }
 
@@ -310,6 +310,9 @@ void delete_farmer()
 
     Farmer farmer;
     User user;
+
+    printf("Enter farmer's ID: ");
+    scanf("%d", &id);
 
     while((fscanf(fp, "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%f|%f|%d|%99[^|]|%c|%29[^|]|%49[^|]|%d|%19[^\n]\n",
                   &farmer.id,

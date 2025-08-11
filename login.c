@@ -70,18 +70,6 @@ void loginForm(int option)
     login(option, user.id, user.password);
 }
 
-int checkIdDuplication(FILE *fp2, int farmerId) {
-    int id;
-    while(fscanf(fp2, "%d", &id) != EOF) {
-        if(id != farmerId) {
-            return 0;
-        }
-        else {
-            return 1;
-        }
-    }
-}
-
 void registration() {
     clear_screen();
     FILE *fp;

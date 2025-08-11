@@ -2,9 +2,9 @@
 #define ASSIGNED_PARCEL_H_INCLUDED
 
 typedef struct {
-    int agentId;
     int id;
-    char farmerId[20];
+    int agentId;
+    int farmerId;
     char status;
     char location[100];
     float area;

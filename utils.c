@@ -4,6 +4,19 @@
 #include <ctype.h>
 #include <string.h>
 
+int checkIdDuplication(FILE *fp2, int farmerId) {
+    int id;
+    while(fscanf(fp2, "%d", &id) != EOF) {
+        if(id != farmerId) {
+            return 0;
+        }
+        else {
+            return 1;
+        }
+    }
+}
+
+
 void clear_screen() {
     printf("\033[2J\033[H");
     fflush(stdout);

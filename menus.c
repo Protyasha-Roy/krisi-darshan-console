@@ -5,16 +5,20 @@
 #include "admin.h"
 #include "utils.h"
 #include "info.h"
+#include "menus.h"
+#include <stdlib.h>
+
 
 void adminMenu()
 {
     int chosenOption;
 
-    printf("1: Manage farmer's profiles.\n");
-    printf("2: Manage land parcels.\n");
-    printf("3: Apply for loans and subsidy.\n");
-    printf("4: Configuration.\n");
-    printf("5: Back.\n\n");
+    printf("1: Manage farmer's profiles\n");
+    printf("2: Manage land parcels\n");
+    printf("3: Apply for loans and subsidy\n");
+    printf("4: Manage field agents\n");
+    printf("5: Configuration and analytics\n");
+    printf("6: Back.\n\n");
 
     printf("Choose an option: ");
     scanf("%d", &chosenOption);
@@ -32,10 +36,14 @@ void adminMenu()
         apply_for_loan_and_subsidy();
         break;
     case 4:
-        configuration();
+        manage_field_agents();
         break;
     case 5:
-        printf("Back\n");
+        configuration();
+        break;
+    case 6:
+        clear_screen();
+        loginMenu();
         break;
     default:
         printf("Invalid Option chosen!\n");
@@ -72,7 +80,7 @@ void loginMenu()
     }
     else if(chosenOption == 6)
     {
-        printf("Exit");
+        exit(0);
     }
     else
     {
