@@ -191,7 +191,7 @@ void delete_agent()
     printf("Enter agent's ID: ");
     scanf("%d", &id);
 
-    while((fscanf(fp, "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%29[^|]|%49[^|]|%d|%19[^\n]\n",
+    while (fscanf(fp, "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%29[^|]|%49[^|]|%d|%19[^\n]\n",
                   &agent.id,
                   agent.fullName,
                   agent.dob,
@@ -205,12 +205,10 @@ void delete_agent()
                   agent.bank_number,
                   agent.bank_name,
                   &agent.branch_code,
-                  agent.linked_number
-                 ) != EOF) && (fscanf(fp2, "%d %s %c\n", &user.id, user.password, &user.type)))
+                  agent.linked_number) != EOF)
     {
-        if((agent.id != id))
+        if (agent.id != id)
         {
-            id_matched = 1;
             fprintf(temp, "%d|%s|%s|%c|%s|%s|%s|%s|%s|%d|%s|%s|%d|%s\n",
                     agent.id,
                     agent.fullName,
@@ -225,12 +223,22 @@ void delete_agent()
                     agent.bank_number,
                     agent.bank_name,
                     agent.branch_code,
-                    agent.linked_number
-                   );
+                    agent.linked_number);
+        }
+        else
+        {
+            id_matched = 1;
+        }
+    }
 
+    while (fscanf(fp2, "%d %s %c\n", &user.id, user.password, &user.type) != EOF)
+    {
+        if (user.id != id)
+        {
             fprintf(temp2, "%d %s %c\n", user.id, user.password, user.type);
         }
     }
+
 
     if(!id_matched)
     {

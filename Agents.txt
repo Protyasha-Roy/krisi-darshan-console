@@ -1,1 +1,1 @@
-1|John Doe|1990-05-14|M|12345689|Bachelor of Science|+8801234567890|john.doe@example.com|123 Elm Street, Springfield|1207|1234567|Example Bank|101|9876
+

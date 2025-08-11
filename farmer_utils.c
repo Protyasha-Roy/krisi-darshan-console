@@ -314,7 +314,8 @@ void delete_farmer()
     printf("Enter farmer's ID: ");
     scanf("%d", &id);
 
-    while((fscanf(fp, "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%f|%f|%d|%99[^|]|%c|%29[^|]|%49[^|]|%d|%19[^\n]\n",
+    while (fscanf(fp,
+                  "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%f|%f|%d|%99[^|]|%c|%29[^|]|%49[^|]|%d|%19[^\n]\n",
                   &farmer.id,
                   farmer.fullName,
                   farmer.dob,
@@ -333,13 +334,13 @@ void delete_farmer()
                   farmer.bank_number,
                   farmer.bank_name,
                   &farmer.branch_code,
-                  farmer.linked_number
-                 ) != EOF) && (fscanf(fp2, "%d %s %c\n", &user.id, user.password, &user.type)))
+                  farmer.linked_number) != EOF)
     {
-        if((farmer.id != id))
+        if (farmer.id != id)
         {
             id_matched = 1;
-            fprintf(temp, "%d|%s|%s|%c|%s|%s|%s|%s|%s|%d|%f|%f|%d|%s|%c|%s|%s|%d|%s\n",
+            fprintf(temp,
+                    "%d|%s|%s|%c|%s|%s|%s|%s|%s|%d|%f|%f|%d|%s|%c|%s|%s|%d|%s\n",
                     farmer.id,
                     farmer.fullName,
                     farmer.dob,
@@ -358,12 +359,18 @@ void delete_farmer()
                     farmer.bank_number,
                     farmer.bank_name,
                     farmer.branch_code,
-                    farmer.linked_number
-                   );
+                    farmer.linked_number);
+        }
+    }
 
+    while (fscanf(fp2, "%d %s %c\n", &user.id, user.password, &user.type) != EOF)
+    {
+        if (user.id != id)
+        {
             fprintf(temp2, "%d %s %c\n", user.id, user.password, user.type);
         }
     }
+
 
     if(!id_matched)
     {
