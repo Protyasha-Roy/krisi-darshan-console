@@ -12,7 +12,7 @@ void get_info()
     printf("\tand administrators. It centralizes farmer profiles, land records, crop\n");
     printf("\tcycles, loan/subsidy applications, and general farming guidelines.\n\n");
 
-    printf("2. WHO CAN USE KRISHI-DARSHAN?\n\n");
+    printf("2. WHO CAN I USE KRISHI-DARSHAN?\n\n");
     printf("\t1.Farmers: Register, manage profiles, apply for loans/subsidies, and track crop cycles.\n");
     printf("\t2.Field Agents: Inspect assigned fields, upload reports, and manage schedules.\n");
     printf("\t3.Admins: Oversee all data, approve applications, configure schemes, and generate analytics.\n\n");
@@ -67,5 +67,4 @@ void get_info()
     printf("11.HOW CAN I GET SUPPORT OR REPORT A BUG?\n\n");
     printf("\t1.Contact the system administrator via email: support@krishi-darshan.org\n");
     printf("\t2.Use the Feedback option in the main menu to log issues directly into our ticketing system.n\n");
-
 }

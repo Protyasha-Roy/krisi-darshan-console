@@ -6,5 +6,4 @@ void upload_report(int id);
 void manage_report(int id);
 void manage_schedules(int id);
 
-
 #endif // AGENTS_H_INCLUDED
