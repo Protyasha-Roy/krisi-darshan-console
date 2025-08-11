@@ -2,6 +2,7 @@
 #include "utils.h"
 #include "admin_utils.h"
 #include "menus.h"
+#include "login.h"
 
 void manage_farmers_profile()
 {
@@ -13,7 +14,8 @@ void manage_farmers_profile()
     printf("1: List of registered farmers\n");
     printf("2: Search farmer details by ID or name\n");
     printf("3: Delete farmer profile by ID\n");
-    printf("4: Back\n\n");
+    printf("4: Add new farmer\n");
+    printf("5: Back\n\n");
 
     printf("Choose an option: ");
     scanf("%d", &chosenOption);
@@ -31,6 +33,9 @@ void manage_farmers_profile()
         delete_farmer();
         break;
     case 4:
+        registration();
+        break;
+    case 5:
         clear_screen();
         adminMenu();
         break;
