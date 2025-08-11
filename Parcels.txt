@@ -1,4 +1,4 @@
 1|1461801856|Green Valley|2.500000|2023-03-15|Loamy|Wheat, Corn
 27268|1461801856|Faridpur, Dhaka|200.000000|2025-04-03|Loamy|Potatoes
 27395|1461801856|Cumilla, Chittagong|350.000000|2025-06-05|Sandy|Radishes
-28339|1461801856|Bogura, Rajshahi|150.000000|2025-02-09|Loamy|Cabbage
+28339|1461801856|Bogura, Rajshahi|300.000000|2025-02-09|Loamy|Cabbage

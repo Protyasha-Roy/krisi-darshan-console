@@ -43,10 +43,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="admin.h" />
-		<Unit filename="admin_utils.c">
+		<Unit filename="agent_utils.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="admin_utils.h" />
+		<Unit filename="agent_utils.h" />
 		<Unit filename="agents.c">
 			<Option compilerVar="CC" />
 		</Unit>

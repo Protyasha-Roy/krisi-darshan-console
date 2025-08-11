@@ -3,7 +3,7 @@
 #include "assigned_parcel.h"
 #include "agents.h"
 
-void assigned_parcels(int id)
+void assigned_parcels(int agentId)
 {
     FILE *fp = fopen("Assigned_Parcel.txt", "r");
 
@@ -12,14 +12,15 @@ void assigned_parcels(int id)
         printf("Error! File not found.\n");
         return;
     }
+
     AssignedParcel assignedParcel;
 
     int id_matched=0;
 
-    while (fscanf(fp, "%d|%d|%19[^|]|%c|%99[^|]|%f|%14[^|]|%29[^|]|%49[^\n]",
+    while (fscanf(fp, "%d|%d|%d|%c|%99[^|]|%f|%14[^|]|%29[^|]|%49[^\n]",
                   &assignedParcel.agentId,
                   &assignedParcel.id,
-                  assignedParcel.farmerId,
+                  &assignedParcel.farmerId,
                   &assignedParcel.status,
                   assignedParcel.location,
                   &assignedParcel.area,
@@ -27,20 +28,20 @@ void assigned_parcels(int id)
                   assignedParcel.soilType,
                   assignedParcel.crops) != EOF)
     {
-        if (assignedParcel.agentId == id)
+        if (assignedParcel.agentId == agentId)
         {
             id_matched=1;
 
-            printf("Agent's Id: %d\n",assignedParcel.agentId);
-            printf("Parcel's Id: %d\n",assignedParcel.id);
-            printf("Farmer's Id: %s\n",assignedParcel.farmerId);
-            printf("Land parcel status: %c\n",assignedParcel.status);
-            printf("Location: %s\n",assignedParcel.location);
-            printf("Area: %.1f\n",assignedParcel.area);
-            printf("Date: %s\n",assignedParcel.dop);
-            printf("Soil type: %s\n",assignedParcel.soilType);
-            printf("Crops: %s",assignedParcel.crops);
-            break;
+            printf("\n\t\tPARCEL ID:%d\n", assignedParcel.id);
+            printf("Agent's Id:             %d\n",assignedParcel.agentId);
+            printf("Parcel's Id:            %d\n",assignedParcel.id);
+            printf("Farmer's Id:            %d\n",assignedParcel.farmerId);
+            printf("Land parcel status:     %c\n",assignedParcel.status);
+            printf("Location:               %s\n",assignedParcel.location);
+            printf("Area:                   %.1f\n",assignedParcel.area);
+            printf("Date:                   %s\n",assignedParcel.dop);
+            printf("Soil type:              %s\n",assignedParcel.soilType);
+            printf("Crops:                  %s\n",assignedParcel.crops);
         }
     }
 
@@ -52,8 +53,6 @@ void assigned_parcels(int id)
     }
 
 }
-
-
 
 void upload_report(int id)
 {

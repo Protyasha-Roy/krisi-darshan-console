@@ -1,237 +1,394 @@
 #include <stdio.h>
-#include <string.h>
 #include "login.h"
-#include "farmer.h"
+#include <string.h>
 #include "utils.h"
 
-void edit_personaldetails(Farmer f)
+void list_farmers()
 {
+    clear_screen();
     FILE *fp = fopen("Farmers.txt", "r");
-    FILE *temp = fopen("temp.txt", "w");
+    Farmer farmer;
 
-    if(fp==NULL || temp==NULL)
-    {
-        printf("Error! File not found!\n");
-        if(fp)
-        {
-            fclose(fp);
-        }
-        if(temp)
-        {
-            fclose(temp);
-        }
-        return;
-    }
-
-    char edit_choice;
-
-    printf("Do you want to edit any of the details? (Y/N) ");
-    scanf(" %c", &edit_choice);
-    getchar();
-
-    if(edit_choice=='Y' || edit_choice=='y')
-    {
-        char continue_editing;
-
-        do
-        {
-            int personal_detail;
-
-            printf("Enter the number of the detail you want to edit (1-18): ");
-            scanf("%d", &personal_detail);
-            getchar();
-
-            switch(personal_detail)
-            {
-            case 1:
-                printf("Enter new Full Name: ");
-                fgets(f.fullName, sizeof(f.fullName), stdin);
-                f.fullName[strcspn(f.fullName, "\n")]='\0';
-                break;
-            case 2:
-                printf("Enter new Date of Birth (YYYY-MM-DD): ");
-                fgets(f.dob, sizeof(f.dob), stdin);
-                f.dob[strcspn(f.dob, "\n")]='\0';
-                break;
-            case 3:
-                printf("Enter new Gender: (M/F/O) ");
-                scanf(" %c", &f.gender);
-                getchar();
-                break;
-            case 4:
-                printf("Enter new NID: ");
-                fgets(f.nid, sizeof(f.nid), stdin);
-                f.nid[strcspn(f.nid, "\n")]='\0';
-                break;
-            case 5:
-                printf("Enter new literacy level: ");
-                fgets(f.literacy, sizeof(f.literacy), stdin);
-                f.literacy[strcspn(f.literacy, "\n")]='\0';
-                break;
-            case 6:
-                printf("Enter new mobile number: ");
-                fgets(f.mobile, sizeof(f.mobile), stdin);
-                f.mobile[strcspn(f.mobile, "\n")]='\0';
-                break;
-            case 7:
-                printf("Enter new email address: ");
-                fgets(f.email, sizeof(f.email), stdin);
-                f.email[strcspn(f.email, "\n")]='\0';
-                break;
-            case 8:
-                printf("Enter new address: ");
-                fgets(f.address, sizeof(f.address), stdin);
-                f.address[strcspn(f.address, "\n")]='\0';
-                break;
-            case 9:
-                printf("Enter new postal code: ");
-                scanf("%d", &f.postal_code);
-                getchar();
-                break;
-            case 10:
-                printf("Enter new farming experience (in years): ");
-                scanf("%f", &f.farming_experience);
-                getchar();
-                break;
-            case 11:
-                printf("Enter new area: ");
-                scanf("%f", &f.area);
-                getchar();
-                break;
-            case 12:
-                printf("Enter new number of land parcels: ");
-                scanf("%d", &f.land_parcels);
-                getchar();
-                break;
-            case 13:
-                printf("Enter new crops: ");
-                fgets(f.crops, sizeof(f.crops), stdin);
-                f.crops[strcspn(f.crops, "\n")]='\0';
-                break;
-            case 14:
-                printf("Enter new ownership (O/L/S): ");
-                scanf(" %c", &f.ownership);
-                getchar();
-                break;
-            case 15:
-                printf("Enter new bank number: ");
-                fgets(f.bank_number, sizeof(f.bank_number), stdin);
-                f.bank_number[strcspn(f.bank_number, "\n")]='\0';
-                break;
-            case 16:
-                printf("Enter new bank name: ");
-                fgets(f.bank_name, sizeof(f.bank_name), stdin);
-                f.bank_name[strcspn(f.bank_name, "\n")]='\0';
-                break;
-            case 17:
-                printf("Enter new branch code: ");
-                scanf("%d", &f.branch_code);
-                getchar();
-                break;
-            case 18:
-                printf("Enter new linked number: ");
-                fgets(f.linked_number, sizeof(f.linked_number), stdin);
-                f.linked_number[strcspn(f.linked_number, "\n")]='\0';
-                break;
-            default:
-                printf("Invalid choice! Please enter a number between 1-18: ");
-                continue;
-            }
-
-            printf("Detail updated successfully. \n");
-
-            printf("Do you want to edit another field? (Y/N): ");
-            scanf(" %c", &continue_editing);
-            getchar();
-        }
-        while(continue_editing == 'Y' || continue_editing == 'y');
-    }
-    else
-    {
-        printf("Error! Please enter Y/N.");
-    }
-
-    Farmer tempFarmer;
-
-    //reading all the data that was previously stored before editing
     while(fscanf(fp, "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%f|%f|%d|%99[^|]|%c|%29[^|]|%49[^|]|%d|%19[^\n]\n",
-                 &tempFarmer.id,
-                 tempFarmer.fullName,
-                 tempFarmer.dob,
-                 &tempFarmer.gender,
-                 tempFarmer.nid,
-                 tempFarmer.literacy,
-                 tempFarmer.mobile,
-                 tempFarmer.email,
-                 tempFarmer.address,
-                 &tempFarmer.postal_code,
-                 &tempFarmer.farming_experience,
-                 &tempFarmer.area,
-                 &tempFarmer.land_parcels,
-                 tempFarmer.crops,
-                 &tempFarmer.ownership,
-                 tempFarmer.bank_number,
-                 tempFarmer.bank_name,
-                 &tempFarmer.branch_code,
-                 tempFarmer.linked_number) != EOF)
+                 &farmer.id,
+                 farmer.fullName,
+                 farmer.dob,
+                 &farmer.gender,
+                 farmer.nid,
+                 farmer.literacy,
+                 farmer.mobile,
+                 farmer.email,
+                 farmer.address,
+                 &farmer.postal_code,
+                 &farmer.farming_experience,
+                 &farmer.area,
+                 &farmer.land_parcels,
+                 farmer.crops,
+                 &farmer.ownership,
+                 farmer.bank_number,
+                 farmer.bank_name,
+                 &farmer.branch_code,
+                 farmer.linked_number
+                ) != EOF)
     {
 
-        if(tempFarmer.id == f.id) //we check with which farmer id does the id of the farmer we edited match
+        printf("\t\t PERSONAL DETAILS OF FARMER: %s\n", farmer.fullName);
+        printf("ID:                             %d\n", farmer.id);
+        printf("Full name:                      %s\n", farmer.fullName);
+        printf("Date of birth:                  %s\n", farmer.dob);
+        printf("Gender:                         %c\n", farmer.gender);
+        printf("NID:                            %s\n", farmer.nid);
+        printf("Literacy level:                 %s\n", farmer.literacy);
+        printf("Mobile Number:                  %s\n", farmer.mobile);
+        printf("Email address:                  %s\n", farmer.email);
+        printf("Address:                        %s\n", farmer.address);
+        printf("Postal Code:                    %d\n", farmer.postal_code);
+        printf("Farming Experience:             %.2f\n", farmer.farming_experience);
+        printf("Area of Land Parcels:           %.2f\n", farmer.area);
+        printf("Number of Land Parcels:         %d\n", farmer.land_parcels);
+        printf("Types of crops:                 %s\n", farmer.crops);
+        printf("Ownership Type:                 %c\n", farmer.ownership);
+        printf("Bank Account Number:            %s\n", farmer.bank_number);
+        printf("Bank Name:                      %s\n", farmer.bank_name);
+        printf("Branch Code:                    %d\n", farmer.branch_code);
+        printf("Linked Number to the Bank:      %s\n\n", farmer.linked_number);
+    }
+
+    fclose(fp);
+}
+
+void search_by_id(FILE *fp, Farmer farmer)
+{
+    clear_screen();
+
+    int id;
+    int id_matched = 0;
+
+    printf("Enter farmer's ID: ");
+    scanf("%d", &id);
+
+    while((fscanf(fp, "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%f|%f|%d|%99[^|]|%c|%29[^|]|%49[^|]|%d|%19[^\n]\n",
+                  &farmer.id,
+                  farmer.fullName,
+                  farmer.dob,
+                  &farmer.gender,
+                  farmer.nid,
+                  farmer.literacy,
+                  farmer.mobile,
+                  farmer.email,
+                  farmer.address,
+                  &farmer.postal_code,
+                  &farmer.farming_experience,
+                  &farmer.area,
+                  &farmer.land_parcels,
+                  farmer.crops,
+                  &farmer.ownership,
+                  farmer.bank_number,
+                  farmer.bank_name,
+                  &farmer.branch_code,
+                  farmer.linked_number
+                 ) != EOF))
+    {
+        if (farmer.id == id)
         {
-            // write the updated detail of the particular farmer in the new file
-            fprintf(temp, "%d|%s|%s|%c|%s|%s|%s|%s|%s|%d|%.2f|%.2f|%d|%s|%c|%s|%s|%d|%s\n",
-                    f.id,
-                    f.fullName,
-                    f.dob,
-                    f.gender,
-                    f.nid,
-                    f.literacy,
-                    f.mobile,
-                    f.email,
-                    f.address,
-                    f.postal_code,
-                    f.farming_experience,
-                    f.area,
-                    f.land_parcels,
-                    f.crops,
-                    f.ownership,
-                    f.bank_number,
-                    f.bank_name,
-                    f.branch_code,
-                    f.linked_number);
-        }
-        else
-        {
-            // write the previous data for the other farmers
-            fprintf(temp, "%d|%s|%s|%c|%s|%s|%s|%s|%s|%d|%.2f|%.2f|%d|%s|%c|%s|%s|%d|%s\n",
-                    tempFarmer.id,
-                    tempFarmer.fullName,
-                    tempFarmer.dob,
-                    tempFarmer.gender,
-                    tempFarmer.nid,
-                    tempFarmer.literacy,
-                    tempFarmer.mobile,
-                    tempFarmer.email,
-                    tempFarmer.address,
-                    tempFarmer.postal_code,
-                    tempFarmer.farming_experience,
-                    tempFarmer.area,
-                    tempFarmer.land_parcels,
-                    tempFarmer.crops,
-                    tempFarmer.ownership,
-                    tempFarmer.bank_number,
-                    tempFarmer.bank_name,
-                    tempFarmer.branch_code,
-                    tempFarmer.linked_number);
+            id_matched = 1;
+
+            printf("\t\t PERSONAL DETAILS OF FARMER: %d\n", id);
+            printf("ID:                             %d\n", farmer.id);
+            printf("Full name:                      %s\n", farmer.fullName);
+            printf("Date of birth:                  %s\n", farmer.dob);
+            printf("Gender:                         %c\n", farmer.gender);
+            printf("NID:                            %s\n", farmer.nid);
+            printf("Literacy level:                 %s\n", farmer.literacy);
+            printf("Mobile Number:                  %s\n", farmer.mobile);
+            printf("Email address:                  %s\n", farmer.email);
+            printf("Address:                        %s\n", farmer.address);
+            printf("Postal Code:                    %d\n", farmer.postal_code);
+            printf("Farming Experience:             %.2f\n", farmer.farming_experience);
+            printf("Area of Land Parcels:           %.2f\n", farmer.area);
+            printf("Number of Land Parcels:         %d\n", farmer.land_parcels);
+            printf("Types of crops:                 %s\n", farmer.crops);
+            printf("Ownership Type:                 %c\n", farmer.ownership);
+            printf("Bank Account Number:            %s\n", farmer.bank_number);
+            printf("Bank Name:                      %s\n", farmer.bank_name);
+            printf("Branch Code:                    %d\n", farmer.branch_code);
+            printf("Linked Number to the Bank:      %s\n\n", farmer.linked_number);
+            break;
         }
     }
 
     fclose(fp);
+
+
+    if(!id_matched)
+    {
+        printf("Farmer with ID: %d not found!\n", id);
+    }
+}
+
+void search_by_name(FILE *fp, Farmer farmer)
+{
+    clear_screen();
+
+    char name[100];
+    int name_matched = 0;
+
+    getchar();
+    printf("Enter farmer's full name exactly: ");
+    fgets(name, 100, stdin);
+    name[strcspn(name, "\n")] = '\0';
+
+    while((fscanf(fp, "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%f|%f|%d|%99[^|]|%c|%29[^|]|%49[^|]|%d|%19[^\n]\n",
+                  &farmer.id,
+                  farmer.fullName,
+                  farmer.dob,
+                  &farmer.gender,
+                  farmer.nid,
+                  farmer.literacy,
+                  farmer.mobile,
+                  farmer.email,
+                  farmer.address,
+                  &farmer.postal_code,
+                  &farmer.farming_experience,
+                  &farmer.area,
+                  &farmer.land_parcels,
+                  farmer.crops,
+                  &farmer.ownership,
+                  farmer.bank_number,
+                  farmer.bank_name,
+                  &farmer.branch_code,
+                  farmer.linked_number
+                 ) != EOF))
+    {
+        if (strcmp(lowercased_str(name), lowercased_str(farmer.fullName)) == 0)
+        {
+            name_matched = 1;
+
+            printf("\t\t PERSONAL DETAILS OF FARMER: %s\n", farmer.fullName);
+            printf("ID:                             %d\n", farmer.id);
+            printf("Full name:                      %s\n", farmer.fullName);
+            printf("Date of birth:                  %s\n", farmer.dob);
+            printf("Gender:                         %c\n", farmer.gender);
+            printf("NID:                            %s\n", farmer.nid);
+            printf("Literacy level:                 %s\n", farmer.literacy);
+            printf("Mobile Number:                  %s\n", farmer.mobile);
+            printf("Email address:                  %s\n", farmer.email);
+            printf("Address:                        %s\n", farmer.address);
+            printf("Postal Code:                    %d\n", farmer.postal_code);
+            printf("Farming Experience:             %.2f\n", farmer.farming_experience);
+            printf("Area of Land Parcels:           %.2f\n", farmer.area);
+            printf("Number of Land Parcels:         %d\n", farmer.land_parcels);
+            printf("Types of crops:                 %s\n", farmer.crops);
+            printf("Ownership Type:                 %c\n", farmer.ownership);
+            printf("Bank Account Number:            %s\n", farmer.bank_number);
+            printf("Bank Name:                      %s\n", farmer.bank_name);
+            printf("Branch Code:                    %d\n", farmer.branch_code);
+            printf("Linked Number to the Bank:      %s\n\n", farmer.linked_number);
+            break;
+        }
+    }
+
+    fclose(fp);
+
+    if(!name_matched)
+    {
+        printf("Farmer with the name %s not found!\n", name);
+    }
+}
+
+void search_partially(FILE *fp, Farmer farmer)
+{
+    clear_screen();
+    char partial_name[100];
+    int string_matched = 1;
+
+    getchar();
+    printf("Enter partial name characters: ");
+    fgets(partial_name, 100, stdin);
+    partial_name[strcspn(partial_name, "\n")] = '\0';
+
+    while((fscanf(fp, "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%f|%f|%d|%99[^|]|%c|%29[^|]|%49[^|]|%d|%19[^\n]\n",
+                  &farmer.id,
+                  farmer.fullName,
+                  farmer.dob,
+                  &farmer.gender,
+                  farmer.nid,
+                  farmer.literacy,
+                  farmer.mobile,
+                  farmer.email,
+                  farmer.address,
+                  &farmer.postal_code,
+                  &farmer.farming_experience,
+                  &farmer.area,
+                  &farmer.land_parcels,
+                  farmer.crops,
+                  &farmer.ownership,
+                  farmer.bank_number,
+                  farmer.bank_name,
+                  &farmer.branch_code,
+                  farmer.linked_number
+                 ) != EOF))
+    {
+        if (strncmp(lowercased_str(partial_name), lowercased_str(farmer.fullName), strlen(partial_name)) == 0)
+        {
+            string_matched = 1;
+
+            printf("\t\t PERSONAL DETAILS OF FARMER: %s\n", farmer.fullName);
+            printf("ID:                             %d\n", farmer.id);
+            printf("Full name:                      %s\n", farmer.fullName);
+            printf("Date of birth:                  %s\n", farmer.dob);
+            printf("Gender:                         %c\n", farmer.gender);
+            printf("NID:                            %s\n", farmer.nid);
+            printf("Literacy level:                 %s\n", farmer.literacy);
+            printf("Mobile Number:                  %s\n", farmer.mobile);
+            printf("Email address:                  %s\n", farmer.email);
+            printf("Address:                        %s\n", farmer.address);
+            printf("Postal Code:                    %d\n", farmer.postal_code);
+            printf("Farming Experience:             %.2f\n", farmer.farming_experience);
+            printf("Area of Land Parcels:           %.2f\n", farmer.area);
+            printf("Number of Land Parcels:         %d\n", farmer.land_parcels);
+            printf("Types of crops:                 %s\n", farmer.crops);
+            printf("Ownership Type:                 %c\n", farmer.ownership);
+            printf("Bank Account Number:            %s\n", farmer.bank_number);
+            printf("Bank Name:                      %s\n", farmer.bank_name);
+            printf("Branch Code:                    %d\n", farmer.branch_code);
+            printf("Linked Number to the Bank:      %s\n\n", farmer.linked_number);
+        }
+    }
+
+    fclose(fp);
+
+    if(!string_matched)
+    {
+        printf("No match found for %s\n", partial_name);
+    }
+}
+
+void search_farmer()
+{
+    FILE *fp = fopen("Farmers.txt", "r");
+
+    Farmer farmer;
+
+    int chosen_option;
+
+    clear_screen();
+    printf("1. Search by ID\n");
+    printf("2. Search by name\n");
+    printf("3. Search by partial name\n");
+
+    printf("Choose an option: ");
+    scanf("%d", &chosen_option);
+
+    switch(chosen_option)
+    {
+    case 1:
+        search_by_id(fp, farmer);
+        break;
+    case 2:
+        search_by_name(fp,farmer);
+        break;
+    case 3:
+        search_partially(fp, farmer);
+        break;
+    default:
+        printf("Invalid option chosen! Try again");
+        search_farmer();
+        break;
+    }
+}
+
+void delete_farmer()
+{
+    FILE *fp = fopen("Farmers.txt", "r");
+    FILE *temp = fopen("Temp.txt", "w");
+
+    FILE *fp2 = fopen("Users.txt", "r");
+    FILE *temp2 = fopen("Temp2.txt", "w");
+
+    int id;
+    int id_matched = 0;
+
+    Farmer farmer;
+    User user;
+
+    printf("Enter farmer's ID: ");
+    scanf("%d", &id);
+
+    while (fscanf(fp,
+                  "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%f|%f|%d|%99[^|]|%c|%29[^|]|%49[^|]|%d|%19[^\n]\n",
+                  &farmer.id,
+                  farmer.fullName,
+                  farmer.dob,
+                  &farmer.gender,
+                  farmer.nid,
+                  farmer.literacy,
+                  farmer.mobile,
+                  farmer.email,
+                  farmer.address,
+                  &farmer.postal_code,
+                  &farmer.farming_experience,
+                  &farmer.area,
+                  &farmer.land_parcels,
+                  farmer.crops,
+                  &farmer.ownership,
+                  farmer.bank_number,
+                  farmer.bank_name,
+                  &farmer.branch_code,
+                  farmer.linked_number) != EOF)
+    {
+        if (farmer.id != id)
+        {
+            id_matched = 1;
+            fprintf(temp,
+                    "%d|%s|%s|%c|%s|%s|%s|%s|%s|%d|%f|%f|%d|%s|%c|%s|%s|%d|%s\n",
+                    farmer.id,
+                    farmer.fullName,
+                    farmer.dob,
+                    farmer.gender,
+                    farmer.nid,
+                    farmer.literacy,
+                    farmer.mobile,
+                    farmer.email,
+                    farmer.address,
+                    farmer.postal_code,
+                    farmer.farming_experience,
+                    farmer.area,
+                    farmer.land_parcels,
+                    farmer.crops,
+                    farmer.ownership,
+                    farmer.bank_number,
+                    farmer.bank_name,
+                    farmer.branch_code,
+                    farmer.linked_number);
+        }
+    }
+
+    while (fscanf(fp2, "%d %s %c\n", &user.id, user.password, &user.type) != EOF)
+    {
+        if (user.id != id)
+        {
+            fprintf(temp2, "%d %s %c\n", user.id, user.password, user.type);
+        }
+    }
+
+
+    if(!id_matched)
+    {
+        printf("Farmer with ID %d not found in the system! \n", id);
+    }
+
+    fclose(fp);
     fclose(temp);
+    fclose(fp2);
+    fclose(temp2);
 
-    // we then replace original file with temp file
     remove("Farmers.txt");
-    rename("temp.txt", "Farmers.txt");
+    rename("Temp.txt", "Farmers.txt");
 
-    printf("Farmer details updated successfully!\n");
+    remove("Users.txt");
+    rename("Temp2.txt", "Users.txt");
+
+    printf("\nFarmer profile deleted successfully.\n");
+
 }

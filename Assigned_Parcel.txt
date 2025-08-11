@@ -1,10 +1,6 @@
-001|1|1461801856|I|Green Valley|2.5|2023-03-15|Loamy|Wheat, Corn
-102|2|1002|P|Sunset Farm|1.2|2022-11-02|Sandy|Tomatoes
-103|3|1003|C|Riverbend|3.8|2024-05-10|Clay|Rice, Lentils
-104|4|1004|I|Mountain Ridge|4.0|2021-08-21|Silt|Barley, Oats
-105|5|1005|P|Forest Edge|0.9|2023-12-01|Peaty|Herbs
-106|6|1006|C|Coastal Plains|5.1|2022-07-14|Saline|Cotton, Sorghum
-107|7|1007|I|Northern Meadows|2.0|2023-01-30|Chalky|Potatoes, Peas
-108|8|1008|P|Highland Fields|6.3|2024-02-18|Loamy|Corn, Soybeans
-109|9|1009|C|Eastern Grove|3.0|2023-09-07|Sandy|Carrots, Beets
-110|10|1010|I|Western Hills|2.7|2022-10-25|Clay|Wheat, Sunflower
+396623389|1|1957931365|I|Green Valley|2.5|2023-03-15|Loamy|Wheat, Corn
+396623389|2|874562193|O|Sunrise Farm|3.0|2023-04-20|Sandy|Rice, Jute
+6728193456|3|564738291|L|Golden Fields|1.8|2023-05-10|Clay|Wheat, Maize
+837261945|4|246813579|O|Highland Estate|4.2|2023-06-25|Silty|Tea, Spices
+975318642|5|1957931365|L|Riverbend Farm|2.1|2023-07-12|Loamy|Jute, Sugarcane
+
