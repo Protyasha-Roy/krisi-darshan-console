@@ -31,6 +31,7 @@ void assigned_parcels(int id)
         {
             id_matched=1;
 
+            printf("\n\n");
             printf("Agent's Id: %d\n",assignedParcel.agentId);
             printf("Parcel's Id: %d\n",assignedParcel.id);
             printf("Farmer's Id: %s\n",assignedParcel.farmerId);
@@ -106,7 +107,7 @@ void upload_report(int id)
 
 void manage_report(int id)
 {
-    printf("Reports of Agent ID %d\n", id);
+    printf("Manage report \n");
 }
 
 void manage_schedules (int id)
