@@ -119,6 +119,7 @@ void search_by_id(FILE *fp, Farmer farmer)
 
     fclose(fp);
 
+
     if(!id_matched)
     {
         printf("Farmer with ID: %d not found!\n", id);
@@ -389,4 +390,5 @@ void delete_farmer()
     rename("Temp2.txt", "Users.txt");
 
     printf("\nFarmer profile deleted successfully.\n");
+
 }

@@ -171,7 +171,244 @@ void add_agent()
 
 void update_agent()
 {
+    FILE *fp = fopen("Agents.txt", "r");
+    FILE *temp = fopen("temp.txt", "w");
 
+    int id;
+    Agent agent;
+    Agent tempAgent;
+    int found = 0;
+
+    if (fp==NULL || temp==NULL)
+    {
+        printf("Error! File not found!\n");
+        if (fp) fclose(fp);
+        if (temp) fclose(temp);
+        return;
+    }
+
+    char edit_choice;
+
+    printf("Enter agent ID that you want to update: ");
+    scanf("%d", &id);
+    getchar();
+
+    rewind(fp);
+    while (fscanf(fp, "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%29[^|]|%49[^|]|%d|%19[^\n]\n",
+                  &tempAgent.id,
+                  tempAgent.fullName,
+                  tempAgent.dob,
+                  &tempAgent.gender,
+                  tempAgent.nid,
+                  tempAgent.literacy,
+                  tempAgent.mobile,
+                  tempAgent.email,
+                  tempAgent.address,
+                  &tempAgent.postal_code,
+                  tempAgent.bank_number,
+                  tempAgent.bank_name,
+                  &tempAgent.branch_code,
+                  tempAgent.linked_number) != EOF)
+    {
+        if (tempAgent.id == id)
+        {
+            agent = tempAgent;
+            found = 1;
+            break;
+        }
+    }
+
+    if (!found) {
+        printf("Agent with ID %d not found.\n", id);
+        fclose(fp);
+        fclose(temp);
+        remove("temp.txt");
+        return;
+    }
+
+    printf("Are you sure you want to edit field agent? (Y/N) ");
+    scanf(" %c", &edit_choice);
+    getchar();
+
+    if(edit_choice=='Y' || edit_choice=='y')
+    {
+        char continue_editing;
+
+        do
+        {
+            int personal_detail;
+
+            printf("1. Full Name\n");
+            printf("2. Date of Birth (YYYY-MM-DD)\n");
+            printf("3. Gender: (M/F/O)\n");
+            printf("4. NID\n");
+            printf("5. Literacy level\n");
+            printf("6. Mobile number\n");
+            printf("7. Email address\n");
+            printf("8. Address\n");
+            printf("9. Postal code\n");
+            printf("10. Bank number\n");
+            printf("11. Bank name\n");
+            printf("12. Bbranch code\n");
+            printf("13. Linked number\n");
+
+            printf("Enter the number of the detail you want to edit (1-13): ");
+            scanf("%d", &personal_detail);
+            getchar();
+
+            switch(personal_detail)
+            {
+            case 1:
+                printf("Enter new Full Name: ");
+                fgets(agent.fullName, sizeof(agent.fullName), stdin);
+                agent.fullName[strcspn(agent.fullName, "\n")]='\0';
+                break;
+            case 2:
+                printf("Enter new Date of Birth (YYYY-MM-DD): ");
+                fgets(agent.dob, sizeof(agent.dob), stdin);
+                agent.dob[strcspn(agent.dob, "\n")]='\0';
+                break;
+            case 3:
+                printf("Enter new Gender: (M/F/O) ");
+                scanf(" %c", &agent.gender);
+                getchar();
+                break;
+            case 4:
+                printf("Enter new NID: ");
+                fgets(agent.nid, sizeof(agent.nid), stdin);
+                agent.nid[strcspn(agent.nid, "\n")]='\0';
+                break;
+            case 5:
+                printf("Enter new literacy level: ");
+                fgets(agent.literacy, sizeof(agent.literacy), stdin);
+                agent.literacy[strcspn(agent.literacy, "\n")]='\0';
+                break;
+            case 6:
+                printf("Enter new mobile number: ");
+                fgets(agent.mobile, sizeof(agent.mobile), stdin);
+                agent.mobile[strcspn(agent.mobile, "\n")]='\0';
+                break;
+            case 7:
+                printf("Enter new email address: ");
+                fgets(agent.email, sizeof(agent.email), stdin);
+                agent.email[strcspn(agent.email, "\n")]='\0';
+                break;
+            case 8:
+                printf("Enter new address: ");
+                fgets(agent.address, sizeof(agent.address), stdin);
+                agent.address[strcspn(agent.address, "\n")]='\0';
+                break;
+            case 9:
+                printf("Enter new postal code: ");
+                scanf("%d", &agent.postal_code);
+                getchar();
+                break;
+            case 10:
+                printf("Enter new bank number: ");
+                fgets(agent.bank_number, sizeof(agent.bank_number), stdin);
+                agent.bank_number[strcspn(agent.bank_number, "\n")]='\0';
+                break;
+            case 11:
+                printf("Enter new bank name: ");
+                fgets(agent.bank_name, sizeof(agent.bank_name), stdin);
+                agent.bank_name[strcspn(agent.bank_name, "\n")]='\0';
+                break;
+            case 12:
+                printf("Enter new branch code: ");
+                scanf("%d", &agent.branch_code);
+                getchar();
+                break;
+            case 13:
+                printf("Enter new linked number: ");
+                fgets(agent.linked_number, sizeof(agent.linked_number), stdin);
+                agent.linked_number[strcspn(agent.linked_number, "\n")]='\0';
+                break;
+            default:
+                printf("Invalid choice! Please enter a number between 1-13: ");
+                continue;
+            }
+
+            printf("Detail updated successfully. \n");
+
+            printf("Do you want to edit another field? (Y/N): ");
+            scanf(" %c", &continue_editing);
+            getchar();
+        }
+        while(continue_editing == 'Y' || continue_editing == 'y');
+    }
+    else
+    {
+        printf("Edit cancelled.\n");
+        fclose(fp);
+        fclose(temp);
+        remove("temp.txt");
+        return;
+    }
+
+    rewind(fp);
+
+    while(fscanf(fp, "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%29[^|]|%49[^|]|%d|%19[^\n]\n",
+                 &tempAgent.id,
+                 tempAgent.fullName,
+                 tempAgent.dob,
+                 &tempAgent.gender,
+                 tempAgent.nid,
+                 tempAgent.literacy,
+                 tempAgent.mobile,
+                 tempAgent.email,
+                 tempAgent.address,
+                 &tempAgent.postal_code,
+                 tempAgent.bank_number,
+                 tempAgent.bank_name,
+                 &tempAgent.branch_code,
+                 tempAgent.linked_number) != EOF)
+    {
+
+        if(tempAgent.id == id)
+        {
+            fprintf(temp, "%d|%s|%s|%c|%s|%s|%s|%s|%s|%d|%s|%s|%d|%s\n",
+                    agent.id,
+                    agent.fullName,
+                    agent.dob,
+                    agent.gender,
+                    agent.nid,
+                    agent.literacy,
+                    agent.mobile,
+                    agent.email,
+                    agent.address,
+                    agent.postal_code,
+                    agent.bank_number,
+                    agent.bank_name,
+                    agent.branch_code,
+                    agent.linked_number);
+        }
+        else
+        {
+            fprintf(temp, "%d|%s|%s|%c|%s|%s|%s|%s|%s|%d|%s|%s|%d|%s\n",
+                    tempAgent.id,
+                    tempAgent.fullName,
+                    tempAgent.dob,
+                    tempAgent.gender,
+                    tempAgent.nid,
+                    tempAgent.literacy,
+                    tempAgent.mobile,
+                    tempAgent.email,
+                    tempAgent.address,
+                    tempAgent.postal_code,
+                    tempAgent.bank_number,
+                    tempAgent.bank_name,
+                    tempAgent.branch_code,
+                    tempAgent.linked_number);
+        }
+    }
+
+    fclose(fp);
+    fclose(temp);
+
+    remove("Agents.txt");
+    rename("temp.txt", "Agents.txt");
+
+    printf("Agent details updated successfully!\n");
 }
 
 void delete_agent()

@@ -1,5 +1,18 @@
 #ifndef PARCELS_H_INCLUDED
 #define PARCELS_H_INCLUDED
 
+typedef struct {
+    int id;
+    int farmerId;
+    char location[100];
+    float area;
+    char dop[15];
+    char soilType[30];
+    char crops[50];
+} Parcel;
+
+void add_landparcels(int id);
+void edit_landparcels();
+void delete_landparcels();
 
 #endif // PARCELS_H_INCLUDED
