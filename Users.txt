@@ -1,4 +1,8 @@
+123456 admin a
+592801859 qwerty a
+564738291 abc123 f
+111222333 rootpass a
+246813579 sunshine f
+314159265 pi314 a
 1461801856 password f
-1144885466 poop f
-01 adminspass a
-001 agent t
+23766 password t

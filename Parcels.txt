@@ -1,10 +1,4 @@
-1|1461801856|I|Green Valley|2.5|2023-03-15|Loamy|Wheat, Corn
-2|1002|P|Sunset Farm|1.2|2022-11-02|Sandy|Tomatoes
-3|1003|C|Riverbend|3.8|2024-05-10|Clay|Rice, Lentils
-4|1004|I|Mountain Ridge|4.0|2021-08-21|Silt|Barley, Oats
-5|1005|P|Forest Edge|0.9|2023-12-01|Peaty|Herbs
-6|1006|C|Coastal Plains|5.1|2022-07-14|Saline|Cotton, Sorghum
-7|1007|I|Northern Meadows|2.0|2023-01-30|Chalky|Potatoes, Peas
-8|1008|P|Highland Fields|6.3|2024-02-18|Loamy|Corn, Soybeans
-9|1009|C|Eastern Grove|3.0|2023-09-07|Sandy|Carrots, Beets
-10|1010|I|Western Hills|2.7|2022-10-25|Clay|Wheat, Sunflower
+1|1461801856|Green Valley|2.500000|2023-03-15|Loamy|Wheat, Corn
+27268|1461801856|Faridpur, Dhaka|200.000000|2025-04-03|Loamy|Potatoes
+27395|1461801856|Cumilla, Chittagong|350.000000|2025-06-05|Sandy|Radishes
+28339|1461801856|Bogura, Rajshahi|300.000000|2025-02-09|Loamy|Cabbage
