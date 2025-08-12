@@ -113,6 +113,7 @@ void manage_report(int id)
     printf("1: Update land parcel report.\n");
     printf("2: Delete land parcel report.\n");
     printf("3: Search land parcel report.\n");
+
     printf("\nChoose an option: ");
     scanf("%d", &selected_option);
 
