@@ -3,6 +3,7 @@
 #include <time.h>
 #include <ctype.h>
 #include <string.h>
+#include "utils.h"
 
 int checkIdDuplication(FILE *fp2, int farmerId) {
     int id;
