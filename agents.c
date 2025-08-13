@@ -3,6 +3,7 @@
 #include "assigned_parcel.h"
 #include "agents.h"
 #include "utils.h"
+#include "parcel_report.h"
 
 void assigned_parcels(int agentId)
 {
@@ -140,199 +141,267 @@ void manage_report(int id)
 
 void manage_schedules (int id)
 {
-    printf("Schedule of Agent ID %d\n", id);
+    int choosen_opt;
+
+    printf("1.Create schedule.\n");
+    printf("2.View schedule.\n");
+    printf("3.Update schedule.\n");
+    printf("4.Delete schedule.\n");
+
+    printf("\nChoose an option:");
+    scanf("%d",&choosen_opt);
+
+        switch(choosen_opt)
+    {
+    case 1:
+        create_schedule();
+        break;
+    case 2:
+        view_schedule();
+        break;
+    case 3:
+        update_schedule();
+        break;
+    case 4:
+        delete_schedule();
+        break;
+    default:
+        printf("Please enter a valid option(1-4).");
+        break;
+}
 }
 
 
-void update_parcel_report()
+void create_schedule()
 {
-    clear_screen();
 
-    FILE *fp = fopen("Land_Parcel_Report.txt", "r");
-    FILE *temp = fopen("Temp_Report.txt", "w");
+    FILE *fp = fopen("Schedule.txt", "a");
 
-    if (fp == NULL || temp == NULL)
+    if (fp == NULL)
     {
         printf("Error! File not found.\n");
         return;
     }
 
+    Schedule s;
+
+    printf("Enter parcel Id: ");
+    scanf("%d", &s.parcelId);
+    getchar();
+
+    printf("Enter agent's Id: ");
+    scanf("%d", &s.agentId);
+    getchar();
+
+    printf("\nEnter information about schedule:\n");
+    printf("Enter Farmer Name: ");
+    fgets(s.farmerName, sizeof(s.farmerName), stdin);
+    s.farmerName[strcspn(s.farmerName, "\n")]='\0';
+
+    printf("Enter Location: ");
+    fgets(s.location, sizeof(s.location), stdin);
+    s.location[strcspn(s.location, "\n")]='\0';
+
+    printf("Enter Date to Visit (DD/MM/YYYY): ");
+    fgets(s.dov, sizeof(s.dov), stdin);
+    s.dov[strcspn(s.dov, "\n")]='\0';
+
+    printf("Enter Scheme Type: ");
+    fgets(s.schemeType, sizeof(s.schemeType), stdin);
+    s.schemeType[strcspn(s.schemeType, "\n")]='\0';
+
+    fprintf(fp, "%d|%d|%s|%s|%s|%s\n",
+            s.parcelId,s.agentId,s.farmerName,s.location,s.dov,s.schemeType);
+
+    fclose(fp);
+
+    printf("\nSchedule created.\n");
+}
+
+
+
+void view_schedule()
+{
+
     int id;
-    int id_found = 0;
+    int found = 0;
 
-    UploadReport updateReport;
+    printf("Enter agent Id:");
+    scanf("%d",&id);
+    getchar();
 
-    printf("Enter Parcel ID to update: ");
+    FILE *fp = fopen("Schedule.txt", "r");
+
+    if (!fp)
+    {
+        printf("Error! File not found.\n");
+        return;
+    }
+
+    Schedule s;
+
+    printf("\nSchedules for agent %d:\n",id);
+
+    while (fscanf(fp, "%d|%d|%99[^|]|%99[^|]|%14[^|]|%49[^\n]",
+                  &s.parcelId,
+                  &s.agentId,
+                  s.farmerName,
+                  s.location,
+                  s.dov,
+                  s.schemeType) != EOF)
+    {
+        if (s.agentId == id)
+        {
+            found = 1;
+            printf("Parcel Id:         %d\n",s.parcelId);
+            printf("Farmer's name:     %s\n",s.farmerName);
+            printf("Location:          %s\n",s.location);
+            printf("Date to visit:     %s\n",s.dov);
+            printf("Scheme type:       %s\n",s.schemeType);
+            printf("\n\n");
+        }
+    }
+
+    fclose(fp);
+
+    if (!found)
+    {
+        printf("No schedules found.\n");
+    }
+}
+
+
+
+void update_schedule()
+{
+    int id;
+    int found = 0;
+
+    printf("Enter parcel Id to update: ");
     scanf("%d", &id);
     getchar();
 
-    while (fscanf(fp, "%d|%99[^|]|%14[^|]|%499[^|]|%499[^|]|%99[^\n]",
-                  &updateReport.parcelId,
-                  updateReport.farmerName,
-                  updateReport.dov,
-                  updateReport.observation,
-                  updateReport.reportResul,
-                  updateReport.recomendation) != EOF)
-    {
-        if (updateReport.parcelId == id)
-        {
-            id_found = 1;
+    FILE *fp = fopen("Schedule.txt", "r");
+    FILE *temp = fopen("TempSchedule.txt", "w");
 
-            printf("\nUpdate changes:\n");
-
-            printf("Farmer Name: ");
-            fgets(updateReport.farmerName, sizeof(updateReport.farmerName), stdin);
-            updateReport.farmerName[strcspn(updateReport.farmerName, "\n")]='\0';
-
-            printf("Date of Visit (DD/MM/YYYY): ");
-            fgets(updateReport.dov, sizeof(updateReport.dov), stdin);
-            updateReport.dov[strcspn(updateReport.dov, "\n")]='\0';
-
-            printf("Observation: ");
-            fgets(updateReport.observation, sizeof(updateReport.observation), stdin);
-            updateReport.observation[strcspn(updateReport.observation, "\n")]='\0';
-
-            printf("Report Result: ");
-            fgets(updateReport.reportResul, sizeof(updateReport.reportResul), stdin);
-            updateReport.reportResul[strcspn(updateReport.reportResul, "\n")]='\0';
-
-            printf("Recommendation: ");
-            fgets(updateReport.recomendation, sizeof(updateReport.recomendation), stdin);
-            updateReport.recomendation[strcspn(updateReport.recomendation, "\n")]='\0';
-        }
-
-
-        fprintf(temp, "%d|%s|%s|%s|%s|%s\n",
-                updateReport.parcelId,
-                updateReport.farmerName,
-                updateReport.dov,
-                updateReport.observation,
-                updateReport.reportResul,
-                updateReport.recomendation);
-    }
-
-    fclose(fp);
-    fclose(temp);
-
-    remove("Land_Parcel_Report.txt");
-    rename("Temp_Report.txt", "Land_Parcel_Report.txt");
-
-    if (id_found)
-        printf("\nParcel report with ID %d updated successfully.\n", id);
-}
-
-
-
-
-void delete_parcel_report()
-{
-    clear_screen();
-
-    FILE *fp = fopen("Land_Parcel_Report.txt", "r");
-    FILE *temp = fopen("Temp_Report.txt", "w");
-
-
-    if (fp == NULL||temp == NULL)
+    if (!fp || !temp)
     {
         printf("Error! File not found.\n");
         return;
     }
 
+    Schedule s;
 
-    int id;
-    int id_delete = 0;
-
-    UploadReport updateReport;
-
-    printf("Enter Parcel ID to delete: ");
-    scanf("%d", &id);
-
-    while (fscanf(fp, "%d|%99[^|]|%14[^|]|%499[^|]|%499[^|]|%99[^\n]",
-                  &updateReport.parcelId,
-                  updateReport.farmerName,
-                  updateReport.dov,
-                  updateReport.observation,
-                  updateReport.reportResul,
-                  updateReport.recomendation) != EOF)
+    while (fscanf(fp, "%d|%d|%99[^|]|%99[^|]|%14[^|]|%49[^\n]\n",
+                  &s.parcelId,
+                  &s.agentId,
+                  s.farmerName,
+                  s.location,
+                  s.dov,
+                  s.schemeType) != EOF)
     {
-        if (updateReport.parcelId != id)
+        if (s.parcelId == id)
         {
-            fprintf(temp, "%d|%s|%s|%s|%s|%s\n",
-                    updateReport.parcelId,
-                    updateReport.farmerName,
-                    updateReport.dov,
-                    updateReport.observation,
-                    updateReport.reportResul,
-                    updateReport.recomendation);
+            found = 1;
+
+            printf("\nUpdate schedule:\n");
+
+            printf("Enter farmer name: ");
+            fgets(s.farmerName, sizeof(s.farmerName), stdin);
+            s.farmerName[strcspn(s.farmerName, "\n")]='\0';
+
+            printf("Enter location: ");
+            fgets(s.location, sizeof(s.location), stdin);
+            s.location[strcspn(s.location, "\n")]='\0';
+
+            printf("Enter date of visit: ");
+            fgets(s.dov, sizeof(s.dov), stdin);
+            s.dov[strcspn(s.dov, "\n")]='\0';
+
+            printf("Enter scheme type: ");
+            fgets(s.schemeType, sizeof(s.schemeType), stdin);
+            s.schemeType[strcspn(s.schemeType, "\n")]='\0';
+
+            printf("\nSchedule updated!\n");
+        }
+
+
+        fprintf(temp, "%d|%d|%s|%s|%s|%s\n",
+                s.parcelId,
+                s.agentId,
+                s.farmerName,
+                s.location,
+                s.dov,
+                s.schemeType);
+    }
+
+    fclose(fp);
+    fclose(temp);
+
+    remove("Schedule.txt");
+    rename("TempSchedule.txt", "Schedule.txt");
+
+    if (!found)
+    {
+        printf("No schedules found.\n");
+    }
+
+}
+
+
+void delete_schedule()
+{
+
+  int id;
+  int found = 0;
+
+    printf("Enter parcel Id to delete: ");
+    scanf("%d", &id);
+    getchar();
+
+    FILE *fp = fopen("Schedule.txt", "r");
+    FILE *temp = fopen("TempSchedule.txt", "w");
+
+    if (!fp || !temp)
+    {
+        printf("Error! File not found.\n");
+        return;
+    }
+
+    Schedule s;
+
+    while (fscanf(fp, "%d|%d|%99[^|]|%99[^|]|%14[^|]|%49[^\n]\n",
+                  &s.parcelId,
+                  &s.agentId,
+                  s.farmerName,
+                  s.location,
+                  s.dov,
+                  s.schemeType) != EOF)
+    {
+        if (s.parcelId != id)
+        {
+          fprintf(temp, "%d|%d|%s|%s|%s|%s\n",
+                 s.parcelId,
+                 s.agentId,
+                 s.farmerName,
+                 s.location,
+                 s.dov,
+                 s.schemeType);
+
         }
         else
-        {
-            id_delete = 1;
-        }
+          found = 1;
     }
 
     fclose(fp);
     fclose(temp);
 
-    remove("Land_Parcel_Report.txt");
-    rename("Temp_Report.txt", "Land_Parcel_Report.txt");
+    remove("Schedule.txt");
+    rename("TempSchedule.txt", "Schedule.txt");
 
-    if (id_delete)
-        printf("\nParcel report with ID %d deleted successfully.\n", id);
+    if (found)
+    {
+        printf("\nSchedule with parcel Id %d deleted successfully.\n", id);
+    }
 }
 
-
-void search_parcel_report()
-{
-    clear_screen();
-
-    int parcelid;
-    int id_matched=0;
-
-    printf("\nSearch your land parcel report by id:");
-    scanf("%d",&parcelid);
-
-
-    FILE *fp = fopen("Land_Parcel_Report.txt", "r");
-
-    if(fp==NULL)
-    {
-        printf("Error! File not found.\n");
-        return;
-    }
-
-    UploadReport uploadReport;
-
-    while (fscanf(fp, "%d|%99[^|]|%14[^|]|%499[^|]|%499[^|]|%99[^\n]",
-                  &uploadReport.parcelId,
-                  uploadReport.farmerName,
-                  uploadReport.dov,
-                  uploadReport.observation,
-                  uploadReport.reportResul,
-                  uploadReport.recomendation) != EOF)
-
-    {
-        if(parcelid == uploadReport.parcelId)
-        {
-
-            id_matched=1;
-
-            printf("\n\n");
-            printf("Land parcel Id:    %d\n",uploadReport.parcelId);
-            printf("Farmer's name:     %s\n",uploadReport.farmerName);
-            printf("Date of visit:     %s\n",uploadReport.dov);
-            printf("Observation:       %s\n",uploadReport.observation);
-            printf("Report result:     %s\n",uploadReport.reportResul);
-            printf("Recommendation:    %s\n",uploadReport.recomendation);
-            break;
-        }
-    }
-
-    fclose(fp);
-
-    if(!id_matched)
-    {
-        printf("Parcel Id %d not found!\n",parcelid);
-    }
-
-}
