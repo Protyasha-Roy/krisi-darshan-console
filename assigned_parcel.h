@@ -1,7 +1,9 @@
 #ifndef ASSIGNED_PARCEL_H_INCLUDED
 #define ASSIGNED_PARCEL_H_INCLUDED
 
-typedef struct {
+typedef struct
+{
+    int parcelId;
     int id;
     int agentId;
     int farmerId;
@@ -13,15 +15,14 @@ typedef struct {
     char crops[50];
 } AssignedParcel;
 
-typedef struct {
-
-  int parcelId;
-  char farmerName[100];
-  char dov[15];
-  char observation[500];
-  char reportResul[500];
-  char recomendation[100];
-
+typedef struct
+{
+    int parcelId;
+    char farmerName[100];
+    char dov[15];
+    char observation[500];
+    char reportResul[500];
+    char recomendation[100];
 } UploadReport;
 
 typedef struct

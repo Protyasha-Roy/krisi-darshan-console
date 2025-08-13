@@ -19,11 +19,11 @@ void delete_landparcels()
     int id_matched=0;
 
     int chosen_parcelId;
-        printf("Enter ID of parcel to edit: ");
-        scanf("%d", &chosen_parcelId);
-        getchar();
+    printf("Enter ID of parcel to edit: ");
+    scanf("%d", &chosen_parcelId);
+    getchar();
 
-     while(fscanf(fp, "%d|%d|%99[^|]|%f|%14[^|]|%29[^|]|%29[^\n]\n",
+    while(fscanf(fp, "%d|%d|%99[^|]|%f|%14[^|]|%29[^|]|%29[^\n]\n",
                  &p.id,
                  &p.farmerId,
                  p.location,
@@ -47,9 +47,9 @@ void delete_landparcels()
         }
 
         if(!id_matched)
-    {
-        printf("Parcel %d not found in the system! \n", id);
-    }
+        {
+            printf("Parcel %d not found in the system! \n", id);
+        }
     }
 
     fclose(fp);
@@ -77,88 +77,88 @@ void edit_landparcels()
 
     Parcel p,tempParcel;
 
-        int chosen_parcelId;
-        printf("Enter ID of parcel to edit: ");
-        scanf("%d", &chosen_parcelId);
-        getchar();
+    int chosen_parcelId;
+    printf("Enter ID of parcel to edit: ");
+    scanf("%d", &chosen_parcelId);
+    getchar();
 
-        int id_matched=0;
+    int id_matched=0;
 
-        while(fscanf(fp, "%d|%d|%99[^|]|%f|%14[^|]|%29[^|]|%29[^\n]\n",
-                     &tempParcel.id,
-                     &tempParcel.farmerId,
-                     tempParcel.location,
-                     &tempParcel.area,
-                     tempParcel.dop,
-                     tempParcel.soilType,
-                     tempParcel.crops) !=EOF )
+    while(fscanf(fp, "%d|%d|%99[^|]|%f|%14[^|]|%29[^|]|%29[^\n]\n",
+                 &tempParcel.id,
+                 &tempParcel.farmerId,
+                 tempParcel.location,
+                 &tempParcel.area,
+                 tempParcel.dop,
+                 tempParcel.soilType,
+                 tempParcel.crops) !=EOF )
+    {
+
+        if(tempParcel.id==chosen_parcelId)
         {
+            p=tempParcel;
+            id_matched=1;
+            break;
+        }
+    }
 
-            if(tempParcel.id==chosen_parcelId)
+    fclose(fp);
+
+    if(id_matched==1)
+    {
+        char continue_editing;
+        do
+        {
+            int land_parcel;
+
+            printf("Enter the number of the detail you want to edit (1-5): ");
+            scanf("%d", &land_parcel);
+            getchar();
+
+            switch(land_parcel)
             {
-                p=tempParcel;
-                id_matched=1;
+            case 1:
+                printf("Enter new Location: ");
+                fgets(p.location, sizeof(p.location), stdin);
+                p.location[strcspn(p.location, "\n")]='\0';
                 break;
-            }
-        }
-
-        fclose(fp);
-
-        if(id_matched==1)
-        {
-            char continue_editing;
-            do
-            {
-                int land_parcel;
-
-                printf("Enter the number of the detail you want to edit (1-5): ");
-                scanf("%d", &land_parcel);
+            case 2:
+                printf("Enter updated area (in acres): ");
+                scanf("%f", &p.area);
                 getchar();
-
-                switch(land_parcel)
-                {
-                case 1:
-                    printf("Enter new Location: ");
-                    fgets(p.location, sizeof(p.location), stdin);
-                    p.location[strcspn(p.location, "\n")]='\0';
-                    break;
-                case 2:
-                    printf("Enter updated area (in acres): ");
-                    scanf("%f", &p.area);
-                    getchar();
-                    break;
-                case 3:
-                    printf("Enter updated date of purchase: ");
-                    fgets(p.dop, sizeof(p.dop), stdin);
-                    p.dop[strcspn(p.dop, "\n")]='\0';
-                    break;
-                case 4:
-                    printf("Enter updated soil type: ");
-                    fgets(p.soilType, sizeof(p.soilType), stdin);
-                    p.soilType[strcspn(p.soilType, "\n")]='\0';
-                    break;
-                case 5:
-                    printf("Enter new types of crops grown: ");
-                    fgets(p.crops, sizeof(p.crops), stdin);
-                    p.crops[strcspn(p.crops, "\n")]='\0';
-                    break;
-                default:
-                    printf("Invalid choice! Please enter a number between 1-5: ");
-                    continue;
-                }
-
-                printf("Parcel updated successfully. \n");
-
-                printf("Do you want to edit another field? (Y/N): ");
-                scanf(" %c", &continue_editing);
-                getchar();
+                break;
+            case 3:
+                printf("Enter updated date of purchase: ");
+                fgets(p.dop, sizeof(p.dop), stdin);
+                p.dop[strcspn(p.dop, "\n")]='\0';
+                break;
+            case 4:
+                printf("Enter updated soil type: ");
+                fgets(p.soilType, sizeof(p.soilType), stdin);
+                p.soilType[strcspn(p.soilType, "\n")]='\0';
+                break;
+            case 5:
+                printf("Enter new types of crops grown: ");
+                fgets(p.crops, sizeof(p.crops), stdin);
+                p.crops[strcspn(p.crops, "\n")]='\0';
+                break;
+            default:
+                printf("Invalid choice! Please enter a number between 1-5: ");
+                continue;
             }
-            while(continue_editing == 'Y' || continue_editing == 'y');
+
+            printf("Parcel updated successfully. \n");
+
+            printf("Do you want to edit another field? (Y/N): ");
+            scanf(" %c", &continue_editing);
+            getchar();
         }
-        else
-        {
-            printf("Error! Invalid Parcel ID!\n");
-        }
+        while(continue_editing == 'Y' || continue_editing == 'y');
+    }
+    else
+    {
+        printf("Error! Invalid Parcel ID!\n");
+    }
 
     fp=fopen("Parcels.txt", "r");
     temp=fopen("temp2.txt", "w");
@@ -246,7 +246,6 @@ void add_landparcels(int id)
     FILE *fp2;
 
     fp=fopen("Parcels.txt", "a");
-
     fp2=fopen("Parcels.txt", "r");
 
     Parcel p;
@@ -296,7 +295,7 @@ void add_landparcels(int id)
             p.crops);
     fclose(fp);
     printf("New Land Parcel Added.");
-    }
+}
 
 
 

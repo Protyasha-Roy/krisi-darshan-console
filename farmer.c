@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "application_schemes.h"
 #include "menus.h"
 #include "login.h"
 #include "farmer.h"
 #include "parcels.h"
 #include "utils.h"
-
 
 void edit_personaldetails(Farmer f)
 {
@@ -394,9 +394,10 @@ void application_schemes(int id)
     }
 }
 
-void chatbot()
-{
-    printf("Welcome to the chatbot.");
+
+void chatbot() {
+    clear_screen();
+    printf("Welcome to the chatbot");
 }
 
 void track_cropcycle(int id)

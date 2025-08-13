@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <ctype.h>
 #include <string.h>
+#include "utils.h"
+#include <ctype.h>
+
 
 int checkIdDuplication(FILE *fp2, int farmerId) {
     int id;
