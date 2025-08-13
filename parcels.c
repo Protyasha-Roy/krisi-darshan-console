@@ -246,7 +246,6 @@ void add_landparcels(int id)
     FILE *fp2;
 
     fp=fopen("Parcels.txt", "a");
-
     fp2=fopen("Parcels.txt", "r");
 
     Parcel p;

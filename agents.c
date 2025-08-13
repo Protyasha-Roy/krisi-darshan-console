@@ -18,9 +18,10 @@ void assigned_parcels(int agentId)
 
     int id_matched=0;
 
-    while (fscanf(fp, "%d|%d|%d|%c|%99[^|]|%f|%14[^|]|%29[^|]|%49[^\n]",
-                  &assignedParcel.agentId,
+    while (fscanf(fp, "%d|%d|%d|%d|%c|%99[^|]|%f|%14[^|]|%29[^|]|%49[^\n]",
+                  &assignedParcel.parcelId,
                   &assignedParcel.id,
+                  &assignedParcel.agentId,
                   &assignedParcel.farmerId,
                   &assignedParcel.status,
                   assignedParcel.location,
@@ -34,8 +35,10 @@ void assigned_parcels(int agentId)
             id_matched=1;
 
             printf("\n\t\tPARCEL ID:%d\n", assignedParcel.id);
+
+            printf("Parcel's Id:            %d\n",assignedParcel.parcelId);
+            printf("Assigned Id:            %d\n",assignedParcel.id);
             printf("Agent's Id:             %d\n",assignedParcel.agentId);
-            printf("Parcel's Id:            %d\n",assignedParcel.id);
             printf("Farmer's Id:            %d\n",assignedParcel.farmerId);
             printf("Land parcel status:     %c\n",assignedParcel.status);
             printf("Location:               %s\n",assignedParcel.location);
@@ -134,8 +137,6 @@ void manage_report(int id)
     }
 
 }
-
-
 
 
 void manage_schedules (int id)

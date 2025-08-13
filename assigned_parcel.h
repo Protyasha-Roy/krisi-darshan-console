@@ -3,6 +3,7 @@
 
 typedef struct
 {
+    int parcelId;
     int id;
     int agentId;
     int farmerId;
