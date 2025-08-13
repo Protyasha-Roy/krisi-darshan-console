@@ -101,9 +101,8 @@ void manage_land_parcels()
     printf("1: View  assigned land parcels\n");
     printf("2: View  unassigned land parcels\n");
     printf("3: Assign field agent for a land parcel\n");
-    printf("4: Update assigned field agent for parcel\n");
-    printf("5: Delete assigned field agent for parcel\n");
-    printf("6: Back\n\n");
+    printf("4: Delete assigned field agent for parcel\n");
+    printf("5: Back\n\n");
 
     printf("Choose an option: ");
     scanf("%d", &chosenOption);
@@ -120,12 +119,9 @@ void manage_land_parcels()
         assign_field_agent();
         break;
     case 4:
-        update_field_agent();
-        break;
-    case 5:
         delete_field_agent();
         break;
-    case 6:
+    case 5:
         clear_screen();
         adminMenu();
         break;

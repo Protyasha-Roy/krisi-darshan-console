@@ -89,6 +89,7 @@ void assign_field_agent()
     clear_screen();
     FILE *fp = fopen("Assigned_Parcel.txt", "a");
     FILE *fp2 = fopen("Parcels.txt", "r");
+    FILE *fp3 = fopen("temp.txt", "w");
 
 
     int parcelId;
@@ -112,9 +113,7 @@ void assign_field_agent()
         printf("Enter agent id: ");
         scanf("%d", &assigned.agentId);
 
-        getchar();
-        printf("Enter status: ");
-        scanf("%c", &assigned.status);
+        assigned.status = 'P';
 
         while((fscanf(fp2, "%d|%d|%99[^|]|%f|%14[^|]|%29[^|]|%29[^\n]\n",
                       &parcel.id,
@@ -140,7 +139,7 @@ void assign_field_agent()
         fclose(fp2);
     }
 
-    fprintf(fp,"%d|%d|%d|%d|%c|%s|%f|%s|%s|%s",
+    fprintf(fp,"%d|%d|%d|%d|%c|%s|%f|%s|%s|%s\n",
             assigned.parcelId,
             assigned.id,
             assigned.agentId,
@@ -158,12 +157,63 @@ void assign_field_agent()
     fclose(fp);
 }
 
-void update_field_agent()
-{
-
-}
 
 void delete_field_agent()
 {
+    clear_screen();
 
+    FILE *fp = fopen("Assigned_Parcel.txt", "r");
+    FILE *temp = fopen("temp.txt", "w");
+
+
+    if (fp == NULL||temp == NULL)
+    {
+        printf("Error! File not found.\n");
+        return;
+    }
+
+
+    int id;
+
+    AssignedParcel assigned;
+
+    printf("Enter assigned ID to delete: ");
+    scanf("%d", &id);
+
+     while (fscanf(fp, "%d|%d|%d|%d|%c|%99[^|]|%f|%14[^|]|%29[^|]|%49[^\n]",
+                  &assigned.parcelId,
+                  &assigned.id,
+                  &assigned.agentId,
+                  &assigned.farmerId,
+                  &assigned.status,
+                  assigned.location,
+                  &assigned.area,
+                  assigned.dop,
+                  assigned.soilType,
+                  assigned.crops) != EOF)
+    {
+        if (assigned.id != id)
+        {
+            fprintf(temp,"%d|%d|%d|%d|%c|%s|%f|%s|%s|%s\n",
+            assigned.parcelId,
+            assigned.id,
+            assigned.agentId,
+            assigned.farmerId,
+            assigned.status,
+            assigned.location,
+            assigned.area,
+            assigned.dop,
+            assigned.soilType,
+            assigned.crops
+           );
+        }
+    }
+
+    printf("Assigned parcel deleted successfully.\n");
+
+    fclose(fp);
+    fclose(temp);
+
+    remove("Assigned_Parcel.txt");
+    rename("temp.txt", "Assigned_Parcel.txt");
 }
