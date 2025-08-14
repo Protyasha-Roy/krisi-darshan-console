@@ -3,7 +3,7 @@
 #include <time.h>
 #include <string.h>
 #include "utils.h"
-#include <ctype.h>
+
 
 
 int checkIdDuplication(FILE *fp2, int farmerId) {
@@ -32,10 +32,11 @@ int generateId(int lower, int upper) {
 }
 
 char *lowercased_str(char str[]) {
-    for(int i = 0; i < strlen(str); i++) {
-        str[i] = tolower(str[i]);
+    for (int i = 0; i < strlen(str); i++) {
+        // Manually convert uppercase to lowercase
+        if (str[i] >= 'A' && str[i] <= 'Z') {
+            str[i] = str[i] + ('a' - 'A'); // or just +32
+        }
     }
-    str[strlen(str)] = '\0';
-
     return str;
 }
