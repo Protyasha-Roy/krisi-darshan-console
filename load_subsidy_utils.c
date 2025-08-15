@@ -70,7 +70,7 @@ void update_loan_status()
     printf("Status updated successfully!");
 }
 
-void list_loan_applications()
+void list_loan_applications(int adminId)
 {
     FILE *fp = fopen("LoanApplication.txt", "r");
 
@@ -124,7 +124,7 @@ void list_loan_applications()
         update_loan_status();
         break;
     case 2:
-        manage_loan_subsidy();
+        manage_loan_subsidy(adminId);
         break;
     case 3:
         exit(1);
@@ -199,7 +199,7 @@ void update_subsidy_status() {
     printf("Status updated successfully!");
 }
 
-void list_subsidy_applications()
+void list_subsidy_applications(int adminId)
 {
     FILE *fp = fopen("SubsidyApplication.txt", "r");
 
@@ -253,7 +253,7 @@ void list_subsidy_applications()
         update_subsidy_status();
         break;
     case 2:
-        manage_loan_subsidy();
+        manage_loan_subsidy(adminId);
         break;
     case 3:
         exit(1);

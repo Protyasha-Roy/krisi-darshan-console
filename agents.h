@@ -5,9 +5,12 @@ void assigned_parcels(int id);
 void upload_report(int id);
 void manage_report(int id);
 void manage_schedules(int id);
-void update_parcel_report();
-void delete_parcel_report();
-void search_parcel_report();
+void create_schedule();
+void view_schedule();
+void update_schedule();
+void delete_schedule();
+
+
 
 
 #endif // AGENTS_H_INCLUDED

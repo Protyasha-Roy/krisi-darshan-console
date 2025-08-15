@@ -32,12 +32,6 @@
 			<Add option="-Wall" />
 			<Add directory="/usr/include&#x0A;" />
 		</Compiler>
-<<<<<<< HEAD
-		<Unit filename="Admins.txt" />
-		<Unit filename="Agents.txt" />
-		<Unit filename="Assigned_Parcel.txt" />
-		<Unit filename="Crops.txt" />
-=======
 		<Linker>
 			<Add library="jansson" />
 			<Add library="curl" />
@@ -47,7 +41,7 @@
 		<Unit filename="Agents.txt" />
 		<Unit filename="Assigned_Parcel.txt" />
 		<Unit filename="Context.txt" />
->>>>>>> origin/main
+		<Unit filename="Crops.txt" />
 		<Unit filename="Farmers.txt" />
 		<Unit filename="Land_Parcel_Report.txt" />
 		<Unit filename="LoanApplication.txt" />
@@ -88,14 +82,14 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="info.h" />
-		<Unit filename="land_parcel_reports_utils.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="land_parcel_reports_utils.h" />
 		<Unit filename="land_parcel_utils.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="land_parcel_utils.h" />
+		<Unit filename="load_subsidy_utils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="loan_subsidy_utils.h" />
 		<Unit filename="login.c">
 			<Option compilerVar="CC" />
 		</Unit>

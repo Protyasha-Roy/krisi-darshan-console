@@ -11,7 +11,7 @@
 #include <stdlib.h>
 
 
-void adminMenu()
+void adminMenu(int id)
 {
     int chosenOption;
 
@@ -28,19 +28,19 @@ void adminMenu()
     switch(chosenOption)
     {
     case 1:
-        manage_farmers_profile();
+        manage_farmers_profile(id);
         break;
     case 2:
-        manage_land_parcels();
+        manage_land_parcels(id);
         break;
     case 3:
-        manage_loan_subsidy();
+        manage_loan_subsidy(id);
         break;
     case 4:
-        manage_field_agents();
+        manage_field_agents(id);
         break;
     case 5:
-        configuration();
+        configuration(id);
         break;
     case 6:
         clear_screen();
@@ -66,7 +66,6 @@ void loginMenu()
 
     printf("Choose an option: ");
     scanf("%d", &chosenOption);
-    clear_screen();
 
     if((chosenOption >= 1) && (chosenOption <= 3))
     {

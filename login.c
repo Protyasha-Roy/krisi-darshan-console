@@ -46,7 +46,7 @@ void login(int option, int id, char password[])
         break;
     case 3:
         loggedIn = checkIdPassword("Users.txt", "r", 'a', id, password);
-        loggedIn ? adminMenu() : (printf("ID or password is wrong. Try again!\n"), loginForm(3));
+        loggedIn ? adminMenu(id) : (printf("ID or password is wrong. Try again!\n"), loginForm(3));
         break;
 
     default:

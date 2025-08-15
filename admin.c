@@ -6,8 +6,9 @@
 #include "agent_utils.h"
 #include "land_parcel_utils.h"
 #include "loan_subsidy_utils.h"
+#include "config_utils.h"
 
-void manage_farmers_profile()
+void manage_farmers_profile(int adminId)
 {
     clear_screen();
     int chosenOption;
@@ -40,7 +41,7 @@ void manage_farmers_profile()
         break;
     case 5:
         clear_screen();
-        adminMenu();
+        adminMenu(adminId);
         break;
     default:
         printf("Invalid Option chosen!\n");
@@ -48,7 +49,7 @@ void manage_farmers_profile()
     }
 }
 
-void manage_field_agents()
+void manage_field_agents(int adminId)
 {
     clear_screen();
     int chosenOption;
@@ -84,7 +85,7 @@ void manage_field_agents()
         break;
     case 6:
         clear_screen();
-        adminMenu();
+        adminMenu(adminId);
         break;
     default:
         printf("Invalid Option chosen!\n");
@@ -92,7 +93,7 @@ void manage_field_agents()
     }
 }
 
-void manage_land_parcels()
+void manage_land_parcels(int adminId)
 {
     clear_screen();
     int chosenOption;
@@ -124,7 +125,7 @@ void manage_land_parcels()
         break;
     case 5:
         clear_screen();
-        adminMenu();
+        adminMenu(adminId);
         break;
     default:
         printf("Invalid Option chosen!\n");
@@ -132,7 +133,7 @@ void manage_land_parcels()
     }
 }
 
-void manage_loan_subsidy()
+void manage_loan_subsidy(int adminId)
 {
     clear_screen();
     int chosenOption;
@@ -150,14 +151,14 @@ void manage_loan_subsidy()
     switch(chosenOption)
     {
     case 1:
-        list_loan_applications();
+        list_loan_applications(adminId);
         break;
     case 2:
-        list_subsidy_applications();
+        list_subsidy_applications(adminId);
         break;
     case 3:
         clear_screen();
-        adminMenu();
+        adminMenu(adminId);
         break;
     default:
         printf("Invalid Option chosen!\n");
@@ -165,8 +166,30 @@ void manage_loan_subsidy()
     }
 }
 
-void configuration()
+void configuration(int adminId)
 {
-    printf("Configuration.\n");
+    clear_screen();
+
+    char chosenOption;
+
+    printf("CONFIGURATION AND ANALYTICS\n");
+    printf("1. View analytics\n");
+    printf("2. Change your password\n");
+
+    printf("Choose an option: ");
+    scanf("%c", &chosenOption);
+
+    switch(chosenOption)
+    {
+    case 1:
+        view_analytics();
+        break;
+    case 2:
+        changePass(adminId);
+        break;
+    default:
+        printf("Invalid option chosen.\n");
+        break;
+    }
 
 }
