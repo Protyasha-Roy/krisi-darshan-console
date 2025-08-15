@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "application_schemes.h"
 #include "crops_details.h"
 #include "menus.h"
@@ -9,6 +10,7 @@
 #include "utils.h"
 
 void change_password(int id)
+
 {
     FILE *fp;
     FILE *temp;
@@ -543,9 +545,10 @@ void application_schemes(int id)
     }
 }
 
-void chatbot()
-{
-    printf("Welcome to the chatbot.");
+
+void chatbot() {
+    clear_screen();
+    printf("Welcome to the chatbot");
 }
 
 void track_cropcycle(int id)

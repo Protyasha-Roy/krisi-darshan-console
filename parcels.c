@@ -16,12 +16,13 @@ void delete_landparcels(int id)
     Parcel p,tempParcel;
 
     int id_matched=0;
-    int chosen_parcelId;
-    printf("Enter ID of parcel to delete: ");
-    scanf("%d", &chosen_parcelId);
-    getchar();
 
-    while(fscanf(fp, "%d|%d|%99[^|]|%f|%14[^|]|%29[^|]|%29[^\n]\n",
+    int chosen_parcelId;
+        printf("Enter ID of parcel to edit: ");
+        scanf("%d", &chosen_parcelId);
+        getchar();
+
+     while(fscanf(fp, "%d|%d|%99[^|]|%f|%14[^|]|%29[^|]|%29[^\n]\n",
                  &p.id,
                  &p.farmerId,
                  p.location,
@@ -43,13 +44,12 @@ void delete_landparcels(int id)
                     p.soilType,
                     p.crops);
         }
-    }
 
-    if(!id_matched)
-        {
-            printf("Parcel %d not found in the system! \n", chosen_parcelId);
-            return;
-        }
+        if(!id_matched)
+    {
+        printf("Parcel %d not found in the system! \n", id);
+    }
+    }
 
     fclose(fp);
     fclose(temp);
@@ -69,7 +69,6 @@ void delete_landparcels(int id)
         clear_screen();
         parcel_AddEditDeleteMenu(id);
     }
-
 
 }
 
@@ -121,7 +120,6 @@ void edit_landparcels(int id)
         do
         {
             int land_parcel;
-
             while(1)
             {
                 printf("Enter the number of the detail you want to edit (1-5): ");
@@ -166,6 +164,7 @@ void edit_landparcels(int id)
 
             printf("Do you want to edit another field? (Y/N): ");
             scanf(" %c", &continue_editing);
+            getchar();
         }
         while(continue_editing == 'Y' || continue_editing == 'y');
     }
@@ -255,7 +254,6 @@ void add_landparcels(int id)
     FILE *fp2;
 
     fp=fopen("Parcels.txt", "a");
-
     fp2=fopen("Parcels.txt", "r");
 
 
@@ -317,6 +315,7 @@ void add_landparcels(int id)
         clear_screen();
         parcel_AddEditDeleteMenu(id);
     }
+    printf("New Land Parcel Added.");
 }
 
 

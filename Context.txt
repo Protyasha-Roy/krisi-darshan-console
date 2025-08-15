@@ -1,0 +1,63 @@
+Krishi-Darshan is a console-based agriculture management system for farmers, field agents, and administrators. It helps manage farmer profiles, land parcels, crop cycles, loan and subsidy applications, and general farming guidelines.
+
+USER ROLES AND ACCESS:
+
+1. FARMERS:
+- Register or log in.
+- View and update profile (personal, bank, and contact information).
+- Add, view, or edit land parcels (location, area, soil type, crops, purchase date, parcel ID).
+- Apply for loans or subsidies:
+  * Loan: select option, auto-filled profile/bank details, enter purpose, amount, duration, repayment method.
+  * Subsidy: select type (irrigation, fertilizer, etc.), justification, auto-filled details.
+- View list of applications with status (Pending, Accepted, Rejected).
+- Access general farming information and AI chatbot for FAQs.
+- Track crop cycle (sowing date, harvest date, status, fertilizers, pesticides).
+
+2. FIELD AGENTS:
+- View assigned parcels (parcel ID, farmer name, location, scheme type, status).
+- Upload, update, or delete land parcel inspection reports (date of visit, observations, results, recommendations).
+- Create, update, or delete visit schedules for parcels.
+- Search schedules or reports by parcel ID or farmer name.
+
+3. ADMINS:
+- Manage farmer profiles (view, add, update, delete).
+- Manage land parcels and assign field agents.
+- Configure schemes (loan interest rate, max loan/subsidy amount).
+- Review and approve/reject applications; update status.
+- Manage field agents (view, add, edit, remove, assign).
+- View analytics (total farmers, parcels, applications, loan amounts, subsidy amounts).
+- Manage system settings (change admin password, update FAQ).
+
+SYSTEM FEATURES:
+- Login system for all roles.
+- Farmer registration with detailed info (name, DOB, gender, ID number, literacy, contacts, address, land details, bank details, farming experience, crops grown).
+- Role-based access control.
+- AI chatbot to answer FAQs on crop nutrition, pest management, schemes, etc.
+- Enhanced console appearance using Rich (colors, tables) and Prompt-Toolkit (interactive menus, autocompletion, input validation).
+- Secure data storage (password hashing, backups, audit logs).
+
+COMMON FAQ:
+- Krishi-Darshan is for farmers, field agents, and admins.
+- Farmers can manage their profiles, parcels, apply for loans/subsidies, track crops, and get farming info.
+- Field agents inspect fields, upload reports, manage schedules.
+- Admins manage all data, approve applications, configure schemes, generate analytics.
+- Registration: fill in required details via Register menu; admin approval needed.
+- Login: choose role, enter username and password.
+- AI bot answers agricultural FAQs instantly.
+- Support: email support@krishi-darshan.org or use in-app Feedback.
+
+SECURITY:
+- Passwords hashed.
+- Role-based permissions.
+- Backups and audit logs.
+
+DATA FIELDS:
+- Farmer registration includes personal info, contact, land, bank, farming experience, main crops.
+- Land parcel details include parcel ID, location, area, soil type, crops, purchase date.
+- Applications store request type, details, date applied, status.
+- Reports contain visit date, observations, recommendations.
+- Schedules include parcel ID, farmer name, location, visit date, scheme type.
+
+PURPOSE:
+Krishi-Darshan centralizes agricultural data for efficient management, supports government schemes, and helps farmers with easy access to information and resources.
+

@@ -3,4 +3,3 @@
 3|Ayesha|2025-05-20|Excellent|Thriving|Maintain current practices
 4|Shahriar|2025-06-05|Poor|Drought stress|Need irrigation ASAP
 5|Rafiq|2025-07-10|Good|Average|Consider soil nutrient boost
-

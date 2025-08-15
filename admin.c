@@ -4,6 +4,7 @@
 #include "menus.h"
 #include "login.h"
 #include "agent_utils.h"
+#include "land_parcel_utils.h"
 
 void manage_farmers_profile()
 {
@@ -25,8 +26,8 @@ void manage_farmers_profile()
     switch(chosenOption)
     {
     case 1:
-       list_farmers();
-       break;
+        list_farmers();
+        break;
     case 2:
         search_farmer();
         break;
@@ -46,7 +47,8 @@ void manage_farmers_profile()
     }
 }
 
-void manage_field_agents() {
+void manage_field_agents()
+{
     clear_screen();
     int chosenOption;
 
@@ -65,8 +67,8 @@ void manage_field_agents() {
     switch(chosenOption)
     {
     case 1:
-       list_agents();
-       break;
+        list_agents();
+        break;
     case 2:
         search_agent();
         break;
@@ -82,6 +84,7 @@ void manage_field_agents() {
     case 6:
         clear_screen();
         adminMenu();
+        break;
     default:
         printf("Invalid Option chosen!\n");
         break;
@@ -90,7 +93,42 @@ void manage_field_agents() {
 
 void manage_land_parcels()
 {
-    printf("Manage land parcels.\n");
+    clear_screen();
+    int chosenOption;
+
+    printf("Manage land parcels.\n\n");
+
+    printf("1: View  assigned land parcels\n");
+    printf("2: View  unassigned land parcels\n");
+    printf("3: Assign field agent for a land parcel\n");
+    printf("4: Delete assigned field agent for parcel\n");
+    printf("5: Back\n\n");
+
+    printf("Choose an option: ");
+    scanf("%d", &chosenOption);
+
+    switch(chosenOption)
+    {
+    case 1:
+        list_assigned_land_parcels();
+        break;
+    case 2:
+        list_unassigned_land_parcels();
+        break;
+    case 3:
+        assign_field_agent();
+        break;
+    case 4:
+        delete_field_agent();
+        break;
+    case 5:
+        clear_screen();
+        adminMenu();
+        break;
+    default:
+        printf("Invalid Option chosen!\n");
+        break;
+    }
 }
 
 void apply_for_loan_and_subsidy()
