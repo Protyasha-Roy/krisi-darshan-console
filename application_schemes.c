@@ -7,6 +7,156 @@
 #include "utils.h"
 #include "application_schemes.h"
 
+void view_loanapplications(int id)
+{
+    FILE *fp = fopen("LoanApplication.txt", "r");
+
+    if(fp==NULL)
+    {
+        printf("Error! File not found.\n");
+        return;
+    }
+
+    Loan l;
+
+    int id_matched=0;
+
+    printf("\t\t APPLIED LOAN FORMS OF FARMER %d\n", id);
+
+    while((fscanf(fp, "%d|%99[^|]|%19[^|]|%f|%199[^|]|%14[^|]|%29[^\n]",
+                  &l.farmerId,
+                  l.farmerName,
+                  l.mobile,
+                  &l.loan_amount,
+                  l.loan_purpose,
+                  l.date_applied,
+                  l.status) ==7 ))
+    {
+        if(l.farmerId==id)
+        {
+            id_matched=1;
+            printf("1.Loan Purpose:  %s\n", l.loan_purpose);
+            printf("2.Loan Amount:  %.2f\n", l.loan_amount);
+            printf("3.Date applied (YYYY-MM-DD):  %s\n", l.date_applied);
+            printf("4.Status:  %s\n", l.status);
+            printf("\n");
+        }
+    }
+
+    fclose(fp);
+
+    if(id_matched==0)
+    {
+        printf("No Loan Application Found for Farmer %d", id);
+
+    }
+    char back;
+    printf("Enter \"B\" to go back: ");
+    scanf("%c", &back);
+    getchar();
+
+    if(back=='b'|| back=='B')
+    {
+        clear_screen();
+        application_schemes(id);
+    }
+}
+
+void view_subsidyapplications(int id)
+{
+    FILE *fp2 = fopen("SubsidyApplication.txt", "r");
+
+    if(fp2==NULL)
+    {
+        printf("Error! File not found.\n");
+        return;
+    }
+
+    Subsidy s;
+
+    int id_matched2=0;
+
+    printf("\t\t APPLIED SUBSIDY FORMS OF FARMER %d\n", id);
+
+    while((fscanf(fp2, "%d|%99[^|]|%19[^|]|%f|%199[^|]|%14[^|]|%29[^\n]",
+                  &s.farmerId,
+                  s.farmerName,
+                  s.mobile,
+                  &s.subsidy_amount,
+                  s.subsidy_purpose,
+                  s.date_applied,
+                  s.status) ==7 ))
+    {
+        if(s.farmerId==id)
+        {
+            id_matched2=1;
+            printf("1.Subsidy Purpose:  %s\n", s.subsidy_purpose);
+            printf("2.Subsidy Amount:  %.2f\n", s.subsidy_amount);
+            printf("3.Date applied (YYYY-MM-DD):  %s\n", s.date_applied);
+            printf("4.Status:  %s\n", s.status);
+            printf("\n");
+        }
+    }
+
+    fclose(fp2);
+
+    if(id_matched2==0)
+    {
+        printf("No Subsidy Application Found for Farmer %d", id);
+    }
+    char back;
+    printf("Enter \"B\" to go back: ");
+    scanf("%c", &back);
+    getchar();
+
+    if(back=='b'|| back=='B')
+    {
+        clear_screen();
+        application_schemes(id);
+    }
+
+
+}
+
+void view_appliedforms(int id)
+{
+    int selected_option;
+
+    printf("\nChoose an option: \n");
+
+    printf("1: Applied Loan Forms \n");
+    printf("2: Applied Subsidy Forms \n");
+    printf("3: Back \n");
+
+    while (1)
+    {
+
+        printf("Enter your choice: ");
+        scanf("%d", &selected_option);
+        getchar();
+
+
+        switch(selected_option)
+        {
+        case 1:
+            view_loanapplications(id);
+            break;
+        case 2:
+            view_subsidyapplications(id);
+            break;
+        case 3:
+            clear_screen();
+            application_schemes(id);
+            break;
+        default:
+            printf("Error! Please enter a valid option!\n");
+            continue;
+        }
+        break;
+    }
+}
+
+
 void subsidy_application(int id)
 {
 
@@ -22,18 +172,49 @@ void subsidy_application(int id)
 
     s.farmerId=id;
 
+    FILE *fp2;
+    fp2=fopen("Farmers.txt", "r");
+
+    if(fp2==NULL)
+    {
+        printf("Error! File not found!\n");
+    }
+
+    Farmer f;
+
+    while((fscanf(fp, "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%f|%f|%d|%99[^|]|%c|%29[^|]|%49[^|]|%d|%19[^\n]\n",
+                  &f.id,
+                  f.fullName,
+                  f.dob,
+                  &f.gender,
+                  f.nid,
+                  f.literacy,
+                  f.mobile,
+                  f.email,
+                  f.address,
+                  &f.postal_code,
+                  &f.farming_experience,
+                  &f.area,
+                  &f.land_parcels,
+                  f.crops,
+                  &f.ownership,
+                  f.bank_number,
+                  f.bank_name,
+                  &f.branch_code,
+                  f.linked_number
+                 ) != EOF))
+    {
+        if(f.id==id)
+        {
+            strcpy(s.farmerName, f.fullName);
+            strcpy(s.mobile, f.mobile);
+            break;
+        }
+    }
+    fclose(fp2);
+
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
-
-    printf("Enter your full name: ");
-    fgets(s.farmerName, sizeof(s.farmerName), stdin);
-    s.farmerName[strcspn(s.farmerName, "\n")] = '\0';
-
-
-    printf("Enter your mobile number: ");
-    fgets(s.mobile, sizeof(s.mobile), stdin);
-    s.mobile[strcspn(s.mobile, "\n")] = '\0';
-
 
     printf("Enter the amount of subsidy required: ");
     scanf("%f", &s.subsidy_amount);
@@ -49,19 +230,33 @@ void subsidy_application(int id)
     fgets(s.date_applied, sizeof(s.date_applied), stdin);
     s.date_applied[strcspn(s.date_applied, "\n")] = '\0';
 
+    strcpy(s.status, "Pending");
+
 
     fprintf(fp,
-        "%d|%s|%s|%.2f|%s|%s\n",
-        s.farmerId,
-        s.farmerName,
-        s.mobile,
-        s.subsidy_amount,
-        s.subsidy_purpose,
-        s.date_applied);
+            "%d|%s|%s|%.2f|%s|%s|%s\n",
+            s.farmerId,
+            s.farmerName,
+            s.mobile,
+            s.subsidy_amount,
+            s.subsidy_purpose,
+            s.date_applied,
+            s.status);
 
     fclose(fp);
 
     printf("Subsidy application submitted successfully!\n");
+
+    char back;
+    printf("Enter \"B\" to go back: ");
+    scanf("%c", &back);
+    getchar();
+
+    if(back=='b'|| back=='B')
+    {
+        clear_screen();
+        application_schemes(id);
+    }
 }
 
 void loan_application(int id)
@@ -78,16 +273,50 @@ void loan_application(int id)
 
     l.farmerId=id;
 
+    FILE *fp2;
+    fp2=fopen("Farmers.txt", "r");
+
+    if(fp2==NULL)
+    {
+        printf("Error! File not found!\n");
+    }
+
+    Farmer f;
+
+    while((fscanf(fp2, "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%f|%f|%d|%99[^|]|%c|%29[^|]|%49[^|]|%d|%19[^\n]\n",
+                  &f.id,
+                  f.fullName,
+                  f.dob,
+                  &f.gender,
+                  f.nid,
+                  f.literacy,
+                  f.mobile,
+                  f.email,
+                  f.address,
+                  &f.postal_code,
+                  &f.farming_experience,
+                  &f.area,
+                  &f.land_parcels,
+                  f.crops,
+                  &f.ownership,
+                  f.bank_number,
+                  f.bank_name,
+                  &f.branch_code,
+                  f.linked_number
+                 ) != EOF))
+    {
+        if(f.id==id)
+        {
+            strcpy(l.farmerName, f.fullName);
+            strcpy(l.mobile, f.mobile);
+            break;
+        }
+    }
+    fclose(fp2);
+
+
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
-
-    printf("Enter your full name: ");
-    fgets(l.farmerName, sizeof(l.farmerName), stdin);
-    l.farmerName[strcspn(l.farmerName, "\n")] = '\0';
-
-    printf("Enter your mobile number: ");
-    fgets(l.mobile, sizeof(l.mobile), stdin);
-    l.mobile[strcspn(l.mobile, "\n")] = '\0';
 
     printf("Enter the amount of loan required: ");
     scanf("%f", &l.loan_amount);
@@ -103,18 +332,32 @@ void loan_application(int id)
     fgets(l.date_applied, sizeof(l.date_applied), stdin);
     l.date_applied[strcspn(l.date_applied, "\n")] = '\0';
 
+    strcpy(l.status, "Pending");
 
 
     fprintf(fp,
-        "%d|%s|%s|%.2f|%s|%s\n",
-        l.farmerId,
-        l.farmerName,
-        l.mobile,
-        l.loan_amount,
-        l.loan_purpose,
-        l.date_applied);
+            "%d|%s|%s|%.2f|%s|%s|%s\n",
+            l.farmerId,
+            l.farmerName,
+            l.mobile,
+            l.loan_amount,
+            l.loan_purpose,
+            l.date_applied,
+            l.status);
 
     fclose(fp);
 
     printf("Loan application submitted successfully!\n");
+
+    char back;
+    printf("Enter \"B\" to go back: ");
+    scanf("%c", &back);
+    getchar();
+
+    if(back=='b'|| back=='B')
+    {
+        clear_screen();
+        application_schemes(id);
+    }
 }
+

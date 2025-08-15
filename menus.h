@@ -6,6 +6,8 @@ void FarmerMenu(int id);
 void AgentMenu(int id);
 void adminMenu();
 void parcel_AddEditDeleteMenu(int id);
+void crop_AddEditDeleteMenu(int id);
+void farmer_editmenu(int id);
 
 
 #endif // MENUS_H_INCLUDED

@@ -12,7 +12,7 @@ typedef struct {
 } Parcel;
 
 void add_landparcels(int id);
-void edit_landparcels();
-void delete_landparcels();
+void edit_landparcels(int id);
+void delete_landparcels(int id);
 
 #endif // PARCELS_H_INCLUDED
