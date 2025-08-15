@@ -66,7 +66,6 @@ void loginMenu()
 
     printf("Choose an option: ");
     scanf("%d", &chosenOption);
-    clear_screen();
 
     if((chosenOption >= 1) && (chosenOption <= 3))
     {

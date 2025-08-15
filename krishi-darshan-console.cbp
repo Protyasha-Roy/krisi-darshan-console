@@ -33,8 +33,6 @@
 			<Add directory="/usr/include&#x0A;" />
 		</Compiler>
 		<Linker>
-			<Add library="jansson" />
-			<Add library="curl" />
 			<Add directory="/usr/lib&#x0A;" />
 		</Linker>
 		<Unit filename="Admins.txt" />

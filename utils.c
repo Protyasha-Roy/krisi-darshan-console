@@ -3,40 +3,45 @@
 #include <time.h>
 #include <string.h>
 #include "utils.h"
+#include <ctype.h>
 
-
-
-int checkIdDuplication(FILE *fp2, int farmerId) {
+int checkIdDuplication(FILE *fp2, int farmerId)
+{
     int id;
-    while(fscanf(fp2, "%d", &id) != EOF) {
-        if(id != farmerId) {
+    while(fscanf(fp2, "%d", &id) != EOF)
+    {
+        if(id != farmerId)
+        {
             return 0;
         }
-        else {
+        else
+        {
             return 1;
         }
     }
 }
 
 
-void clear_screen() {
+void clear_screen()
+{
     printf("\033[2J\033[H");
     fflush(stdout);
 }
 
-int generateId(int lower, int upper) {
+int generateId(int lower, int upper)
+{
     srand(time(NULL));
 
     int num = (rand() % (upper - lower + 1)) + lower;
     return num;
 }
 
-char *lowercased_str(char str[]) {
-    for (int i = 0; i < strlen(str); i++) {
-        // Manually convert uppercase to lowercase
-        if (str[i] >= 'A' && str[i] <= 'Z') {
-            str[i] = str[i] + ('a' - 'A'); // or just +32
-        }
+char *lowercased_str(char str[])
+{
+    for(int i = 0; i < strlen(str); i++)
+    {
+        str[i] = tolower(str[i]);
     }
+    str[strlen(str)] = '\0';
     return str;
 }
