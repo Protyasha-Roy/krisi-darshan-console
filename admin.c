@@ -170,14 +170,15 @@ void configuration(int adminId)
 {
     clear_screen();
 
-    char chosenOption;
+    int chosenOption;
 
     printf("CONFIGURATION AND ANALYTICS\n");
     printf("1. View analytics\n");
     printf("2. Change your password\n");
 
+    getchar();
     printf("Choose an option: ");
-    scanf("%c", &chosenOption);
+    scanf("%d", &chosenOption);
 
     switch(chosenOption)
     {

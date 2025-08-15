@@ -31,7 +31,7 @@ void view_loanapplications(int id)
                   &l.loan_amount,
                   l.loan_purpose,
                   l.date_applied,
-                  l.status) == EOF))
+                  l.status) != EOF))
     {
         if(l.farmerId==id)
         {
@@ -87,7 +87,7 @@ void view_subsidyapplications(int id)
                   &s.subsidy_amount,
                   s.subsidy_purpose,
                   s.date_applied,
-                  s.status) == EOF))
+                  s.status) != EOF))
     {
         if(s.farmerId==id)
         {

@@ -126,7 +126,18 @@ void FarmerMenu(int id)
             track_cropcycle(id);
             break;
         case 6:
-            change_password(id);
+            changePass(id);
+
+            char back;
+            printf("Enter \"B\" to go back: ");
+            scanf("%c", &back);
+            getchar();
+
+            if(back=='b' || back=='B')
+            {
+                clear_screen();
+                FarmerMenu(id);
+            }
             break;
         case 7:
             clear_screen();
