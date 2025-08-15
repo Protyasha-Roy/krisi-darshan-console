@@ -77,6 +77,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="info.h" />
+		<Unit filename="land_parcel_reports_utils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="land_parcel_reports_utils.h" />
 		<Unit filename="land_parcel_utils.c">
 			<Option compilerVar="CC" />
 		</Unit>
