@@ -1,17 +1,53 @@
 #include <stdio.h>
 #include <string.h>
 #include "application_schemes.h"
+#include "crops_details.h"
 #include "menus.h"
 #include "login.h"
 #include "farmer.h"
 #include "parcels.h"
 #include "utils.h"
 
-
-void edit_personaldetails(Farmer f)
+void change_password(int id)
 {
-    FILE *fp = fopen("Farmers.txt", "r");
-    FILE *temp = fopen("temp.txt", "w");
+    FILE *fp;
+    FILE *temp;
+
+    fp=fopen("Users.txt", "r");
+
+    User u, tempUser;
+
+    if(fp==NULL)
+    {
+        printf("Error! File not found!\n");
+        return;
+    }
+
+    int id_matched=0;
+
+    while (fscanf(fp, "%d %s %c", &tempUser.id, tempUser.password, &tempUser.type)!=EOF)
+    {
+        if(tempUser.id==id)
+        {
+            u=tempUser;
+            id_matched=1;
+            break;
+        }
+    }
+    fclose(fp);
+
+    if(id_matched=1)
+    {
+        printf("Enter the new password: ");
+        getchar();
+        fgets(u.password, sizeof(u.password), stdin);
+        u.password[strcspn(u.password, "\n")]='\0';
+    }
+
+    printf("Password updated successfully!\n");
+
+    fp=fopen("Users.txt", "r");
+    temp=fopen("temp.txt", "w");
 
     if(fp==NULL || temp==NULL)
     {
@@ -27,13 +63,87 @@ void edit_personaldetails(Farmer f)
         return;
     }
 
-    char edit_choice;
+    while (fscanf(fp, "%d %s %c", &tempUser.id, tempUser.password, &tempUser.type)!=EOF)
+    {
+        if(tempUser.id==u.id)
+        {
+            fprintf(temp, "%d %s %c\n", u.id, u.password, u.type);
+        }
+        else
+        {
+            fprintf(temp, "%d %s %c\n", tempUser.id, tempUser.password, tempUser.type);
+        }
 
-    printf("Do you want to edit any of the details? (Y/N) ");
-    scanf(" %c", &edit_choice);
+    }
+
+    fclose(fp);
+    fclose(temp);
+
+    remove("Users.txt");
+    rename("temp.txt", "Users.txt");
+
+    char back;
+    printf("Enter \"B\" to go back: ");
+    scanf("%c", &back);
     getchar();
 
-    if(edit_choice=='Y' || edit_choice=='y')
+    if(back=='b' || back=='B')
+    {
+        clear_screen();
+        FarmerMenu(id);
+    }
+
+}
+
+
+void edit_personaldetails(Farmer f, int id)
+{
+    FILE *fp;
+    FILE *temp;
+    fp=fopen("Farmers.txt", "r");
+
+    Farmer tempFarmer;
+
+    if(fp==NULL)
+    {
+        printf("Error! File not found!\n");
+        return;
+    }
+
+    int id_matched=0;
+
+    while (fscanf(fp, "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%f|%f|%d|%99[^|]|%c|%29[^|]|%49[^|]|%d|%19[^\n]\n",
+                  &tempFarmer.id,
+                  tempFarmer.fullName,
+                  tempFarmer.dob,
+                  &tempFarmer.gender,
+                  tempFarmer.nid,
+                  tempFarmer.literacy,
+                  tempFarmer.mobile,
+                  tempFarmer.email,
+                  tempFarmer.address,
+                  &tempFarmer.postal_code,
+                  &tempFarmer.farming_experience,
+                  &tempFarmer.area,
+                  &tempFarmer.land_parcels,
+                  tempFarmer.crops,
+                  &tempFarmer.ownership,
+                  tempFarmer.bank_number,
+                  tempFarmer.bank_name,
+                  &tempFarmer.branch_code,
+                  tempFarmer.linked_number) !=EOF)
+    {
+        if (tempFarmer.id == id)
+        {
+            f=tempFarmer;
+            id_matched=1;
+            break;
+        }
+    }
+
+    fclose(fp);
+
+    if(id_matched==1)
     {
         char continue_editing;
 
@@ -41,105 +151,109 @@ void edit_personaldetails(Farmer f)
         {
             int personal_detail;
 
-            printf("Enter the number of the detail you want to edit (1-18): ");
-            scanf("%d", &personal_detail);
-            getchar();
-
-            switch(personal_detail)
+            while(1)
             {
-            case 1:
-                printf("Enter new Full Name: ");
-                fgets(f.fullName, sizeof(f.fullName), stdin);
-                f.fullName[strcspn(f.fullName, "\n")]='\0';
-                break;
-            case 2:
-                printf("Enter new Date of Birth (YYYY-MM-DD): ");
-                fgets(f.dob, sizeof(f.dob), stdin);
-                f.dob[strcspn(f.dob, "\n")]='\0';
-                break;
-            case 3:
-                printf("Enter new Gender: (M/F/O) ");
-                scanf(" %c", &f.gender);
+                printf("Enter the number of the detail you want to edit (1-18): ");
+                scanf("%d", &personal_detail);
                 getchar();
+
+                switch(personal_detail)
+                {
+                case 1:
+                    printf("Enter new Full Name: ");
+                    fgets(f.fullName, sizeof(f.fullName), stdin);
+                    f.fullName[strcspn(f.fullName, "\n")]='\0';
+                    break;
+                case 2:
+                    printf("Enter new Date of Birth (YYYY-MM-DD): ");
+                    fgets(f.dob, sizeof(f.dob), stdin);
+                    f.dob[strcspn(f.dob, "\n")]='\0';
+                    break;
+                case 3:
+                    printf("Enter new Gender: (M/F/O) ");
+                    scanf(" %c", &f.gender);
+                    getchar();
+                    break;
+                case 4:
+                    printf("Enter new NID: ");
+                    fgets(f.nid, sizeof(f.nid), stdin);
+                    f.nid[strcspn(f.nid, "\n")]='\0';
+                    break;
+                case 5:
+                    printf("Enter new literacy level: ");
+                    fgets(f.literacy, sizeof(f.literacy), stdin);
+                    f.literacy[strcspn(f.literacy, "\n")]='\0';
+                    break;
+                case 6:
+                    printf("Enter new mobile number: ");
+                    fgets(f.mobile, sizeof(f.mobile), stdin);
+                    f.mobile[strcspn(f.mobile, "\n")]='\0';
+                    break;
+                case 7:
+                    printf("Enter new email address: ");
+                    fgets(f.email, sizeof(f.email), stdin);
+                    f.email[strcspn(f.email, "\n")]='\0';
+                    break;
+                case 8:
+                    printf("Enter new address: ");
+                    fgets(f.address, sizeof(f.address), stdin);
+                    f.address[strcspn(f.address, "\n")]='\0';
+                    break;
+                case 9:
+                    printf("Enter new postal code: ");
+                    scanf("%d", &f.postal_code);
+                    getchar();
+                    break;
+                case 10:
+                    printf("Enter new farming experience (in years): ");
+                    scanf("%f", &f.farming_experience);
+                    getchar();
+                    break;
+                case 11:
+                    printf("Enter new area: ");
+                    scanf("%f", &f.area);
+                    getchar();
+                    break;
+                case 12:
+                    printf("Enter new number of land parcels: ");
+                    scanf("%d", &f.land_parcels);
+                    getchar();
+                    break;
+                case 13:
+                    printf("Enter new crops: ");
+                    fgets(f.crops, sizeof(f.crops), stdin);
+                    f.crops[strcspn(f.crops, "\n")]='\0';
+                    break;
+                case 14:
+                    printf("Enter new ownership (O/L/S): ");
+                    scanf(" %c", &f.ownership);
+                    getchar();
+                    break;
+                case 15:
+                    printf("Enter new bank number: ");
+                    fgets(f.bank_number, sizeof(f.bank_number), stdin);
+                    f.bank_number[strcspn(f.bank_number, "\n")]='\0';
+                    break;
+                case 16:
+                    printf("Enter new bank name: ");
+                    fgets(f.bank_name, sizeof(f.bank_name), stdin);
+                    f.bank_name[strcspn(f.bank_name, "\n")]='\0';
+                    break;
+                case 17:
+                    printf("Enter new branch code: ");
+                    scanf("%d", &f.branch_code);
+                    getchar();
+                    break;
+                case 18:
+                    printf("Enter new linked number: ");
+                    fgets(f.linked_number, sizeof(f.linked_number), stdin);
+                    f.linked_number[strcspn(f.linked_number, "\n")]='\0';
+                    break;
+                default:
+                    printf("Error! Please enter a valid option! \n");
+                    continue;
+                }
                 break;
-            case 4:
-                printf("Enter new NID: ");
-                fgets(f.nid, sizeof(f.nid), stdin);
-                f.nid[strcspn(f.nid, "\n")]='\0';
-                break;
-            case 5:
-                printf("Enter new literacy level: ");
-                fgets(f.literacy, sizeof(f.literacy), stdin);
-                f.literacy[strcspn(f.literacy, "\n")]='\0';
-                break;
-            case 6:
-                printf("Enter new mobile number: ");
-                fgets(f.mobile, sizeof(f.mobile), stdin);
-                f.mobile[strcspn(f.mobile, "\n")]='\0';
-                break;
-            case 7:
-                printf("Enter new email address: ");
-                fgets(f.email, sizeof(f.email), stdin);
-                f.email[strcspn(f.email, "\n")]='\0';
-                break;
-            case 8:
-                printf("Enter new address: ");
-                fgets(f.address, sizeof(f.address), stdin);
-                f.address[strcspn(f.address, "\n")]='\0';
-                break;
-            case 9:
-                printf("Enter new postal code: ");
-                scanf("%d", &f.postal_code);
-                getchar();
-                break;
-            case 10:
-                printf("Enter new farming experience (in years): ");
-                scanf("%f", &f.farming_experience);
-                getchar();
-                break;
-            case 11:
-                printf("Enter new area: ");
-                scanf("%f", &f.area);
-                getchar();
-                break;
-            case 12:
-                printf("Enter new number of land parcels: ");
-                scanf("%d", &f.land_parcels);
-                getchar();
-                break;
-            case 13:
-                printf("Enter new crops: ");
-                fgets(f.crops, sizeof(f.crops), stdin);
-                f.crops[strcspn(f.crops, "\n")]='\0';
-                break;
-            case 14:
-                printf("Enter new ownership (O/L/S): ");
-                scanf(" %c", &f.ownership);
-                getchar();
-                break;
-            case 15:
-                printf("Enter new bank number: ");
-                fgets(f.bank_number, sizeof(f.bank_number), stdin);
-                f.bank_number[strcspn(f.bank_number, "\n")]='\0';
-                break;
-            case 16:
-                printf("Enter new bank name: ");
-                fgets(f.bank_name, sizeof(f.bank_name), stdin);
-                f.bank_name[strcspn(f.bank_name, "\n")]='\0';
-                break;
-            case 17:
-                printf("Enter new branch code: ");
-                scanf("%d", &f.branch_code);
-                getchar();
-                break;
-            case 18:
-                printf("Enter new linked number: ");
-                fgets(f.linked_number, sizeof(f.linked_number), stdin);
-                f.linked_number[strcspn(f.linked_number, "\n")]='\0';
-                break;
-            default:
-                printf("Invalid choice! Please enter a number between 1-18: ");
-                continue;
             }
 
             printf("Detail updated successfully. \n");
@@ -150,12 +264,23 @@ void edit_personaldetails(Farmer f)
         }
         while(continue_editing == 'Y' || continue_editing == 'y');
     }
-    else
-    {
-        printf("Error! Please enter Y/N.");
-    }
 
-    Farmer tempFarmer;
+    fp=fopen("Farmers.txt", "r");
+    temp=fopen("temp.txt", "w");
+
+    if(fp==NULL || temp==NULL)
+    {
+        printf("Error! File not found!\n");
+        if(fp)
+        {
+            fclose(fp);
+        }
+        if(temp)
+        {
+            fclose(temp);
+        }
+        return;
+    }
 
     //reading all the data that was previously stored before editing
     while(fscanf(fp, "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%f|%f|%d|%99[^|]|%c|%29[^|]|%49[^|]|%d|%19[^\n]\n",
@@ -238,6 +363,17 @@ void edit_personaldetails(Farmer f)
     rename("temp.txt", "Farmers.txt");
 
     printf("Farmer details updated successfully!\n");
+
+    char back;
+    printf("Enter \"B\" to go back: ");
+    scanf("%c", &back);
+    getchar();
+
+    if(back=='b' || back=='B')
+    {
+        clear_screen();
+        farmer_editmenu(id);
+    }
 }
 
 
@@ -309,8 +445,9 @@ void personal_details(int id)
 
     if(id_matched)
     {
-        edit_personaldetails(f);
+        farmer_editmenu(id);
     }
+
     else
     {
         printf("Farmer with ID %d not found in the system! \n", id);
@@ -367,6 +504,7 @@ void farmer_land_parcels (int id)
     else
     {
         printf("No parcel found for Farmer %d in the system! \n", id);
+        parcel_AddEditDeleteMenu(id);
     }
 }
 
@@ -374,23 +512,34 @@ void application_schemes(int id)
 {
     while(1)
     {
-    int chosen_option;
-    printf("Which scheme do you want to apply for: \n1.Loan \n2.Subsidy : ");
-    scanf("%d", &chosen_option);
+        int chosen_option;
+        printf("\nChoose an option: \n");
+        printf("1.Apply for Loan \n");
+        printf("2.Apply for Subsidy \n");
+        printf("3.View Applied Forms \n");
+        printf("4.Back \n");
+        printf("Enter your choice: ");
+        scanf("%d", &chosen_option);
 
-    switch(chosen_option)
-    {
-    case 1:
-        loan_application(id);
+        switch(chosen_option)
+        {
+        case 1:
+            loan_application(id);
+            break;
+        case 2:
+            subsidy_application(id);
+            break;
+        case 3:
+            view_appliedforms(id);
+            break;
+        case 4:
+            clear_screen();
+            FarmerMenu(id);
+        default:
+            printf("Error! Please enter either 1 or 2: ");
+            continue;
+        }
         break;
-    case 2:
-        subsidy_application(id);
-        break;
-    default:
-        printf("Error! Please enter either 1 or 2: ");
-        continue;
-    }
-    break;
     }
 }
 
@@ -401,5 +550,59 @@ void chatbot()
 
 void track_cropcycle(int id)
 {
-    printf("Crop Cycle Tracking for Farmer ID %d\n", id);
+    FILE *fp = fopen("Crops.txt", "r");
+
+    if(fp==NULL)
+    {
+        printf("Error! File not found.\n");
+        return;
+    }
+
+    Crops c;
+
+    int id_matched=0;
+
+    printf("\t\t CROPS DETAILS OF FARMER %d\n", id);
+
+    while((fscanf(fp,
+                  "%d|%49[^|]|%d|%d|%14[^|]|%14[^|]|%29[^|]|%49[^|]|%49[^\n]\n",
+                  &c.id,
+                  c.crop_name,
+                  &c.parcelId,
+                  &c.farmerId,
+                  c.sowing_date,
+                  c.harvesting_date,
+                  c.current_status,
+                  c.fertilizers_used,
+                  c.pesticides_used) ==9 ))
+    {
+        if(c.farmerId==id)
+        {
+            id_matched=1;
+            printf("Crop ID: %d\n", c.id);
+            printf("Details: \n");
+            printf("1.Crop name:  %s\n", c.crop_name);
+            printf("2.Parcel ID of the parcel the crop is in:  %d\n", c.parcelId);
+            printf("3.Sowing Date (YYYY-MM-DD):  %s\n", c.sowing_date);
+            printf("4.Harvesting Date (YYYY-MM-DD):  %s\n", c.harvesting_date);
+            printf("5.Current status of the crop: %s\n", c.current_status);
+            printf("6.Fertilizers Used:  %s\n", c.fertilizers_used);
+            printf("7.Pesticides Used:  %s\n", c.pesticides_used);
+            printf("\n");
+        }
+    }
+
+    fclose(fp);
+    getchar();
+
+    if(id_matched==1)
+    {
+        printf("\n");
+        crop_AddEditDeleteMenu(id);
+    }
+    else
+    {
+        printf("No crop details found for Farmer %d in the system! \n", id);
+        crop_AddEditDeleteMenu(id);
+    }
 }

@@ -31,18 +31,21 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename=".gitignore" />
 		<Unit filename="Admins.txt" />
 		<Unit filename="Agents.txt" />
 		<Unit filename="Assigned_Parcel.txt" />
+		<Unit filename="Crops.txt" />
 		<Unit filename="Farmers.txt" />
 		<Unit filename="Land_Parcel_Report.txt" />
+		<Unit filename="LoanApplication.txt" />
 		<Unit filename="Parcels.txt" />
+		<Unit filename="SubsidyApplication.txt" />
 		<Unit filename="Users.txt" />
 		<Unit filename="admin.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="admin.h" />
+		<Unit filename="admin_utils.h" />
 		<Unit filename="agent_utils.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -56,6 +59,10 @@
 		</Unit>
 		<Unit filename="application_schemes.h" />
 		<Unit filename="assigned_parcel.h" />
+		<Unit filename="crop_details.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crops_details.h" />
 		<Unit filename="farmer.c">
 			<Option compilerVar="CC" />
 		</Unit>

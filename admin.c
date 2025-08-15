@@ -79,6 +79,9 @@ void manage_field_agents() {
     case 5:
         delete_agent();
         break;
+    case 6:
+        clear_screen();
+        adminMenu();
     default:
         printf("Invalid Option chosen!\n");
         break;

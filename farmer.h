@@ -6,7 +6,8 @@ void farmer_land_parcels(int id);
 void application_schemes(int id);
 void chatbot();
 void track_cropcycle(int id);
-void edit_personaldetails(Farmer f);
+void edit_personaldetails(Farmer f, int id);
+void change_password(int id);
 
 
 

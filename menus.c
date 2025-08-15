@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "parcels.h"
+#include "crops_details.h"
 #include "login.h"
 #include "farmer.h"
 #include "agents.h"
@@ -21,37 +22,36 @@ void adminMenu()
     printf("5: Configuration and analytics\n");
     printf("6: Back.\n\n");
 
-        printf("Choose an option: ");
-        scanf("%d", &chosenOption);
+    printf("Choose an option: ");
+    scanf("%d", &chosenOption);
 
-        switch(chosenOption)
-        {
-        case 1:
-            manage_farmers_profile();
-            break;
-        case 2:
-            manage_land_parcels();
-            break;
-        case 3:
-            apply_for_loan_and_subsidy();
-            break;
-        case 4:
-            manage_field_agents();
-            break;
-        case 5:
-            configuration();
-            break;
-        case 6:
-            clear_screen();
-            loginMenu();
-            break;
-        default:
-            printf("Invalid Option chosen!\n");
-            break;
-        }
-
+    switch(chosenOption)
+    {
+    case 1:
+        manage_farmers_profile();
+        break;
+    case 2:
+        manage_land_parcels();
+        break;
+    case 3:
+        apply_for_loan_and_subsidy();
+        break;
+    case 4:
+        manage_field_agents();
+        break;
+    case 5:
+        configuration();
+        break;
+    case 6:
+        clear_screen();
+        loginMenu();
+        break;
+    default:
+        printf("Invalid Option chosen!\n");
+        break;
     }
 
+}
 
 void loginMenu()
 {
@@ -86,7 +86,8 @@ void loginMenu()
     }
     else
     {
-        printf("Please enter a valid option(1-6).");
+        printf("Please enter a valid option(1-6).\n");
+        loginMenu();
     }
 }
 
@@ -99,7 +100,8 @@ void FarmerMenu(int id)
     printf("3: Apply for Loan or Subsidy\n");
     printf("4: Talk to our ChatBot\n");
     printf("5: Track my crop cycle\n");
-    printf("6: Go back\n\n");
+    printf("6: Change my password\n");
+    printf("7: Go back\n\n");
 
     while (1)
     {
@@ -125,10 +127,14 @@ void FarmerMenu(int id)
             track_cropcycle(id);
             break;
         case 6:
-            printf("BACK");
+            change_password(id);
+            break;
+        case 7:
+            clear_screen();
+            loginMenu();
             break;
         default:
-            printf("Please enter a valid option(1-6).");
+            printf("Error! Please enter a valid option!\n");
             continue;
         }
         break;
@@ -166,10 +172,11 @@ void AgentMenu(int id)
             manage_schedules(id);
             break;
         case 5:
-            printf("BACK");
+            clear_screen();
+            loginMenu();
             break;
         default:
-            printf("Please enter a valid option(1-5).");
+            printf("Error! Please enter a valid option!\n");
             continue;
         }
         break;
@@ -201,21 +208,98 @@ void parcel_AddEditDeleteMenu(int id)
             add_landparcels(id);
             break;
         case 2:
-            edit_landparcels();
+            edit_landparcels(id);
             break;
         case 3:
-            delete_landparcels();
+            delete_landparcels(id);
             break;
         case 4:
-            printf("BACK");
+            clear_screen();
+            FarmerMenu(id);
             break;
         default:
-            printf("Please enter a valid option(1-4).");
+            printf("Error! Please enter a valid option!\n");
             continue;
         }
         break;
     }
 }
+
+void crop_AddEditDeleteMenu(int id)
+{
+    int selected_option;
+
+    printf("Choose an option: \n");
+
+    printf("1: Add new crop details: \n");
+    printf("2: Edit existing crop details: \n");
+    printf("3: Delete existing crop details: \n");
+    printf("4: Go back\n\n");
+
+    while (1)
+    {
+
+        printf("Choose an option: ");
+        scanf("%d", &selected_option);
+
+
+        switch(selected_option)
+        {
+        case 1:
+            clear_screen();
+            add_cropdetails(id);
+            break;
+        case 2:
+            edit_cropdetails(id);
+            break;
+        case 3:
+            delete_cropdetails(id);
+            break;
+        case 4:
+            clear_screen();
+            FarmerMenu(id);
+            break;
+        default:
+            printf("Error! Please enter a valid option!\n");
+            continue;
+        }
+        break;
+    }
+}
+
+void farmer_editmenu(int id)
+{
+    printf("\nChoose an option: \n");
+    printf("1.Edit personal details: \n");
+    printf("2.Go Back \n");
+    printf("Enter your choice: ");
+
+    Farmer f;
+
+    while(1)
+    {
+        int selected_option;
+        scanf("%d", &selected_option);
+        getchar();
+
+        switch(selected_option)
+        {
+        case 1:
+            edit_personaldetails(f, id);
+            break;
+        case 2:
+            clear_screen();
+            FarmerMenu(id);
+            break;
+        default:
+            printf("Error! Please enter a valid input!\n");
+            continue;
+        }
+        break;
+    }
+}
+
+
 
 
 

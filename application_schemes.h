@@ -9,6 +9,7 @@ typedef struct
     float loan_amount;
     char loan_purpose[200];
     char date_applied[15];
+    char status[30];
 }Loan;
 
 typedef struct
@@ -19,10 +20,14 @@ typedef struct
     float subsidy_amount;
     char subsidy_purpose[200];
     char date_applied[15];
+    char status[30];
 }Subsidy;
 
 void loan_application(int id);
 void subsidy_application(int id);
+void view_appliedforms(int id);
+void view_loanapplications(int id);
+void view_subsidyapplications(int id);
 
 
 
