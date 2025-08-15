@@ -4,7 +4,7 @@
 void manage_farmers_profile();
 void manage_land_parcels();
 void manage_field_agents();
-void apply_for_loan_and_subsidy();
+void manage_loan_subsidy();
 void configuration();
 
 

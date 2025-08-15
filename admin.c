@@ -5,6 +5,7 @@
 #include "login.h"
 #include "agent_utils.h"
 #include "land_parcel_utils.h"
+#include "loan_subsidy_utils.h"
 
 void manage_farmers_profile()
 {
@@ -131,10 +132,37 @@ void manage_land_parcels()
     }
 }
 
-void apply_for_loan_and_subsidy()
+void manage_loan_subsidy()
 {
-    printf("Apply for loan and subsidy.\n");
+    clear_screen();
+    int chosenOption;
+    int id;
 
+    printf("Manage loan and subsidy.\n\n");
+
+    printf("1: Review loan applications\n");
+    printf("2: Review subsidy applications\n");
+    printf("3: Back\n\n");
+
+    printf("Choose an option: ");
+    scanf("%d", &chosenOption);
+
+    switch(chosenOption)
+    {
+    case 1:
+        list_loan_applications();
+        break;
+    case 2:
+        list_subsidy_applications();
+        break;
+    case 3:
+        clear_screen();
+        adminMenu();
+        break;
+    default:
+        printf("Invalid Option chosen!\n");
+        break;
+    }
 }
 
 void configuration()
