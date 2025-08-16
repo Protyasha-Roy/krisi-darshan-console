@@ -1,4 +1,4 @@
-Krishi-Darshan is a console-based agriculture management system for farmers, field agents, and administrators. It helps manage farmer profiles, land parcels, crop cycles, loan and subsidy applications, and general farming guidelines.
+Krishi-Darshan is a console-based agriculture management system for farmers, field agents, and administrators. It helps manage farmer profiles, land parcels, crop cycles, loan and subsidy applications,Krishi-Darshan is a console-based agriculture management system for farmers, field agents, and administrators. It helps manage farmer profiles, land parcels, crop cycles, loan and subsidy applications, and general farming guidelines.
 
 USER ROLES AND ACCESS:
 
@@ -57,7 +57,3 @@ DATA FIELDS:
 - Applications store request type, details, date applied, status.
 - Reports contain visit date, observations, recommendations.
 - Schedules include parcel ID, farmer name, location, visit date, scheme type.
-
-PURPOSE:
-Krishi-Darshan centralizes agricultural data for efficient management, supports government schemes, and helps farmers with easy access to information and resources.
-

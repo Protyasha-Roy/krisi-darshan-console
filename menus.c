@@ -128,7 +128,7 @@ void FarmerMenu(int id)
             application_schemes(id);
             break;
         case 4:
-            chatbot();
+            chatbot(id);
             break;
         case 5:
             track_cropcycle(id);

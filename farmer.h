@@ -4,7 +4,7 @@
 void personal_details(int id);
 void farmer_land_parcels(int id);
 void application_schemes(int id);
-void chatbot();
+void chatbot(int id);
 void track_cropcycle(int id);
 void edit_personaldetails(Farmer f, int id);
 void change_password(int id);

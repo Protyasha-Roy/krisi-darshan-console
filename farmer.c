@@ -8,6 +8,7 @@
 #include "farmer.h"
 #include "parcels.h"
 #include "utils.h"
+#include "bot.h"
 
 void update_AreaAndParcelNumber(int id, float area, int parcel_number)
 {
@@ -546,9 +547,10 @@ void application_schemes(int id)
 }
 
 
-void chatbot() {
+void chatbot(int id) {
     clear_screen();
-    printf("Welcome to the chatbot");
+    printf("Welcome to the chatbot\n");
+    bot(id);
 }
 
 void track_cropcycle(int id)

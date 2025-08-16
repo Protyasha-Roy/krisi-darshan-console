@@ -39,7 +39,7 @@ void manage_farmers_profile(int adminId)
         delete_farmer(adminId);
         break;
     case 4:
-        registration(adminId);
+        registration();
         break;
     case 5:
         clear_screen();

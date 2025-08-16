@@ -18,10 +18,10 @@ typedef struct {
     char linked_number[20];
 } Agent;
 
-void list_agents();
-void add_agent();
-void search_agent();
-void update_agent();
-void delete_agent();
+void list_agents(int adminId);
+void add_agent(int adminId);
+void search_agent(int adminId);
+void update_agent(int adminId);
+void delete_agent(int adminIds);
 
 #endif // AGENT_UTILS_H_INCLUDED
