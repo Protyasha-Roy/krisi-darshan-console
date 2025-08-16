@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "login.h"
 #include "menus.h"
 #include "utils.h"
@@ -200,4 +201,29 @@ void registration() {
     fclose(fp2);
 
     printf("\nRegistration is complete. ID is: %d. Use this ID to login.\n", user.id);
+
+    while (1)
+    {
+        int back_exit;
+        printf("Choose an option: \n");
+        printf("1. Go back\n2. Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            loginMenu();
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
 }

@@ -63,7 +63,7 @@ void list_farmers(int adminId)
     {
         int back_exit;
         printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -157,7 +157,7 @@ void search_by_id(FILE *fp, Farmer farmer, int adminId)
     {
         int back_exit;
         printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -252,7 +252,7 @@ void search_by_name(FILE *fp, Farmer farmer, int adminId)
     {
         int back_exit;
         printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -307,7 +307,7 @@ void search_partially(FILE *fp, Farmer farmer, int adminId)
                   farmer.linked_number
                  ) != EOF))
     {
-        if (strncmp(lowercased_str(partial_name), lowercased_str(farmer.fullName), strlen(partial_name)) == 0)
+        if (strstr(lowercased_str(farmer.fullName), lowercased_str(partial_name)) != NULL)
         {
             string_matched = 1;
 
@@ -345,7 +345,7 @@ void search_partially(FILE *fp, Farmer farmer, int adminId)
     {
         int back_exit;
         printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -379,6 +379,8 @@ void search_farmer(int adminId)
     printf("1. Search by ID\n");
     printf("2. Search by name\n");
     printf("3. Search by partial name\n");
+    printf("4. Go back\n");
+    printf("5. Exit\n");
 
     printf("Choose an option: ");
     scanf("%d", &chosen_option);
@@ -394,6 +396,13 @@ void search_farmer(int adminId)
     case 3:
         search_partially(fp, farmer, adminId);
         break;
+    case 4:
+        clear_screen();
+        adminMenu(adminId);
+        break;
+    case 5:
+        exit(1);
+        break;
     default:
         printf("Invalid option chosen! Try again");
         search_farmer(adminId);
@@ -404,7 +413,7 @@ void search_farmer(int adminId)
     {
         int back_exit;
         printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -524,7 +533,7 @@ void delete_farmer(int adminId)
     {
         int back_exit;
         printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();

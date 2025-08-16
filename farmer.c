@@ -15,7 +15,7 @@ void update_AreaAndParcelNumber(int id, float area, int parcel_number)
     FILE *fp;
     FILE *temp;
 
-    fp==fopen("Farmers.txt", "r");
+    fp=fopen("Farmers.txt", "r");
     temp=fopen("temp.txt", "w");
 
     if(fp==NULL ||temp==NULL)
@@ -579,7 +579,7 @@ void application_schemes(int id)
 void chatbot(int id)
 {
     clear_screen();
-    printf("/t/tWelcome to the chatbot\n");
+    printf("\t\t Welcome to the chatbot\n");
     bot(id);
 }
 

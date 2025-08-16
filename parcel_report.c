@@ -85,7 +85,7 @@ void update_parcel_report(int agent_id)
     {
         int back_exit;
         printf("Choose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -170,7 +170,7 @@ void delete_parcel_report(int agentId)
     {
         int back_exit;
         printf("Choose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -252,7 +252,7 @@ void search_parcel_report(int id)
     {
         int back_exit;
         printf("Choose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();

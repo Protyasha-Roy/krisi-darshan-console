@@ -101,7 +101,7 @@ void delete_landparcels(int id)
     fp=fopen("Parcels.txt", "r");
     temp=fopen("temp3.txt", "w");
 
-    Parcel p,tempParcel, deletedParcel;
+    Parcel p, deletedParcel;
 
     int id_matched=0;
 
@@ -159,7 +159,7 @@ void delete_landparcels(int id)
     {
         int back_exit;
         printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -347,7 +347,7 @@ void edit_landparcels(int id)
     {
         int back_exit;
         printf("Choose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -418,7 +418,7 @@ void add_landparcels(int id)
 
 
     fprintf(fp,
-            "\n%d|%d|%s|%f|%s|%s|%s\n",
+            "%d|%d|%s|%f|%s|%s|%s\n",
             p.id,
             p.farmerId,
             p.location,
@@ -437,7 +437,7 @@ void add_landparcels(int id)
     {
         int back_exit;
         printf("Choose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -457,9 +457,6 @@ void add_landparcels(int id)
         }
         break;
     }
-
-
-
 }
 
 

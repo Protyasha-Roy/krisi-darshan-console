@@ -71,7 +71,7 @@ void view_loanapplications(int id)
     {
         int back_exit;
         printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -110,7 +110,7 @@ void view_subsidyapplications(int id)
 
     printf("\t\t APPLIED SUBSIDY FORMS OF FARMER %d\n", id);
 
-    while((fscanf(fp2, "%d|%d|%d|%99[^|]|%19[^|]|%f|%49[^|]|%14[^|]|%29[^\n]",
+    while((fscanf(fp2, "%d|%d|%d|%99[^|]|%19[^|]|%f|%199[^|]|%14[^|]|%29[^\n]",
                   &s.id,
                   &s.parcelId,
                   &s.farmerId,
@@ -138,8 +138,6 @@ void view_subsidyapplications(int id)
             printf("%-25s: %-20s\n", "Status", s.status);
             printf("---------------------------------------------------------------------------------------\n");
             printf("\n\n");
-
-
         }
     }
 
@@ -154,7 +152,7 @@ void view_subsidyapplications(int id)
     {
         int back_exit;
         printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -251,7 +249,7 @@ void subsidy_application(int id)
 
     Farmer f;
 
-    while((fscanf(fp, "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%f|%f|%d|%99[^|]|%c|%29[^|]|%49[^|]|%d|%19[^\n]\n",
+    while((fscanf(fp2, "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%f|%f|%d|%99[^|]|%c|%29[^|]|%49[^|]|%d|%19[^\n]\n",
                   &f.id,
                   f.fullName,
                   f.dob,
@@ -326,7 +324,7 @@ void subsidy_application(int id)
     {
         int back_exit;
         printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -454,7 +452,7 @@ void loan_application(int id)
     {
         int back_exit;
         printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();

@@ -54,7 +54,7 @@ void list_agents(int adminId)
     {
         int back_exit;
         printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -200,7 +200,7 @@ void add_agent(int adminId)
     {
         int back_exit;
         printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -467,7 +467,7 @@ void update_agent(int adminId)
     {
         int back_exit;
         printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -506,7 +506,7 @@ void delete_agent(int adminId)
     printf("Enter agent's ID: ");
     scanf("%d", &id);
 
-    while (fscanf(fp, "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%29[^|]|%49[^|]|%d|%19[^\n]\n",
+    while (fscanf(fp, "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%29[^|]|%49[^|]|%d|%19[^\n]",
                   &agent.id,
                   agent.fullName,
                   agent.dob,
@@ -546,7 +546,7 @@ void delete_agent(int adminId)
         }
     }
 
-    while (fscanf(fp2, "%d %s %c\n", &user.id, user.password, &user.type) != EOF)
+    while (fscanf(fp2, "%d %s %c", &user.id, user.password, &user.type) != EOF)
     {
         if (user.id != id)
         {
@@ -577,7 +577,7 @@ void delete_agent(int adminId)
     {
         int back_exit;
         printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -662,7 +662,7 @@ void search_agent_by_id(FILE *fp, Agent agent, int adminId)
     {
         int back_exit;
         printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -745,7 +745,7 @@ void search_agent_by_name(FILE *fp, Agent agent, int adminId)
     {
         int back_exit;
         printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -778,6 +778,8 @@ void search_agent(int adminId)
     clear_screen();
     printf("1. Search by ID\n");
     printf("2. Search by name\n");
+    printf("3. Go back\n");
+    printf("4. Exit\n");
 
     printf("Choose an option: ");
     scanf("%d", &chosen_option);
@@ -790,34 +792,15 @@ void search_agent(int adminId)
     case 2:
         search_agent_by_name(fp, agent, adminId);
         break;
+    case 3:
+        manage_field_agents(adminId);
+        break;
+    case 4:
+        exit(1);
+        break;
     default:
         printf("Invalid option chosen! Try again");
         search_agent(adminId);
-        break;
-    }
-
-    while (1)
-    {
-        int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
-        printf("Enter you choice: ");
-        scanf("%d", &back_exit);
-        getchar();
-
-        switch(back_exit)
-        {
-        case 1:
-            clear_screen();
-            adminMenu(adminId);
-            break;
-        case 2:
-            exit(1);
-            break;
-        default:
-            printf("Error! Please enter a valid option!");
-            continue;
-        }
         break;
     }
 }

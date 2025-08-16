@@ -63,7 +63,7 @@ void assigned_parcels(int agentId)
     {
         int back_exit;
         printf("Choose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -138,7 +138,7 @@ void upload_report(int id)
     {
         int back_exit;
         printf("Choose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -289,7 +289,7 @@ void create_schedule(int id)
     {
         int back_exit;
         printf("Choose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1.  Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -364,7 +364,7 @@ void view_schedule(int id)
     {
         int back_exit;
         printf("Choose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -439,6 +439,7 @@ void update_schedule(int agentId)
             s.schemeType[strcspn(s.schemeType, "\n")]='\0';
 
             printf("\nSchedule updated!\n");
+            break;
         }
 
 
@@ -466,7 +467,7 @@ void update_schedule(int agentId)
     {
         int back_exit;
         printf("Choose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -539,7 +540,7 @@ void delete_schedule(int agentId)
     remove("Schedule.txt");
     rename("TempSchedule.txt", "Schedule.txt");
 
-    if (found)
+    if (found==1)
     {
         printf("\nSchedule with parcel Id %d deleted successfully.\n", id);
     }
@@ -548,7 +549,7 @@ void delete_schedule(int agentId)
     {
         int back_exit;
         printf("Choose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();

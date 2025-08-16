@@ -1,5 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "utils.h"
+#include "menus.h"
+
 
 void get_info()
 {
@@ -67,4 +70,29 @@ void get_info()
     printf("11.HOW CAN I GET SUPPORT OR REPORT A BUG?\n\n");
     printf("\t1.Contact the system administrator via email: support@krishi-darshan.org\n");
     printf("\t2.Use the Feedback option in the main menu to log issues directly into our ticketing system.n\n");
+
+    while (1)
+    {
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. Go back\n2. Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            loginMenu();
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
 }

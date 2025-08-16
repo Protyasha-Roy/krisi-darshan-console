@@ -53,7 +53,7 @@ void list_assigned_land_parcels(int adminId)
     {
         int back_exit;
         printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -115,7 +115,7 @@ void list_unassigned_land_parcels(int adminId)
     {
         int back_exit;
         printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -213,7 +213,7 @@ void assign_field_agent(int adminId)
     {
         int back_exit;
         printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
@@ -299,7 +299,7 @@ void delete_field_agent(int adminId)
     {
         int back_exit;
         printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("1. Go back\n2. Exit: \n");
         printf("Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();

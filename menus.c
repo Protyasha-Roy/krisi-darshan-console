@@ -146,6 +146,32 @@ void FarmerMenu(int id)
         case 6:
             clear_screen();
             changePass(id);
+
+            while (1)
+            {
+                int back_exit;
+                printf("\nChoose an option: \n");
+                printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+                printf("Enter you choice: ");
+                scanf("%d", &back_exit);
+                getchar();
+
+                switch(back_exit)
+                {
+                case 1:
+                    clear_screen();
+                    FarmerMenu(id);
+                    break;
+                case 2:
+                    exit(1);
+                    break;
+                default:
+                    printf("Error! Please enter a valid option!");
+                    continue;
+                }
+                break;
+            }
+
             break;
         case 7:
             clear_screen();
