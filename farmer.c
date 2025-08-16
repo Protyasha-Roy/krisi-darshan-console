@@ -9,93 +9,79 @@
 #include "parcels.h"
 #include "utils.h"
 
-void change_password(int id)
-
+void update_AreaAndParcelNumber(int id, float area, int parcel_number)
 {
     FILE *fp;
     FILE *temp;
 
-    fp=fopen("Users.txt", "r");
-
-    User u, tempUser;
-
-    if(fp==NULL)
-    {
-        printf("Error! File not found!\n");
-        return;
-    }
-
-    int id_matched=0;
-
-    while (fscanf(fp, "%d %s %c", &tempUser.id, tempUser.password, &tempUser.type)!=EOF)
-    {
-        if(tempUser.id==id)
-        {
-            u=tempUser;
-            id_matched=1;
-            break;
-        }
-    }
-    fclose(fp);
-
-    if(id_matched=1)
-    {
-        printf("Enter the new password: ");
-        getchar();
-        fgets(u.password, sizeof(u.password), stdin);
-        u.password[strcspn(u.password, "\n")]='\0';
-    }
-
-    printf("Password updated successfully!\n");
-
-    fp=fopen("Users.txt", "r");
+    fp==fopen("Farmers.txt", "r");
     temp=fopen("temp.txt", "w");
 
-    if(fp==NULL || temp==NULL)
+    if(fp==NULL ||temp==NULL)
     {
-        printf("Error! File not found!\n");
-        if(fp)
-        {
-            fclose(fp);
-        }
-        if(temp)
-        {
-            fclose(temp);
-        }
+        printf("Error! File not found!");
         return;
     }
 
-    while (fscanf(fp, "%d %s %c", &tempUser.id, tempUser.password, &tempUser.type)!=EOF)
+    Farmer f;
+
+    while((fscanf(fp, "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%f|%f|%d|%99[^|]|%c|%29[^|]|%49[^|]|%d|%19[^\n]\n",
+                  &f.id,
+                  f.fullName,
+                  f.dob,
+                  &f.gender,
+                  f.nid,
+                  f.literacy,
+                  f.mobile,
+                  f.email,
+                  f.address,
+                  &f.postal_code,
+                  &f.farming_experience,
+                  &f.area,
+                  &f.land_parcels,
+                  f.crops,
+                  &f.ownership,
+                  f.bank_number,
+                  f.bank_name,
+                  &f.branch_code,
+                  f.linked_number
+                 )) != EOF)
     {
-        if(tempUser.id==u.id)
+        if(f.id==id)
         {
-            fprintf(temp, "%d %s %c\n", u.id, u.password, u.type);
-        }
-        else
-        {
-            fprintf(temp, "%d %s %c\n", tempUser.id, tempUser.password, tempUser.type);
+            f.land_parcels+=parcel_number;
+            f.area+=area;
         }
 
+        fprintf(temp, "%d|%s|%s|%c|%s|%s|%s|%s|%s|%d|%.2f|%.2f|%d|%s|%c|%s|%s|%d|%s\n",
+                f.id,
+                f.fullName,
+                f.dob,
+                f.gender,
+                f.nid,
+                f.literacy,
+                f.mobile,
+                f.email,
+                f.address,
+                f.postal_code,
+                f.farming_experience,
+                f.area,
+                f.land_parcels,
+                f.crops,
+                f.ownership,
+                f.bank_number,
+                f.bank_name,
+                f.branch_code,
+                f.linked_number);
     }
 
     fclose(fp);
     fclose(temp);
 
-    remove("Users.txt");
-    rename("temp.txt", "Users.txt");
-
-    char back;
-    printf("Enter \"B\" to go back: ");
-    scanf("%c", &back);
-    getchar();
-
-    if(back=='b' || back=='B')
-    {
-        clear_screen();
-        FarmerMenu(id);
-    }
-
+    remove("Farmers.txt");
+    rename("temp.txt", "Farmers.txt");
 }
+
 
 
 void edit_personaldetails(Farmer f, int id)
@@ -366,15 +352,29 @@ void edit_personaldetails(Farmer f, int id)
 
     printf("Farmer details updated successfully!\n");
 
-    char back;
-    printf("Enter \"B\" to go back: ");
-    scanf("%c", &back);
-    getchar();
-
-    if(back=='b' || back=='B')
+    while (1)
     {
-        clear_screen();
-        farmer_editmenu(id);
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            farmer_editmenu(id);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
     }
 }
 

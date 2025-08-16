@@ -3,6 +3,7 @@
 
 typedef struct
 {
+    int id;
     int farmerId;
     char farmerName[100];
     char mobile[20];
@@ -14,6 +15,7 @@ typedef struct
 
 typedef struct
 {
+    int id;
     int farmerId;
     char farmerName[100];
     char mobile[20];

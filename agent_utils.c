@@ -1,10 +1,13 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "utils.h"
+#include "admin.h"
+#include "menus.h"
 #include "agent_utils.h"
 #include "login.h"
 #include <string.h>
 
-void list_agents()
+void list_agents(int adminId)
 {
     clear_screen();
 
@@ -46,9 +49,34 @@ void list_agents()
     }
 
     fclose(fp);
+
+    while (1)
+    {
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            adminMenu(adminId);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
 }
 
-void add_agent()
+void add_agent(int adminId)
 {
     clear_screen();
 
@@ -167,9 +195,34 @@ void add_agent()
     fclose(fp2);
 
     printf("\nAgent registration is complete. ID is: %d.\n", user.id);
+
+    while (1)
+    {
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            adminMenu(adminId);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
 }
 
-void update_agent()
+void update_agent(int adminId)
 {
     FILE *fp = fopen("Agents.txt", "r");
     FILE *temp = fopen("temp.txt", "w");
@@ -409,9 +462,34 @@ void update_agent()
     rename("temp.txt", "Agents.txt");
 
     printf("Agent details updated successfully!\n");
+
+    while (1)
+    {
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            adminMenu(adminId);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
 }
 
-void delete_agent()
+void delete_agent(int adminId)
 {
     FILE *fp = fopen("Agents.txt", "r");
     FILE *temp = fopen("Temp.txt", "w");
@@ -494,9 +572,35 @@ void delete_agent()
     rename("Temp2.txt", "Users.txt");
 
     printf("\nAgent profile deleted successfully.\n");
+
+    while (1)
+    {
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            adminMenu(adminId);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
+
 }
 
-void search_agent_by_id(FILE *fp, Agent agent)
+void search_agent_by_id(FILE *fp, Agent agent, int adminId)
 {
     clear_screen();
 
@@ -553,9 +657,34 @@ void search_agent_by_id(FILE *fp, Agent agent)
     {
         printf("Agent with ID: %d not found!\n", id);
     }
+
+    while (1)
+    {
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            search_agent(adminId);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
 }
 
-void search_agent_by_name(FILE *fp, Agent agent)
+void search_agent_by_name(FILE *fp, Agent agent, int adminId)
 {
     clear_screen();
     char name[100];
@@ -611,9 +740,34 @@ void search_agent_by_name(FILE *fp, Agent agent)
     {
         printf("No match found for %s\n", name);
     }
+
+    while (1)
+    {
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            search_agent(adminId);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
 }
 
-void search_agent()
+void search_agent(int adminId)
 {
     FILE *fp = fopen("Agents.txt", "r");
 
@@ -631,14 +785,39 @@ void search_agent()
     switch(chosen_option)
     {
     case 1:
-        search_agent_by_id(fp, agent);
+        search_agent_by_id(fp, agent, adminId);
         break;
     case 2:
-        search_agent_by_name(fp, agent);
+        search_agent_by_name(fp, agent, adminId);
         break;
     default:
         printf("Invalid option chosen! Try again");
-        search_agent();
+        search_agent(adminId);
+        break;
+    }
+
+    while (1)
+    {
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            adminMenu(adminId);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
         break;
     }
 }

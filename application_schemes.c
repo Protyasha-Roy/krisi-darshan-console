@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "menus.h"
 #include "login.h"
 #include "farmer.h"
@@ -23,14 +24,15 @@ void view_loanapplications(int id)
 
     printf("\t\t APPLIED LOAN FORMS OF FARMER %d\n", id);
 
-    while((fscanf(fp, "%d|%99[^|]|%19[^|]|%f|%199[^|]|%14[^|]|%29[^\n]",
+    while((fscanf(fp, "%d|%d|%99[^|]|%19[^|]|%f|%199[^|]|%14[^|]|%29[^\n]",
+                  &l.id,
                   &l.farmerId,
                   l.farmerName,
                   l.mobile,
                   &l.loan_amount,
                   l.loan_purpose,
                   l.date_applied,
-                  l.status) ==7 ))
+                  l.status) != EOF))
     {
         if(l.farmerId==id)
         {
@@ -50,15 +52,30 @@ void view_loanapplications(int id)
         printf("No Loan Application Found for Farmer %d", id);
 
     }
-    char back;
-    printf("Enter \"B\" to go back: ");
-    scanf("%c", &back);
-    getchar();
 
-    if(back=='b'|| back=='B')
+    while (1)
     {
-        clear_screen();
-        application_schemes(id);
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            application_schemes(id);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
     }
 }
 
@@ -78,14 +95,15 @@ void view_subsidyapplications(int id)
 
     printf("\t\t APPLIED SUBSIDY FORMS OF FARMER %d\n", id);
 
-    while((fscanf(fp2, "%d|%99[^|]|%19[^|]|%f|%199[^|]|%14[^|]|%29[^\n]",
+    while((fscanf(fp2, "%d|%d|%99[^|]|%19[^|]|%f|%199[^|]|%14[^|]|%29[^\n]",
+                  &s.id,
                   &s.farmerId,
                   s.farmerName,
                   s.mobile,
                   &s.subsidy_amount,
                   s.subsidy_purpose,
                   s.date_applied,
-                  s.status) ==7 ))
+                  s.status) != EOF))
     {
         if(s.farmerId==id)
         {
@@ -104,15 +122,30 @@ void view_subsidyapplications(int id)
     {
         printf("No Subsidy Application Found for Farmer %d", id);
     }
-    char back;
-    printf("Enter \"B\" to go back: ");
-    scanf("%c", &back);
-    getchar();
 
-    if(back=='b'|| back=='B')
+    while (1)
     {
-        clear_screen();
-        application_schemes(id);
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            application_schemes(id);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
     }
 
 
@@ -127,6 +160,7 @@ void view_appliedforms(int id)
     printf("1: Applied Loan Forms \n");
     printf("2: Applied Subsidy Forms \n");
     printf("3: Back \n");
+    printf("4. Exit\n");
 
     while (1)
     {
@@ -147,6 +181,9 @@ void view_appliedforms(int id)
         case 3:
             clear_screen();
             application_schemes(id);
+            break;
+        case 4:
+            exit(1);
             break;
         default:
             printf("Error! Please enter a valid option!\n");
@@ -170,6 +207,11 @@ void subsidy_application(int id)
 
     Subsidy s;
 
+    do
+    {
+        s.id = generateId(0, 2147483640);
+    }
+    while(checkIdDuplication(fp, s.id) == 1);
     s.farmerId=id;
 
     FILE *fp2;
@@ -234,7 +276,8 @@ void subsidy_application(int id)
 
 
     fprintf(fp,
-            "%d|%s|%s|%.2f|%s|%s|%s\n",
+            "%d|%d|%s|%s|%.2f|%s|%s|%s\n",
+            s.id,
             s.farmerId,
             s.farmerName,
             s.mobile,
@@ -247,15 +290,29 @@ void subsidy_application(int id)
 
     printf("Subsidy application submitted successfully!\n");
 
-    char back;
-    printf("Enter \"B\" to go back: ");
-    scanf("%c", &back);
-    getchar();
-
-    if(back=='b'|| back=='B')
+    while (1)
     {
-        clear_screen();
-        application_schemes(id);
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            application_schemes(id);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
     }
 }
 
@@ -270,6 +327,12 @@ void loan_application(int id)
     }
 
     Loan l;
+
+    do
+    {
+        l.id = generateId(0, 2147483640);
+    }
+    while(checkIdDuplication(fp, l.id) == 1);
 
     l.farmerId=id;
 
@@ -336,7 +399,8 @@ void loan_application(int id)
 
 
     fprintf(fp,
-            "%d|%s|%s|%.2f|%s|%s|%s\n",
+            "%d|%d|%s|%s|%.2f|%s|%s|%s\n",
+            l.id,
             l.farmerId,
             l.farmerName,
             l.mobile,
@@ -349,15 +413,29 @@ void loan_application(int id)
 
     printf("Loan application submitted successfully!\n");
 
-    char back;
-    printf("Enter \"B\" to go back: ");
-    scanf("%c", &back);
-    getchar();
-
-    if(back=='b'|| back=='B')
+    while (1)
     {
-        clear_screen();
-        application_schemes(id);
-    }
-}
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
 
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            application_schemes(id);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
+
+}

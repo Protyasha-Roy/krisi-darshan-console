@@ -4,7 +4,7 @@
 void loginMenu();
 void FarmerMenu(int id);
 void AgentMenu(int id);
-void adminMenu();
+void adminMenu(int id);
 void parcel_AddEditDeleteMenu(int id);
 void crop_AddEditDeleteMenu(int id);
 void farmer_editmenu(int id);

@@ -1,10 +1,98 @@
 #include <stdio.h>
 #include <string.h>
 #include "menus.h"
+#include "crops_details.h"
 #include "login.h"
 #include "farmer.h"
 #include "parcels.h"
 #include "utils.h"
+#include <stdlib.h>
+
+void update_parcel_crops(int id)
+{
+    FILE *fp;
+    FILE *fp2;
+    FILE *temp;
+
+    fp=fopen("Crops.txt", "r");
+    fp2=fopen("Parcels.txt", "r");
+    temp=fopen("temp.txt", "w");;
+
+    if(fp==NULL || fp2==NULL || temp==NULL)
+    {
+        printf("Error! File not found!\n");
+        if(fp)
+        {
+            fclose(fp);
+        }
+
+        if(fp2)
+        {
+            fclose(fp2);
+        }
+
+        if(temp)
+        {
+            fclose(temp);
+        }
+        return;
+    }
+
+    Parcel p;
+    Crops c;
+
+    while(fscanf(fp2, "%d|%d|%99[^|]|%f|%14[^|]|%29[^|]|%49[^\n]\n",
+                 &p.id,
+                 &p.farmerId,
+                 p.location,
+                 &p.area,
+                 p.dop,
+                 p.soilType,
+                 p.crops) != EOF)
+    {
+
+        if(p.id==id)
+        {
+            strcpy(p.crops, ""); //clearing the existing crop field
+            rewind(fp);
+            while(fscanf(fp, "%d|%49[^|]|%d|%d|%14[^|]|%14[^|]|%29[^|]|%49[^|]|%49[^\n]\n",
+                         &c.id,
+                         c.crop_name,
+                         &c.parcelId,
+                         &c.farmerId,
+                         c.sowing_date,
+                         c.harvesting_date,
+                         c.current_status,
+                         c.fertilizers_used,
+                         c.pesticides_used) == 9)
+            {
+
+                if(c.parcelId == id)
+                {
+                    if(strlen(p.crops) > 0) strcat(p.crops, ", "); //if there is an existing crop we add a comma to separate them
+                    strcat(p.crops, c.crop_name);
+                }
+            }
+        }
+
+        fprintf(temp, "%d|%d|%s|%f|%s|%s|%s\n",
+                p.id,
+                p.farmerId,
+                p.location,
+                p.area,
+                p.dop,
+                p.soilType,
+                p.crops);
+    }
+
+    fclose(fp);
+    fclose(fp2);
+    fclose(temp);
+
+    remove("Parcels.txt");
+    rename("temp.txt", "Parcels.txt");
+}
+
 
 void delete_landparcels(int id)
 {
@@ -13,16 +101,16 @@ void delete_landparcels(int id)
     fp=fopen("Parcels.txt", "r");
     temp=fopen("temp3.txt", "w");
 
-    Parcel p,tempParcel;
+    Parcel p,tempParcel, deletedParcel;
 
     int id_matched=0;
 
     int chosen_parcelId;
-        printf("Enter ID of parcel to edit: ");
-        scanf("%d", &chosen_parcelId);
-        getchar();
+    printf("Enter ID of parcel to edit: ");
+    scanf("%d", &chosen_parcelId);
+    getchar();
 
-     while(fscanf(fp, "%d|%d|%99[^|]|%f|%14[^|]|%29[^|]|%29[^\n]\n",
+    while(fscanf(fp, "%d|%d|%99[^|]|%f|%14[^|]|%29[^|]|%29[^\n]\n",
                  &p.id,
                  &p.farmerId,
                  p.location,
@@ -33,8 +121,6 @@ void delete_landparcels(int id)
     {
         if(p.id != chosen_parcelId)
         {
-            id_matched=1;
-
             fprintf(temp,"%d|%d|%s|%f|%s|%s|%s\n",
                     p.id,
                     p.farmerId,
@@ -44,32 +130,55 @@ void delete_landparcels(int id)
                     p.soilType,
                     p.crops);
         }
-
-        if(!id_matched)
-    {
-        printf("Parcel %d not found in the system! \n", id);
-    }
+        else
+        {
+            id_matched=1;
+            deletedParcel=p;
+        }
     }
 
     fclose(fp);
     fclose(temp);
 
+
     remove("Parcels.txt");
     rename("temp3.txt", "Parcels.txt");
 
-    printf("Deleted Parcel successfully!\n");
-
-    char back;
-    printf("Enter \"B\" to go back: ");
-    scanf("%c", &back);
-    getchar();
-
-    if(back=='b'|| back=='B')
+    if(id_matched==1)
     {
-        clear_screen();
-        parcel_AddEditDeleteMenu(id);
+        printf("Deleted parcel successfully.");
+    }
+    else
+    {
+        printf("Parcel with ID %d is not in the system!\n", chosen_parcelId);
     }
 
+    update_AreaAndParcelNumber(id, -deletedParcel.area, -1);
+
+    while (1)
+    {
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            parcel_AddEditDeleteMenu(id);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
 }
 
 
@@ -234,16 +343,31 @@ void edit_landparcels(int id)
 
     printf("Parcel details updated successfully!\n");
 
-    char back;
-    printf("Enter \"B\" to go back: ");
-    scanf("%c", &back);
-    getchar();
-
-    if(back=='b'|| back=='B')
+    while (1)
     {
-        clear_screen();
-        parcel_AddEditDeleteMenu(id);
+        int back_exit;
+        printf("Choose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            parcel_AddEditDeleteMenu(id);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
     }
+
 }
 
 
@@ -303,19 +427,39 @@ void add_landparcels(int id)
             p.soilType,
             p.crops);
     fclose(fp);
+
+    update_AreaAndParcelNumber(id, p.area, 1);
+
     printf("New Land Parcel Added. \n");
 
-    char back;
-    printf("Enter \"B\" to go back: ");
-    scanf("%c", &back);
-    getchar();
 
-    if(back=='b'|| back=='B')
+    while (1)
     {
-        clear_screen();
-        parcel_AddEditDeleteMenu(id);
+        int back_exit;
+        printf("Choose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            parcel_AddEditDeleteMenu(id);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
     }
-    printf("New Land Parcel Added.");
+
+
+
 }
 
 

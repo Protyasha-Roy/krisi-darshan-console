@@ -25,4 +25,14 @@ typedef struct
     char recomendation[100];
 } UploadReport;
 
+typedef struct
+{
+    int parcelId;
+    int agentId;
+    char farmerName[100];
+    char location[100];
+    char dov[15];
+    char schemeType[50];
+} Schedule;
+
 #endif // ASSIGNED_PARCEL_H_INCLUDED

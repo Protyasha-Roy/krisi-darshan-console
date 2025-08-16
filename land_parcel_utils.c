@@ -1,11 +1,14 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "assigned_parcel.h"
 #include "utils.h"
+#include "menus.h"
+#include "admin.h"
 #include "parcels.h"
 #include <string.h>
 
 
-void list_assigned_land_parcels()
+void list_assigned_land_parcels(int adminId)
 {
     clear_screen();
     FILE *fp = fopen("Assigned_Parcel.txt", "r");
@@ -45,9 +48,34 @@ void list_assigned_land_parcels()
     }
 
     fclose(fp);
+
+    while (1)
+    {
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            manage_land_parcels(adminId);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
 }
 
-void list_unassigned_land_parcels()
+void list_unassigned_land_parcels(int adminId)
 {
     clear_screen();
     FILE *fp = fopen("Parcels.txt", "r");
@@ -82,9 +110,34 @@ void list_unassigned_land_parcels()
 
     fclose(fp);
     getchar();
+
+    while (1)
+    {
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            manage_land_parcels(adminId);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
 }
 
-void assign_field_agent()
+void assign_field_agent(int adminId)
 {
     clear_screen();
     FILE *fp = fopen("Assigned_Parcel.txt", "a");
@@ -155,10 +208,35 @@ void assign_field_agent()
     printf("Successfully assigned agent to land parcel.\n");
 
     fclose(fp);
+
+    while (1)
+    {
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            manage_land_parcels(adminId);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
 }
 
 
-void delete_field_agent()
+void delete_field_agent(int adminId)
 {
     clear_screen();
 
@@ -216,4 +294,29 @@ void delete_field_agent()
 
     remove("Assigned_Parcel.txt");
     rename("temp.txt", "Assigned_Parcel.txt");
+
+    while (1)
+    {
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            manage_land_parcels(adminId);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
 }

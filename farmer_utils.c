@@ -1,9 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "login.h"
+#include "menus.h"
+#include "admin.h"
 #include <string.h>
 #include "utils.h"
 
-void list_farmers()
+void list_farmers(int adminId)
 {
     clear_screen();
     FILE *fp = fopen("Farmers.txt", "r");
@@ -55,9 +58,35 @@ void list_farmers()
     }
 
     fclose(fp);
+
+    while (1)
+    {
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            manage_farmers_profile(adminId);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
 }
 
-void search_by_id(FILE *fp, Farmer farmer)
+
+void search_by_id(FILE *fp, Farmer farmer, int adminId)
 {
     clear_screen();
 
@@ -124,9 +153,33 @@ void search_by_id(FILE *fp, Farmer farmer)
     {
         printf("Farmer with ID: %d not found!\n", id);
     }
+    while (1)
+    {
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            manage_farmers_profile(adminId);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
 }
 
-void search_by_name(FILE *fp, Farmer farmer)
+void search_by_name(FILE *fp, Farmer farmer, int adminId)
 {
     clear_screen();
 
@@ -194,9 +247,34 @@ void search_by_name(FILE *fp, Farmer farmer)
     {
         printf("Farmer with the name %s not found!\n", name);
     }
+
+    while (1)
+    {
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            manage_farmers_profile(adminId);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
 }
 
-void search_partially(FILE *fp, Farmer farmer)
+void search_partially(FILE *fp, Farmer farmer, int adminId)
 {
     clear_screen();
     char partial_name[100];
@@ -262,9 +340,34 @@ void search_partially(FILE *fp, Farmer farmer)
     {
         printf("No match found for %s\n", partial_name);
     }
+
+    while (1)
+    {
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            manage_farmers_profile(adminId);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
 }
 
-void search_farmer()
+void search_farmer(int adminId)
 {
     FILE *fp = fopen("Farmers.txt", "r");
 
@@ -283,22 +386,48 @@ void search_farmer()
     switch(chosen_option)
     {
     case 1:
-        search_by_id(fp, farmer);
+        search_by_id(fp, farmer, adminId);
         break;
     case 2:
-        search_by_name(fp,farmer);
+        search_by_name(fp,farmer, adminId);
         break;
     case 3:
-        search_partially(fp, farmer);
+        search_partially(fp, farmer, adminId);
         break;
     default:
         printf("Invalid option chosen! Try again");
-        search_farmer();
+        search_farmer(adminId);
+        break;
+    }
+
+    while (1)
+    {
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            manage_farmers_profile(adminId);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
         break;
     }
 }
 
-void delete_farmer()
+
+void delete_farmer(int adminId)
 {
     FILE *fp = fopen("Farmers.txt", "r");
     FILE *temp = fopen("Temp.txt", "w");
@@ -390,5 +519,30 @@ void delete_farmer()
     rename("Temp2.txt", "Users.txt");
 
     printf("\nFarmer profile deleted successfully.\n");
+
+    while (1)
+    {
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            manage_farmers_profile(adminId);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
 
 }

@@ -8,6 +8,7 @@ void chatbot();
 void track_cropcycle(int id);
 void edit_personaldetails(Farmer f, int id);
 void change_password(int id);
+void update_AreaAndParcelNumber(int id, float area, int parcel_number);
 
 
 
