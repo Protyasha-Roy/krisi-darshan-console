@@ -22,20 +22,22 @@ void update_loan_status(int adminId)
     printf("Enter status: ");
     fgets(status, 30, stdin);
 
-    while((fscanf(fp, "%d|%d|%99[^|]|%19[^|]|%f|%199[^|]|%14[^|]|%29[^\n]",
+    while((fscanf(fp, "%d|%d|%d|%99[^|]|%19[^|]|%f|%199[^|]|%14[^|]|%29[^\n]",
                   &loan.id,
+                  &loan.parcelId,
                   &loan.farmerId,
                   loan.farmerName,
                   loan.mobile,
                   &loan.loan_amount,
                   loan.loan_purpose,
                   loan.date_applied,
-                  loan.status) == EOF))
+                  loan.status) != EOF))
     {
         if(id != loan.id)
         {
-            fprintf(temp, "%d|%d|%s|%s|%f|%s|%s|%s\n",
+            fprintf(temp, "%d|%d|%d|%s|%s|%f|%s|%s|%s\n",
                     loan.id,
+                    loan.parcelId,
                     loan.farmerId,
                     loan.farmerName,
                     loan.mobile,
@@ -45,11 +47,13 @@ void update_loan_status(int adminId)
                     loan.status
                    );
         }
-        else {
+        else
+        {
             strcpy(loan.status, status);
 
-            fprintf(temp, "%d|%d|%s|%s|%f|%s|%s|%s\n",
+            fprintf(temp, "%d|%d|%d|%s|%s|%f|%s|%s|%s\n",
                     loan.id,
+                    loan.parcelId,
                     loan.farmerId,
                     loan.farmerName,
                     loan.mobile,
@@ -57,7 +61,7 @@ void update_loan_status(int adminId)
                     loan.loan_purpose,
                     loan.date_applied,
                     loan.status
-                    );
+                   );
         }
     }
 
@@ -109,17 +113,19 @@ void list_loan_applications(int adminId)
 
     printf("\t\t APPLIED LOAN FORMS OF FARMER: %s\n", loan.farmerName);
 
-    while((fscanf(fp, "%d|%d|%99[^|]|%19[^|]|%f|%199[^|]|%14[^|]|%29[^\n]",
+    while((fscanf(fp, "%d|%d|%d|%99[^|]|%19[^|]|%f|%199[^|]|%14[^|]|%29[^\n]",
                   &loan.id,
+                  &loan.parcelId,
                   &loan.farmerId,
                   loan.farmerName,
                   loan.mobile,
                   &loan.loan_amount,
                   loan.loan_purpose,
                   loan.date_applied,
-                  loan.status) == EOF))
+                  loan.status) != EOF))
     {
         printf("Application's ID:             %d\n", loan.id);
+        printf("Parcel ID:                    %d\n", loan.parcelId);
         printf("Farmer ID:                    %d\n", loan.farmerId);
         printf("Farmer name:                  %s\n", loan.farmerName);
         printf("Farmer's mobile:              %s\n", loan.mobile);
@@ -133,7 +139,7 @@ void list_loan_applications(int adminId)
 
     fclose(fp);
 
-    char chosenOption;
+    int chosenOption;
 
     ("OPTIONS:");
     printf("1. Update status of a loan application\n");
@@ -142,30 +148,31 @@ void list_loan_applications(int adminId)
 
     while(1)
     {
-    printf("Choose an option: ");
-    scanf("%d", &chosenOption);
-    getchar();
+        printf("Choose an option: ");
+        scanf("%d", &chosenOption);
+        getchar();
 
-    switch(chosenOption)
-    {
-    case 1:
-        update_loan_status(adminId);
+        switch(chosenOption)
+        {
+        case 1:
+            update_loan_status(adminId);
+            break;
+        case 2:
+            manage_loan_subsidy(adminId);
+            break;
+        case 3:
+            exit(1);
+            break;
+        default:
+            printf("Invalid option chosen. Please select a valid option.");
+            continue;
+        }
         break;
-    case 2:
-        manage_loan_subsidy(adminId);
-        break;
-    case 3:
-        exit(1);
-        break;
-    default:
-        printf("Invalid option chosen. Please select a valid option.");
-        continue;
-    }
-    break;
     }
 }
 
-void update_subsidy_status(int adminId) {
+void update_subsidy_status(int adminId)
+{
     FILE *fp = fopen("SubsidyApplication.txt", "r");
     FILE *temp = fopen("temp.txt", "w");
 
@@ -181,20 +188,22 @@ void update_subsidy_status(int adminId) {
     printf("Enter status: ");
     fgets(status, 30, stdin);
 
-    while((fscanf(fp, "%d|%d|%99[^|]|%19[^|]|%f|%199[^|]|%14[^|]|%29[^\n]",
+    while((fscanf(fp, "%d|%d|%d|%99[^|]|%19[^|]|%f|%199[^|]|%14[^|]|%29[^\n]",
                   &subsidy.id,
+                  &subsidy.parcelId,
                   &subsidy.farmerId,
                   subsidy.farmerName,
                   subsidy.mobile,
                   &subsidy.subsidy_amount,
                   subsidy.subsidy_purpose,
                   subsidy.date_applied,
-                  subsidy.status) == EOF))
+                  subsidy.status) != EOF))
     {
         if(id != subsidy.id)
         {
-            fprintf(temp, "%d|%d|%s|%s|%f|%s|%s|%s\n",
+            fprintf(temp, "%d|%d||%d|%s|%s|%f|%s|%s|%s\n",
                     subsidy.id,
+                    subsidy.parcelId,
                     subsidy.farmerId,
                     subsidy.farmerName,
                     subsidy.mobile,
@@ -204,11 +213,13 @@ void update_subsidy_status(int adminId) {
                     subsidy.status
                    );
         }
-        else {
+        else
+        {
             strcpy(subsidy.status, status);
 
-            fprintf(temp, "%d|%d|%s|%s|%f|%s|%s|%s\n",
+            fprintf(temp, "%d|%d|%d|%s|%s|%f|%s|%s|%s\n",
                     subsidy.id,
+                    subsidy.parcelId,
                     subsidy.farmerId,
                     subsidy.farmerName,
                     subsidy.mobile,
@@ -216,7 +227,7 @@ void update_subsidy_status(int adminId) {
                     subsidy.subsidy_purpose,
                     subsidy.date_applied,
                     subsidy.status
-                    );
+                   );
         }
     }
 
@@ -266,23 +277,25 @@ void list_subsidy_applications(int adminId)
 
     Subsidy subsidy;
 
-    printf("\t\t APPLIED SUBSIDY FORMS OF FARMER: %s\n", subsidy.farmerName);
 
-    while((fscanf(fp, "%d|%d|%99[^|]|%19[^|]|%f|%199[^|]|%14[^|]|%29[^\n]",
+    while((fscanf(fp, "%d|%d|%d|%99[^|]|%19[^|]|%f|%199[^|]|%14[^|]|%29[^\n]",
                   &subsidy.id,
+                  &subsidy.parcelId,
                   &subsidy.farmerId,
                   subsidy.farmerName,
                   subsidy.mobile,
                   &subsidy.subsidy_amount,
                   subsidy.subsidy_purpose,
                   subsidy.date_applied,
-                  subsidy.status) == EOF))
+                  subsidy.status) != EOF))
     {
+        printf("\t\t APPLIED SUBSIDY FORMS OF FARMER: %s\n\n", subsidy.farmerName);
         printf("Application's ID:             %d\n", subsidy.id);
+        printf("Parcel ID:                    %d\n", subsidy.parcelId);
         printf("Farmer ID:                    %d\n", subsidy.farmerId);
         printf("Farmer name:                  %s\n", subsidy.farmerName);
-        printf("Subsidy Purpose:                 %s\n", subsidy.mobile);
-        printf("Subsidy Amount:                  %.2f\n", subsidy.subsidy_amount);
+        printf("Subsidy Purpose:              %s\n", subsidy.mobile);
+        printf("Subsidy Amount:               %.2f\n", subsidy.subsidy_amount);
         printf("Subsidy purpose:              %s\n", subsidy.subsidy_purpose);
         printf("Date applied (YYYY-MM-DD):    %s\n", subsidy.date_applied);
         printf("Status:                       %s\n", subsidy.status);
@@ -292,7 +305,7 @@ void list_subsidy_applications(int adminId)
 
     fclose(fp);
 
-    char chosenOption;
+    int chosenOption;
 
     ("OPTIONS:");
     printf("1. Update status of a subsidy application\n");
@@ -300,7 +313,7 @@ void list_subsidy_applications(int adminId)
     printf("3. Exit\n");
 
     printf("Choose an option: ");
-    scanf("%c", &chosenOption);
+    scanf("%d", &chosenOption);
 
     switch(chosenOption)
     {
