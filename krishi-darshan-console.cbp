@@ -30,13 +30,11 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add directory="/usr/include&#x0A;" />
 		</Compiler>
 		<Linker>
-			<Add library="jansson" />
 			<Add library="curl" />
-			<Add directory="/usr/lib&#x0A;" />
 		</Linker>
+		<Unit filename=".gitignore" />
 		<Unit filename="Admins.txt" />
 		<Unit filename="Agents.txt" />
 		<Unit filename="Assigned_Parcel.txt" />
