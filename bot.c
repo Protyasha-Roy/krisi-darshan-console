@@ -27,7 +27,7 @@ void bot(int id) {
     FILE *context_file = fopen("Context.txt", "r");
 
     if (context_file == NULL) {
-        printf("Error: Could not open context.txt\n");
+        printf("\n\tError: Could not open context.txt\n\n");
         return;
     }
 
@@ -40,15 +40,15 @@ void bot(int id) {
     context[i] = '\0';
     fclose(context_file);
 
-    printf("Successfully read context.\n");
+    printf("\tSuccessfully read context.\n\n");
 
     char question[MAX_QUESTION_SIZE] = {0};
 
     do {
         getchar();
-        printf("Enter your question about the app (or type 'E' to exit): ");
+        printf("\t-> Enter your question about the app (or type 'E' to exit): ");
         if (fgets(question, MAX_QUESTION_SIZE, stdin) == NULL) {
-            printf("Error reading input.\n");
+            printf("\n\tError reading input.\n\n");
             break;
         }
 
@@ -109,15 +109,15 @@ void bot(int id) {
 
                     if (end_ptr != NULL) {
                         *end_ptr = '\0';
-                        printf("\nChatbot Response:\n");
+                        printf("\n\tChatbot Response:\n");
                         printf("-------------------\n");
-                        printf("%s\n", start_ptr);
+                        printf("\t%s\n", start_ptr);
                         printf("-------------------\n");
                     } else {
-                        printf("Error: Could not find closing quote for 'text' field.\n");
+                        printf("\n\tError: Could not find closing quote for 'text' field.\n\n");
                     }
                 } else {
-                    printf("Error: Could not find 'text' field in the JSON response.\n");
+                    printf("\n\tError: Could not find 'text' field in the JSON response.\n\n");
                 }
             }
 

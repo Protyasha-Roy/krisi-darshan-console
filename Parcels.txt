@@ -2,3 +2,4 @@
 1909|1461801856|Lalmonirhat, Rangpur|150.000000|2025-07-30|Sandy|Carrots
 15565|1461801856|Chandpur, Chittagong|50.000000|2025-03-07|Sandy|Tomatoes
 28339|1461801856|Bogura, Rajshahi|20.000000|2025-02-09|Loamy|Cabbage
+23942159|1461801856|jahangirnaga|123.000000|12-24-2423|O|jute

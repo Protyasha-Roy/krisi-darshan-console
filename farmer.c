@@ -15,7 +15,7 @@ void update_AreaAndParcelNumber(int id, float area, int parcel_number)
     FILE *fp;
     FILE *temp;
 
-    fp==fopen("Farmers.txt", "r");
+    fp=fopen("Farmers.txt", "r");
     temp=fopen("temp.txt", "w");
 
     if(fp==NULL ||temp==NULL)

@@ -32,20 +32,22 @@ void list_agents(int adminId)
                 ) != EOF)
     {
         printf("\t\t PERSONAL DETAILS OF AGENT: %s\n", agent.fullName);
-        printf("ID:                     %d\n", agent.id);
-        printf("Full name:              %s\n", agent.fullName);
-        printf("Date of birth:          %s\n", agent.dob);
-        printf("Gender:                 %c\n", agent.gender);
-        printf("NID:                    %s\n", agent.nid);
-        printf("Literacy level:         %s\n", agent.literacy);
-        printf("Mobile Number:          %s\n", agent.mobile);
-        printf("Email address:          %s\n", agent.email);
-        printf("Address:                %s\n", agent.address);
-        printf("Postal Code:            %d\n", agent.postal_code);
-        printf("Bank Account Number:    %s\n", agent.bank_number);
-        printf("Bank Name:              %s\n", agent.bank_name);
-        printf("Branch Code:            %d\n", agent.branch_code);
-        printf("Bank linked Number:     %s\n\n", agent.linked_number);
+        printf("\t-----------------------------------------------------\n");
+        printf("\tID:                     %d\n", agent.id);
+        printf("\tFull name:              %s\n", agent.fullName);
+        printf("\tDate of birth:          %s\n", agent.dob);
+        printf("\tGender:                 %c\n", agent.gender);
+        printf("\tNID:                    %s\n", agent.nid);
+        printf("\tLiteracy level:         %s\n", agent.literacy);
+        printf("\tMobile Number:          %s\n", agent.mobile);
+        printf("\tEmail address:          %s\n", agent.email);
+        printf("\tAddress:                %s\n", agent.address);
+        printf("\tPostal Code:            %d\n", agent.postal_code);
+        printf("\tBank Account Number:    %s\n", agent.bank_number);
+        printf("\tBank Name:              %s\n", agent.bank_name);
+        printf("\tBranch Code:            %d\n", agent.branch_code);
+        printf("\tBank linked Number:     %s\n", agent.linked_number);
+        printf("\t-----------------------------------------------------\n\n");
     }
 
     fclose(fp);
@@ -55,7 +57,7 @@ void list_agents(int adminId)
         int back_exit;
         printf("\nChoose an option: \n");
         printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t-> Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -69,7 +71,7 @@ void list_agents(int adminId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid option!\n\n");
             continue;
         }
         break;
@@ -86,14 +88,14 @@ void add_agent(int adminId)
     fp = fopen("Agents.txt", "a");
     if (fp == NULL)
     {
-        perror("Error opening Agents.txt");
+        perror("\n\tError opening Agents.txt\n\n");
         return;
     }
 
     fp2 = fopen("Users.txt", "a");
     if (fp2 == NULL)
     {
-        perror("Error opening Users.txt");
+        perror("\n\tError opening Users.txt\n\n");
         fclose(fp);
         return;
     }
@@ -113,61 +115,61 @@ void add_agent(int adminId)
     printf("\tPERSONAL DETAILS\n");
 
     getchar();
-    printf("Enter full name: ");
+    printf("\t-> Enter full name: ");
     fgets(agent.fullName, sizeof(agent.fullName), stdin);
     agent.fullName[strcspn(agent.fullName, "\n")] = '\0';
 
-    printf("Enter DOB(YYYY-MM-DD): ");
+    printf("\t-> Enter DOB(YYYY-MM-DD): ");
     fgets(agent.dob, sizeof(agent.dob), stdin);
     agent.dob[strcspn(agent.dob, "\n")] = '\0';
 
-    printf("Enter gender(M/F/O): ");
+    printf("\t-> Enter gender(M/F/O): ");
     scanf("%c", &agent.gender);
 
     getchar();
-    printf("Enter NID: ");
+    printf("\t-> Enter NID: ");
     fgets(agent.nid, sizeof(agent.nid), stdin);
     agent.nid[strcspn(agent.nid, "\n")] = '\0';
 
-    printf("Enter literacy level: ");
+    printf("\t-> Enter literacy level: ");
     fgets(agent.literacy, sizeof(agent.literacy), stdin);
     agent.literacy[strcspn(agent.literacy, "\n")] = '\0';
 
-    printf("Enter mobile number: ");
+    printf("\t-> Enter mobile number: ");
     fgets(agent.mobile, sizeof(agent.mobile), stdin);
     agent.mobile[strcspn(agent.mobile, "\n")] = '\0';
 
-    printf("Enter email address: ");
+    printf("\t-> Enter email address: ");
     fgets(agent.email, sizeof(agent.email), stdin);
     agent.email[strcspn(agent.email, "\n")] = '\0';
 
-    printf("Enter full address: ");
+    printf("\t-> Enter full address: ");
     fgets(agent.address, sizeof(agent.address), stdin);
     agent.address[strcspn(agent.address, "\n")] = '\0';
 
-    printf("Enter postal code: ");
+    printf("\t-> Enter postal code: ");
     scanf("%d", &agent.postal_code);
 
     printf("\n\tBANK DETAILS\n");
 
     getchar();
-    printf("Enter bank account number: ");
+    printf("\t-> Enter bank account number: ");
     fgets(agent.bank_number, sizeof(agent.bank_number), stdin);
     agent.bank_number[strcspn(agent.bank_number, "\n")] = '\0';
 
-    printf("Branch code: ");
+    printf("\t-> Branch code: ");
     scanf("%d", &agent.branch_code);
 
     getchar();
-    printf("Enter name of the bank: ");
+    printf("\t-> Enter name of the bank: ");
     fgets(agent.bank_name, sizeof(agent.bank_name), stdin);
     agent.bank_name[strcspn(agent.bank_name, "\n")] = '\0';
 
-    printf("Enter linked mobile number: ");
+    printf("\t-> Enter linked mobile number: ");
     fgets(agent.linked_number, sizeof(agent.linked_number), stdin);
     agent.linked_number[strcspn(agent.linked_number, "\n")] = '\0';
 
-    printf("Now create password for Krishi-Darshan account: ");
+    printf("\t-> Now create password for Krishi-Darshan account: ");
     fgets(user.password, sizeof(user.password), stdin);
     user.password[strcspn(user.password, "\n")] = '\0';
 
@@ -194,14 +196,14 @@ void add_agent(int adminId)
     fclose(fp);
     fclose(fp2);
 
-    printf("\nAgent registration is complete. ID is: %d.\n", user.id);
+    printf("\n\tAgent registration is complete. ID is: %d.\n", user.id);
 
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
-        printf("Enter you choice: ");
+        printf("\n\tChoose an option: \n");
+        printf("\t1. 'B' - Go back\n\t2. 'E' - Exit: \n");
+        printf("\t-> Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -215,7 +217,7 @@ void add_agent(int adminId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid option!\n\n");
             continue;
         }
         break;
@@ -234,7 +236,7 @@ void update_agent(int adminId)
 
     if (fp==NULL || temp==NULL)
     {
-        printf("Error! File not found!\n");
+        printf("\n\tError! File not found!\n\n");
         if (fp) fclose(fp);
         if (temp) fclose(temp);
         return;
@@ -242,7 +244,7 @@ void update_agent(int adminId)
 
     char edit_choice;
 
-    printf("Enter agent ID that you want to update: ");
+    printf("\t-> Enter agent ID that you want to update: ");
     scanf("%d", &id);
     getchar();
 
@@ -272,14 +274,14 @@ void update_agent(int adminId)
     }
 
     if (!found) {
-        printf("Agent with ID %d not found.\n", id);
+        printf("\n\tAgent with ID %d not found.\n\n", id);
         fclose(fp);
         fclose(temp);
         remove("temp.txt");
         return;
     }
 
-    printf("Are you sure you want to edit field agent? (Y/N) ");
+    printf("\tAre you sure you want to edit field agent? (Y/N): ");
     scanf(" %c", &edit_choice);
     getchar();
 
@@ -291,99 +293,101 @@ void update_agent(int adminId)
         {
             int personal_detail;
 
-            printf("1. Full Name\n");
-            printf("2. Date of Birth (YYYY-MM-DD)\n");
-            printf("3. Gender: (M/F/O)\n");
-            printf("4. NID\n");
-            printf("5. Literacy level\n");
-            printf("6. Mobile number\n");
-            printf("7. Email address\n");
-            printf("8. Address\n");
-            printf("9. Postal code\n");
-            printf("10. Bank number\n");
-            printf("11. Bank name\n");
-            printf("12. Bbranch code\n");
-            printf("13. Linked number\n");
+            printf("\t-----------------------------------\n");
+            printf("\t1. Full Name\n");
+            printf("\t2. Date of Birth (YYYY-MM-DD)\n");
+            printf("\t3. Gender: (M/F/O)\n");
+            printf("\t4. NID\n");
+            printf("\t5. Literacy level\n");
+            printf("\t6. Mobile number\n");
+            printf("\t7. Email address\n");
+            printf("\t8. Address\n");
+            printf("\t9. Postal code\n");
+            printf("\t10. Bank number\n");
+            printf("\t11. Bank name\n");
+            printf("\t12. Bbranch code\n");
+            printf("\t13. Linked number\n");
+            printf("\t-----------------------------------\n\n");
 
-            printf("Enter the number of the detail you want to edit (1-13): ");
+            printf("\t-> Enter the number of the detail you want to edit (1-13): ");
             scanf("%d", &personal_detail);
             getchar();
 
             switch(personal_detail)
             {
             case 1:
-                printf("Enter new Full Name: ");
+                printf("\t-> Enter new Full Name: ");
                 fgets(agent.fullName, sizeof(agent.fullName), stdin);
                 agent.fullName[strcspn(agent.fullName, "\n")]='\0';
                 break;
             case 2:
-                printf("Enter new Date of Birth (YYYY-MM-DD): ");
+                printf("\t-> Enter new Date of Birth (YYYY-MM-DD): ");
                 fgets(agent.dob, sizeof(agent.dob), stdin);
                 agent.dob[strcspn(agent.dob, "\n")]='\0';
                 break;
             case 3:
-                printf("Enter new Gender: (M/F/O) ");
+                printf("\t-> Enter new Gender: (M/F/O) ");
                 scanf(" %c", &agent.gender);
                 getchar();
                 break;
             case 4:
-                printf("Enter new NID: ");
+                printf("\t-> Enter new NID: ");
                 fgets(agent.nid, sizeof(agent.nid), stdin);
                 agent.nid[strcspn(agent.nid, "\n")]='\0';
                 break;
             case 5:
-                printf("Enter new literacy level: ");
+                printf("\t-> Enter new literacy level: ");
                 fgets(agent.literacy, sizeof(agent.literacy), stdin);
                 agent.literacy[strcspn(agent.literacy, "\n")]='\0';
                 break;
             case 6:
-                printf("Enter new mobile number: ");
+                printf("\t-> Enter new mobile number: ");
                 fgets(agent.mobile, sizeof(agent.mobile), stdin);
                 agent.mobile[strcspn(agent.mobile, "\n")]='\0';
                 break;
             case 7:
-                printf("Enter new email address: ");
+                printf("\t-> Enter new email address: ");
                 fgets(agent.email, sizeof(agent.email), stdin);
                 agent.email[strcspn(agent.email, "\n")]='\0';
                 break;
             case 8:
-                printf("Enter new address: ");
+                printf("\t-> Enter new address: ");
                 fgets(agent.address, sizeof(agent.address), stdin);
                 agent.address[strcspn(agent.address, "\n")]='\0';
                 break;
             case 9:
-                printf("Enter new postal code: ");
+                printf("\t-> Enter new postal code: ");
                 scanf("%d", &agent.postal_code);
                 getchar();
                 break;
             case 10:
-                printf("Enter new bank number: ");
+                printf("\t-> Enter new bank number: ");
                 fgets(agent.bank_number, sizeof(agent.bank_number), stdin);
                 agent.bank_number[strcspn(agent.bank_number, "\n")]='\0';
                 break;
             case 11:
-                printf("Enter new bank name: ");
+                printf("\t-> Enter new bank name: ");
                 fgets(agent.bank_name, sizeof(agent.bank_name), stdin);
                 agent.bank_name[strcspn(agent.bank_name, "\n")]='\0';
                 break;
             case 12:
-                printf("Enter new branch code: ");
+                printf("\t-> Enter new branch code: ");
                 scanf("%d", &agent.branch_code);
                 getchar();
                 break;
             case 13:
-                printf("Enter new linked number: ");
+                printf("\t-> Enter new linked number: ");
                 fgets(agent.linked_number, sizeof(agent.linked_number), stdin);
                 agent.linked_number[strcspn(agent.linked_number, "\n")]='\0';
                 break;
             default:
-                printf("Invalid choice! Please enter a number between 1-13: ");
+                printf("\n\tInvalid choice! Please enter a number between 1-13: ");
                 continue;
             }
 
-            printf("Detail updated successfully. \n");
+            printf("\n\tDetail updated successfully.\n\n");
 
-            printf("Do you want to edit another field? (Y/N): ");
+            printf("\t-> Do you want to edit another field? (Y/N): ");
             scanf(" %c", &continue_editing);
             getchar();
         }
@@ -391,7 +395,7 @@ void update_agent(int adminId)
     }
     else
     {
-        printf("Edit cancelled.\n");
+        printf("\n\tEdit cancelled.\n\n");
         fclose(fp);
         fclose(temp);
         remove("temp.txt");
@@ -461,14 +465,13 @@ void update_agent(int adminId)
     remove("Agents.txt");
     rename("temp.txt", "Agents.txt");
 
-    printf("Agent details updated successfully!\n");
+    printf("\n\tAgent details updated successfully!\n\n");
 
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t1. 'B' - Go back\n\t2. 'E' - Exit: \n");
+        printf("\t-> Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -482,7 +485,7 @@ void update_agent(int adminId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid option!\n\n");
             continue;
         }
         break;
@@ -503,7 +506,7 @@ void delete_agent(int adminId)
     Agent agent;
     User user;
 
-    printf("Enter agent's ID: ");
+    printf("\t-> Enter agent's ID: ");
     scanf("%d", &id);
 
     while (fscanf(fp, "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%29[^|]|%49[^|]|%d|%19[^\n]\n",
@@ -557,7 +560,7 @@ void delete_agent(int adminId)
 
     if(!id_matched)
     {
-        printf("Agent with ID %d not found in the system! \n", id);
+        printf("\n\tAgent with ID %d not found in the system!\n\n", id);
     }
 
     fclose(fp);
@@ -571,14 +574,13 @@ void delete_agent(int adminId)
     remove("Users.txt");
     rename("Temp2.txt", "Users.txt");
 
-    printf("\nAgent profile deleted successfully.\n");
+    printf("\n\tAgent profile deleted successfully.\n\n");
 
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t1. 'B' - Go back\n\t2. 'E' - Exit: \n");
+        printf("\t-> Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -592,7 +594,7 @@ void delete_agent(int adminId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid option!\n\n");
             continue;
         }
         break;
@@ -607,7 +609,7 @@ void search_agent_by_id(FILE *fp, Agent agent, int adminId)
     int id;
     int id_matched = 0;
 
-    printf("Enter agent's ID: ");
+    printf("\t-> Enter agent's ID: ");
     scanf("%d", &id);
 
     while((fscanf(fp, "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%29[^|]|%49[^|]|%d|%19[^\n]\n",
@@ -632,20 +634,22 @@ void search_agent_by_id(FILE *fp, Agent agent, int adminId)
             id_matched = 1;
 
             printf("\t\t PERSONAL DETAILS OF agent: %d\n", id);
-            printf("ID:                     %d\n", agent.id);
-            printf("Full name:              %s\n", agent.fullName);
-            printf("Date of birth:          %s\n", agent.dob);
-            printf("Gender:                 %c\n", agent.gender);
-            printf("NID:                    %s\n", agent.nid);
-            printf("Literacy level:         %s\n", agent.literacy);
-            printf("Mobile Number:          %s\n", agent.mobile);
-            printf("Email address:          %s\n", agent.email);
-            printf("Address:                %s\n", agent.address);
-            printf("Postal Code:            %d\n", agent.postal_code);
-            printf("Bank Account Number:    %s\n", agent.bank_number);
-            printf("Bank Name:              %s\n", agent.bank_name);
-            printf("Branch Code:            %d\n", agent.branch_code);
-            printf("Bank linked Number:     %s\n\n", agent.linked_number);
+            printf("\t-----------------------------------\n");
+            printf("\tID:                     %d\n", agent.id);
+            printf("\tFull name:              %s\n", agent.fullName);
+            printf("\tDate of birth:          %s\n", agent.dob);
+            printf("\tGender:                 %c\n", agent.gender);
+            printf("\tNID:                    %s\n", agent.nid);
+            printf("\tLiteracy level:         %s\n", agent.literacy);
+            printf("\tMobile Number:          %s\n", agent.mobile);
+            printf("\tEmail address:          %s\n", agent.email);
+            printf("\tAddress:                %s\n", agent.address);
+            printf("\tPostal Code:            %d\n", agent.postal_code);
+            printf("\tBank Account Number:    %s\n", agent.bank_number);
+            printf("\tBank Name:              %s\n", agent.bank_name);
+            printf("\tBranch Code:            %d\n", agent.branch_code);
+            printf("\tBank linked Number:     %s\n", agent.linked_number);
+            printf("\t-----------------------------------\n\n");
 
             break;
         }
@@ -655,15 +659,14 @@ void search_agent_by_id(FILE *fp, Agent agent, int adminId)
 
     if(!id_matched)
     {
-        printf("Agent with ID: %d not found!\n", id);
+        printf("\n\tAgent with ID: %d not found!\n\n", id);
     }
 
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t1. 'B' - Go back\n\t2. 'E' - Exit: \n");
+        printf("\t-> Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -677,7 +680,7 @@ void search_agent_by_id(FILE *fp, Agent agent, int adminId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid option!\n\n");
             continue;
         }
         break;
@@ -691,7 +694,7 @@ void search_agent_by_name(FILE *fp, Agent agent, int adminId)
     int string_matched = 1;
 
     getchar();
-    printf("Enter partial name characters: ");
+    printf("\t-> Enter partial name characters: ");
     fgets(name, 100, stdin);
     name[strcspn(name, "\n")] = '\0';
 
@@ -717,20 +720,22 @@ void search_agent_by_name(FILE *fp, Agent agent, int adminId)
             string_matched = 1;
 
             printf("\t\t PERSONAL DETAILS OF AGENT: %s\n", agent.fullName);
-            printf("ID:                     %d\n", agent.id);
-            printf("Full name:              %s\n", agent.fullName);
-            printf("Date of birth:          %s\n", agent.dob);
-            printf("Gender:                 %c\n", agent.gender);
-            printf("NID:                    %s\n", agent.nid);
-            printf("Literacy level:         %s\n", agent.literacy);
-            printf("Mobile Number:          %s\n", agent.mobile);
-            printf("Email address:          %s\n", agent.email);
-            printf("Address:                %s\n", agent.address);
-            printf("Postal Code:            %d\n", agent.postal_code);
-            printf("Bank Account Number:    %s\n", agent.bank_number);
-            printf("Bank Name:              %s\n", agent.bank_name);
-            printf("Branch Code:            %d\n", agent.branch_code);
-            printf("Bank linked Number:     %s\n\n", agent.linked_number);
+            printf("\t-----------------------------------\n");
+            printf("\tID:                     %d\n", agent.id);
+            printf("\tFull name:              %s\n", agent.fullName);
+            printf("\tDate of birth:          %s\n", agent.dob);
+            printf("\tGender:                 %c\n", agent.gender);
+            printf("\tNID:                    %s\n", agent.nid);
+            printf("\tLiteracy level:         %s\n", agent.literacy);
+            printf("\tMobile Number:          %s\n", agent.mobile);
+            printf("\tEmail address:          %s\n", agent.email);
+            printf("\tAddress:                %s\n", agent.address);
+            printf("\tPostal Code:            %d\n", agent.postal_code);
+            printf("\tBank Account Number:    %s\n", agent.bank_number);
+            printf("\tBank Name:              %s\n", agent.bank_name);
+            printf("\tBranch Code:            %d\n", agent.branch_code);
+            printf("\tBank linked Number:     %s\n", agent.linked_number);
+            printf("\t-----------------------------------\n");
         }
     }
 
@@ -738,15 +743,14 @@ void search_agent_by_name(FILE *fp, Agent agent, int adminId)
 
     if(!string_matched)
     {
-        printf("No match found for %s\n", name);
+        printf("\n\tNo match found for %s\n\n", name);
     }
 
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t1. 'B' - Go back\n\t2. 'E' - Exit: \n");
+        printf("\t-> Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -760,7 +764,7 @@ void search_agent_by_name(FILE *fp, Agent agent, int adminId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid option!\n\n");
             continue;
         }
         break;
@@ -776,10 +780,10 @@ void search_agent(int adminId)
     int chosen_option;
 
     clear_screen();
-    printf("1. Search by ID\n");
-    printf("2. Search by name\n");
+    printf("\t1. Search by ID\n");
+    printf("\t2. Search by name\n");
 
-    printf("Choose an option: ");
+    printf("\t-> Choose an option: ");
     scanf("%d", &chosen_option);
 
     switch(chosen_option)
@@ -791,7 +795,7 @@ void search_agent(int adminId)
         search_agent_by_name(fp, agent, adminId);
         break;
     default:
-        printf("Invalid option chosen! Try again");
+        printf("\n\tInvalid option chosen! Try again\n\n");
         search_agent(adminId);
         break;
     }
@@ -799,9 +803,8 @@ void search_agent(int adminId)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t1. 'B' - Go back\n\t2. 'E' - Exit: \n");
+        printf("\t-> Enter you choice: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -815,7 +818,7 @@ void search_agent(int adminId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid option!\n\n");
             continue;
         }
         break;

@@ -14,16 +14,17 @@ void manage_farmers_profile(int adminId)
     clear_screen();
     int chosenOption;
 
-    printf("Manage farmer profiles.\n\n");
+    printf("\t\t-MANAGE FARMER PROFILES-\n\n");
+    printf("\t---------------------------------------------\n");
+    printf("\t1: List of registered farmers\n");
+    printf("\t2: Search farmer details by ID or name\n");
+    printf("\t3: Delete farmer profile by ID\n");
+    printf("\t4: Add new farmer\n");
+    printf("\t5: Back\n");
+    printf("\t6. Exit\n\n");
+    printf("\t----------------------------------------------\n");
 
-    printf("1: List of registered farmers\n");
-    printf("2: Search farmer details by ID or name\n");
-    printf("3: Delete farmer profile by ID\n");
-    printf("4: Add new farmer\n");
-    printf("5: Back\n");
-    printf("6. Exit\n\n");
-
-    printf("Choose an option: ");
+    printf("\t-> Choose an option: ");
     scanf("%d", &chosenOption);
 
 
@@ -49,7 +50,7 @@ void manage_farmers_profile(int adminId)
         exit(1);
         break;
     default:
-        printf("Invalid Option chosen!\n");
+        printf("\n\tInvalid Option chosen!\n\n");
         break;
     }
 }
@@ -59,17 +60,19 @@ void manage_field_agents(int adminId)
     clear_screen();
     int chosenOption;
 
-    printf("Manage field agents.\n\n");
+    printf("\tMANAGE FIELD AGENTS\n\n");
 
-    printf("1: View field agents\n");
-    printf("2: Search field agents\n");
-    printf("3: Add new field agent\n");
-    printf("4: Update field agent\n");
-    printf("5: Delete field agent\n");
-    printf("6: Back\n");
-    printf("7. Exit\n\n");
+    printf("\t---------------------------------\n");
+    printf("\t1: View field agents\n");
+    printf("\t2: Search field agents\n");
+    printf("\t3: Add new field agent\n");
+    printf("\t4: Update field agent\n");
+    printf("\t5: Delete field agent\n");
+    printf("\t6: Back\n");
+    printf("\t7. Exit\n");
+    printf("\t---------------------------------\n\n");
 
-    printf("Choose an option: ");
+    printf("\t-> Choose an option: ");
     scanf("%d", &chosenOption);
 
     switch(chosenOption)
@@ -97,7 +100,7 @@ void manage_field_agents(int adminId)
         exit(1);
         break;
     default:
-        printf("Invalid Option chosen!\n");
+        printf("\n\tInvalid Option chosen!\n\n");
         break;
     }
 }
@@ -107,16 +110,18 @@ void manage_land_parcels(int adminId)
     clear_screen();
     int chosenOption;
 
-    printf("Manage land parcels.\n\n");
+    printf("\tMANAGE LAND PARCELS\n\n");
 
-    printf("1: View  assigned land parcels\n");
-    printf("2: View  unassigned land parcels\n");
-    printf("3: Assign field agent for a land parcel\n");
-    printf("4: Delete assigned field agent for parcel\n");
-    printf("5: Back\n");
-    printf("6. Exit\n\n");
+    printf("\t--------------------------------------------n");
+    printf("\t1: View  assigned land parcels\n");
+    printf("\t2: View  unassigned land parcels\n");
+    printf("\t3: Assign field agent for a land parcel\n");
+    printf("\t4: Delete assigned field agent for parcel\n");
+    printf("\t5: Back\n");
+    printf("\t6. Exit\n");
+    printf("\t--------------------------------------------n");
 
-    printf("Choose an option: ");
+    printf("\t-> Choose an option: ");
     scanf("%d", &chosenOption);
 
     switch(chosenOption)
@@ -141,7 +146,7 @@ void manage_land_parcels(int adminId)
         exit(1);
         break;
     default:
-        printf("Invalid Option chosen!\n");
+        printf("\n\tInvalid Option chosen!\n\n");
         break;
     }
 }
@@ -151,16 +156,18 @@ void manage_loan_subsidy(int adminId)
     clear_screen();
     int chosenOption;
 
-    printf("Manage loan and subsidy.\n\n");
+    printf("\tMANAGE LOAN AND SUBSIDY\n\n");
 
-    printf("1: Review loan applications\n");
-    printf("2: Review subsidy applications\n");
-    printf("3: Back\n");
-    printf("4. Exit\n");
+    printf("\t-----------------------------------\n");
+    printf("\t1: Review loan applications\n");
+    printf("\t2: Review subsidy applications\n");
+    printf("\t3: Back\n");
+    printf("\t4. Exit\n");
+    printf("\t-----------------------------------\n");
 
     while(1)
     {
-        printf("Choose an option: ");
+        printf("\t-> Choose an option: ");
         scanf("%d", &chosenOption);
         getchar();
 
@@ -180,7 +187,7 @@ void manage_loan_subsidy(int adminId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!\n");
+            printf("\n\tError! Please enter a valid option!\n\n");
             continue;
         }
         break;
@@ -193,14 +200,17 @@ void configuration(int adminId)
 
     int chosenOption;
 
-    printf("CONFIGURATION AND ANALYTICS\n");
-    printf("1. View analytics\n");
-    printf("2. Change your password\n");
-    printf("3. Back\n");
-    printf("4. Exit\n\n");
+    printf("\tCONFIGURATION AND ANALYTICS\n");
+
+    printf("\t------------------------------\n");
+    printf("\t1. View analytics\n");
+    printf("\t2. Change your password\n");
+    printf("\t3. Back\n");
+    printf("\t4. Exit\n");
+    printf("\t------------------------------\n");
 
     getchar();
-    printf("Choose an option: ");
+    printf("\t-> Choose an option: ");
     scanf("%d", &chosenOption);
 
     switch(chosenOption)
@@ -219,7 +229,7 @@ void configuration(int adminId)
         exit(1);
         break;
     default:
-        printf("Invalid option chosen.\n");
+        printf("\n\tInvalid option chosen.\n\n");
         break;
     }
 
