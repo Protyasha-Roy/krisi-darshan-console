@@ -17,7 +17,7 @@ void changePass(int id) {
 
     if(fp==NULL)
     {
-        printf("Error! File not found!\n");
+        printf("\n\tError! File not found!\n\n");
         return;
     }
 
@@ -36,20 +36,20 @@ void changePass(int id) {
 
     if(id_matched=1)
     {
-        printf("Enter the new password: ");
+        printf("\t-> Enter the new password: ");
         getchar();
         fgets(u.password, sizeof(u.password), stdin);
         u.password[strcspn(u.password, "\n")]='\0';
     }
 
-    printf("Password updated successfully!\n");
+    printf("\n\tPassword updated successfully!\n\n");
 
     fp=fopen("Users.txt", "r");
     temp=fopen("temp.txt", "w");
 
     if(fp==NULL || temp==NULL)
     {
-        printf("Error! File not found!\n");
+        printf("\n\tError! File not found!\n\n");
         if(fp)
         {
             fclose(fp);

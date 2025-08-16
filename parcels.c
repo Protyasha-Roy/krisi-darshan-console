@@ -20,7 +20,7 @@ void update_parcel_crops(int id)
 
     if(fp==NULL || fp2==NULL || temp==NULL)
     {
-        printf("Error! File not found!\n");
+        printf("\n\tError! File not found!\n\n");
         if(fp)
         {
             fclose(fp);
@@ -106,7 +106,7 @@ void delete_landparcels(int id)
     int id_matched=0;
 
     int chosen_parcelId;
-    printf("Enter ID of parcel to edit: ");
+    printf("\t-> Enter ID of parcel to edit: ");
     scanf("%d", &chosen_parcelId);
     getchar();
 
@@ -146,11 +146,11 @@ void delete_landparcels(int id)
 
     if(id_matched==1)
     {
-        printf("Deleted parcel successfully.");
+        printf("\n\tDeleted parcel successfully.\n\n");
     }
     else
     {
-        printf("Parcel with ID %d is not in the system!\n", chosen_parcelId);
+        printf("\n\tParcel with ID %d is not in the system!\n\n", chosen_parcelId);
     }
 
     update_AreaAndParcelNumber(id, -deletedParcel.area, -1);
@@ -174,7 +174,7 @@ void delete_landparcels(int id)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid option!\n\n");
             continue;
         }
         break;
@@ -190,14 +190,14 @@ void edit_landparcels(int id)
 
     if(fp==NULL)
     {
-        printf("Error! File not found!\n");
+        printf("\n\tError! File not found!\n\n");
         return;
     }
 
     Parcel p,tempParcel;
 
     int chosen_parcelId;
-    printf("Enter ID of parcel to edit: ");
+    printf("\t-> Enter ID of parcel to edit: ");
     scanf("%d", &chosen_parcelId);
     getchar();
 
@@ -231,47 +231,47 @@ void edit_landparcels(int id)
             int land_parcel;
             while(1)
             {
-                printf("Enter the number of the detail you want to edit (1-5): ");
+                printf("\t-> Enter the number of the detail you want to edit (1-5): ");
                 scanf("%d", &land_parcel);
                 getchar();
 
                 switch(land_parcel)
                 {
                 case 1:
-                    printf("Enter new Location: ");
+                    printf("\t-> Enter new Location: ");
                     fgets(p.location, sizeof(p.location), stdin);
                     p.location[strcspn(p.location, "\n")]='\0';
                     break;
                 case 2:
-                    printf("Enter updated area (in acres): ");
+                    printf("\t-> Enter updated area (in acres): ");
                     scanf("%f", &p.area);
                     getchar();
                     break;
                 case 3:
-                    printf("Enter updated date of purchase: ");
+                    printf("\t-> Enter updated date of purchase: ");
                     fgets(p.dop, sizeof(p.dop), stdin);
                     p.dop[strcspn(p.dop, "\n")]='\0';
                     break;
                 case 4:
-                    printf("Enter updated soil type: ");
+                    printf("\t-> Enter updated soil type: ");
                     fgets(p.soilType, sizeof(p.soilType), stdin);
                     p.soilType[strcspn(p.soilType, "\n")]='\0';
                     break;
                 case 5:
-                    printf("Enter new types of crops grown: ");
+                    printf("\t-> Enter new types of crops grown: ");
                     fgets(p.crops, sizeof(p.crops), stdin);
                     p.crops[strcspn(p.crops, "\n")]='\0';
                     break;
                 default:
-                    printf("Error! Please enter a valid option! \n");
+                    printf("\n\tError! Please enter a valid option!\n\n");
                     continue;
                 }
                 break;
             }
 
-            printf("Parcel updated successfully. \n");
+            printf("\n\tParcel updated successfully.\n\n");
 
-            printf("Do you want to edit another field? (Y/N): ");
+            printf("\t-> Do you want to edit another field? (Y/N): ");
             scanf(" %c", &continue_editing);
             getchar();
         }
@@ -279,7 +279,7 @@ void edit_landparcels(int id)
     }
     else
     {
-        printf("Error! Invalid Parcel ID!\n");
+        printf("\n\tError! Invalid Parcel ID!\n\n");
     }
 
     fp=fopen("Parcels.txt", "r");
@@ -287,7 +287,7 @@ void edit_landparcels(int id)
 
     if(fp==NULL || temp==NULL)
     {
-        printf("Error! File not found!\n");
+        printf("\n\tError! File not found!\n\n");
         if(fp)
         {
             fclose(fp);
@@ -341,7 +341,7 @@ void edit_landparcels(int id)
     rename("temp2.txt", "Parcels.txt");
 
 
-    printf("Parcel details updated successfully!\n");
+    printf("\n\tParcel details updated successfully!\n\n");
 
     while (1)
     {
@@ -362,7 +362,7 @@ void edit_landparcels(int id)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid option!\n\n");
             continue;
         }
         break;
@@ -393,26 +393,26 @@ void add_landparcels(int id)
 
     fclose(fp2);
 
-    printf("Enter the details of the new land parcel: \n");
+    printf("\tENTER DETAILS OF THE NEW LAND PARCEL\n\n");
 
-    printf("Enter the location of the new land parcel: ");
+    printf("\t-> Enter the location of the new land parcel: ");
     getchar();
     fgets(p.location, sizeof(p.location), stdin);
     p.location[strcspn(p.location, "\n")] = '\0';
 
-    printf("Enter the area in acres of the new land parcel: ");
+    printf("\t-> Enter the area in acres of the new land parcel: ");
     scanf("%f", &p.area);
     getchar();
 
-    printf("Enter the Date of Purchase of the new land parcel (YYYY-MM-DD): ");
+    printf("\t-> Enter the Date of Purchase of the new land parcel (YYYY-MM-DD): ");
     fgets(p.dop, sizeof(p.dop), stdin);
     p.dop[strcspn(p.dop, "\n")] = '\0';
 
-    printf("Enter the soil type of the new land parcel: ");
+    printf("\t-> Enter the soil type of the new land parcel: ");
     fgets(p.soilType, sizeof(p.soilType), stdin);
     p.soilType[strcspn(p.soilType, "\n")] = '\0';
 
-    printf("Enter the type of crops grown in the new land parcel: ");
+    printf("\t-> Enter the type of crops grown in the new land parcel: ");
     fgets(p.crops, sizeof(p.crops), stdin);
     p.crops[strcspn(p.crops, "\n")] = '\0';
 
@@ -430,7 +430,7 @@ void add_landparcels(int id)
 
     update_AreaAndParcelNumber(id, p.area, 1);
 
-    printf("New Land Parcel Added. \n");
+    printf("\n\tNew Land Parcel Added.\n\n");
 
 
     while (1)
@@ -452,7 +452,7 @@ void add_landparcels(int id)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid option!\n\n");
             continue;
         }
         break;
