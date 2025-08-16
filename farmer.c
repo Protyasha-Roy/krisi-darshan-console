@@ -8,6 +8,7 @@
 #include "farmer.h"
 #include "parcels.h"
 #include "utils.h"
+#include "bot.h"
 
 
 void edit_personaldetails(Farmer f, int id)
@@ -458,9 +459,10 @@ void application_schemes(int id)
 }
 
 
-void chatbot() {
+void chatbot(int id) {
     clear_screen();
-    printf("Welcome to the chatbot");
+    printf("Welcome to the chatbot\n");
+    bot(id);
 }
 
 void track_cropcycle(int id)
