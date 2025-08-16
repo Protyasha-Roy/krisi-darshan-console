@@ -30,24 +30,12 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add directory="/usr/include&#x0A;" />
 		</Compiler>
-<<<<<<< HEAD
-		<Unit filename="Admins.txt" />
-		<Unit filename="Agents.txt" />
-		<Unit filename="Assigned_Parcel.txt" />
-		<Unit filename="Crops.txt" />
-=======
-		<Linker>
-			<Add library="jansson" />
-			<Add library="curl" />
-			<Add directory="/usr/lib&#x0A;" />
-		</Linker>
 		<Unit filename="Admins.txt" />
 		<Unit filename="Agents.txt" />
 		<Unit filename="Assigned_Parcel.txt" />
 		<Unit filename="Context.txt" />
->>>>>>> origin/main
+		<Unit filename="Crops.txt" />
 		<Unit filename="Farmers.txt" />
 		<Unit filename="Land_Parcel_Report.txt" />
 		<Unit filename="LoanApplication.txt" />
