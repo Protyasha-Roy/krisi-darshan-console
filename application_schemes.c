@@ -24,8 +24,9 @@ void view_loanapplications(int id)
 
     printf("\t\t APPLIED LOAN FORMS OF FARMER %d\n", id);
 
-    while((fscanf(fp, "%d|%d|%99[^|]|%19[^|]|%f|%199[^|]|%14[^|]|%29[^\n]",
+    while((fscanf(fp, "%d|%d|%d|%99[^|]|%19[^|]|%f|%199[^|]|%14[^|]|%29[^\n]",
                   &l.id,
+                  &l.parcelId,
                   &l.farmerId,
                   l.farmerName,
                   l.mobile,
@@ -37,11 +38,23 @@ void view_loanapplications(int id)
         if(l.farmerId==id)
         {
             id_matched=1;
-            printf("1.Loan Purpose:  %s\n", l.loan_purpose);
-            printf("2.Loan Amount:  %.2f\n", l.loan_amount);
-            printf("3.Date applied (YYYY-MM-DD):  %s\n", l.date_applied);
-            printf("4.Status:  %s\n", l.status);
-            printf("\n");
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %3d\n", "Loan Application ID", l.id);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %3d\n", "Parcel ID", l.parcelId);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-30s\n", "Loan Purpose", l.loan_purpose);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %4.2f\n", "Loan Amount", l.loan_amount);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-15s\n", "Date applied (YYYY-MM-DD)", l.date_applied);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-20s\n", "Status", l.status);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("\n\n");
+
+
+
         }
     }
 
@@ -95,8 +108,9 @@ void view_subsidyapplications(int id)
 
     printf("\t\t APPLIED SUBSIDY FORMS OF FARMER %d\n", id);
 
-    while((fscanf(fp2, "%d|%d|%99[^|]|%19[^|]|%f|%199[^|]|%14[^|]|%29[^\n]",
+    while((fscanf(fp2, "%d|%d|%d|%99[^|]|%19[^|]|%f|%49[^|]|%14[^|]|%29[^\n]",
                   &s.id,
+                  &s.parcelId,
                   &s.farmerId,
                   s.farmerName,
                   s.mobile,
@@ -108,11 +122,22 @@ void view_subsidyapplications(int id)
         if(s.farmerId==id)
         {
             id_matched2=1;
-            printf("1.Subsidy Purpose:  %s\n", s.subsidy_purpose);
-            printf("2.Subsidy Amount:  %.2f\n", s.subsidy_amount);
-            printf("3.Date applied (YYYY-MM-DD):  %s\n", s.date_applied);
-            printf("4.Status:  %s\n", s.status);
-            printf("\n");
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %3d\n", "Subsidy Application ID", s.id);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %3d\n", "Parcel ID", s.parcelId);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-30s\n", "Subsidy Purpose", s.subsidy_purpose);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %4.2f\n", "Subsidy Amount", s.subsidy_amount);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-15s\n", "Date applied (YYYY-MM-DD)", s.date_applied);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-20s\n", "Status", s.status);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("\n\n");
+
+
         }
     }
 
@@ -258,6 +283,10 @@ void subsidy_application(int id)
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
 
+    printf("Enter the Parcel ID of the parcel the subsidy is required for: ");
+    scanf("%d", &s.parcelId);
+    while ((c = getchar()) != '\n' && c != EOF);
+
     printf("Enter the amount of subsidy required: ");
     scanf("%f", &s.subsidy_amount);
     while ((c = getchar()) != '\n' && c != EOF);
@@ -276,8 +305,9 @@ void subsidy_application(int id)
 
 
     fprintf(fp,
-            "%d|%d|%s|%s|%.2f|%s|%s|%s\n",
+            "%d|%d|%d|%s|%s|%.2f|%s|%s|%s\n",
             s.id,
+            s.parcelId,
             s.farmerId,
             s.farmerName,
             s.mobile,
@@ -381,6 +411,10 @@ void loan_application(int id)
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
 
+    printf("Enter the Parcel ID of the parcel the loan is required for: ");
+    scanf("%d", &l.parcelId);
+    while ((c = getchar()) != '\n' && c != EOF);
+
     printf("Enter the amount of loan required: ");
     scanf("%f", &l.loan_amount);
     while ((c = getchar()) != '\n' && c != EOF);
@@ -399,8 +433,9 @@ void loan_application(int id)
 
 
     fprintf(fp,
-            "%d|%d|%s|%s|%.2f|%s|%s|%s\n",
+            "%d|%d|%d|%s|%s|%.2f|%s|%s|%s\n",
             l.id,
+            l.parcelId,
             l.farmerId,
             l.farmerName,
             l.mobile,
