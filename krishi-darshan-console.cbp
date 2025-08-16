@@ -67,6 +67,10 @@
 		</Unit>
 		<Unit filename="application_schemes.h" />
 		<Unit filename="assigned_parcel.h" />
+		<Unit filename="bot.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="bot.h" />
 		<Unit filename="config_utils.c">
 			<Option compilerVar="CC" />
 		</Unit>

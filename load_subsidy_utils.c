@@ -15,6 +15,7 @@ void update_loan_status()
     int id;
     char status[30];
 
+    getchar();
     printf("Enter application id: ");
     scanf("%d", &id);
 
@@ -30,7 +31,7 @@ void update_loan_status()
                   &loan.loan_amount,
                   loan.loan_purpose,
                   loan.date_applied,
-                  loan.status) == EOF))
+                  loan.status) != EOF))
     {
         if(id != loan.id)
         {
@@ -92,7 +93,7 @@ void list_loan_applications(int adminId)
                   &loan.loan_amount,
                   loan.loan_purpose,
                   loan.date_applied,
-                  loan.status) == EOF))
+                  loan.status) != EOF))
     {
         printf("Application's ID:             %d\n", loan.id);
         printf("Farmer ID:                    %d\n", loan.farmerId);
@@ -108,15 +109,16 @@ void list_loan_applications(int adminId)
 
     fclose(fp);
 
-    char chosenOption;
+    int chosenOption;
 
     ("OPTIONS:");
     printf("1. Update status of a loan application\n");
     printf("2. Back\n");
     printf("3. Exit\n");
 
+    getchar();
     printf("Choose an option: ");
-    scanf("%c", &chosenOption);
+    scanf("%d", &chosenOption);
 
     switch(chosenOption)
     {
@@ -144,6 +146,7 @@ void update_subsidy_status() {
     int id;
     char status[30];
 
+    getchar();
     printf("Enter application id: ");
     scanf("%d", &id);
 
@@ -159,7 +162,7 @@ void update_subsidy_status() {
                   &subsidy.subsidy_amount,
                   subsidy.subsidy_purpose,
                   subsidy.date_applied,
-                  subsidy.status) == EOF))
+                  subsidy.status) != EOF))
     {
         if(id != subsidy.id)
         {
@@ -221,7 +224,7 @@ void list_subsidy_applications(int adminId)
                   &subsidy.subsidy_amount,
                   subsidy.subsidy_purpose,
                   subsidy.date_applied,
-                  subsidy.status) == EOF))
+                  subsidy.status) != EOF))
     {
         printf("Application's ID:             %d\n", subsidy.id);
         printf("Farmer ID:                    %d\n", subsidy.farmerId);
@@ -237,15 +240,16 @@ void list_subsidy_applications(int adminId)
 
     fclose(fp);
 
-    char chosenOption;
+    int chosenOption;
 
     ("OPTIONS:");
     printf("1. Update status of a subsidy application\n");
     printf("2. Back\n");
     printf("3. Exit\n");
 
+    getchar();
     printf("Choose an option: ");
-    scanf("%c", &chosenOption);
+    scanf("%d", &chosenOption);
 
     switch(chosenOption)
     {
