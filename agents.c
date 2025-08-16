@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include "menus.h"
 #include "assigned_parcel.h"
 #include "agents.h"
 #include "utils.h"
@@ -49,6 +51,31 @@ void assigned_parcels(int agentId)
             printf("Crops:                  %s\n",assignedParcel.crops);
             break;
         }
+
+        while (1)
+    {
+        int back_exit;
+        printf("Choose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            AgentMenu(agentId);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
     }
 
     fclose(fp);
@@ -107,6 +134,31 @@ void upload_report(int id)
     fclose(fp);
 
     printf("Report upload successful.");
+
+    while (1)
+    {
+        int back_exit;
+        printf("Choose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            AgentMenu(id);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
 }
 
 void manage_report(int id)
@@ -117,6 +169,8 @@ void manage_report(int id)
     printf("1: Update land parcel report.\n");
     printf("2: Delete land parcel report.\n");
     printf("3: Search land parcel report.\n");
+    printf("4. Go back\n");
+    printf("5. Exit\n");
 
     printf("\nChoose an option: ");
     scanf("%d", &selected_option);
@@ -124,13 +178,20 @@ void manage_report(int id)
     switch(selected_option)
     {
     case 1:
-        update_parcel_report();
+        update_parcel_report(id);
         break;
     case 2:
-        delete_parcel_report();
+        delete_parcel_report(id);
         break;
     case 3:
-        search_parcel_report();
+        search_parcel_report(id);
+        break;
+    case 4:
+        clear_screen();
+        AgentMenu(id);
+        break;
+    case 5:
+        exit(1);
         break;
     default:
         printf("Please enter a valid option(1-3).");
@@ -144,10 +205,11 @@ void manage_schedules (int id)
 {
     int choosen_opt;
 
-    printf("1.Create schedule.\n");
-    printf("2.View schedule.\n");
-    printf("3.Update schedule.\n");
-    printf("4.Delete schedule.\n");
+    printf("1. Create schedule.\n");
+    printf("2. View schedule.\n");
+    printf("3. Update schedule.\n");
+    printf("4. Delete schedule.\n");
+    printf("5. Go back.\n");
 
     printf("\nChoose an option:");
     scanf("%d",&choosen_opt);
@@ -155,16 +217,23 @@ void manage_schedules (int id)
         switch(choosen_opt)
     {
     case 1:
-        create_schedule();
+        create_schedule(id);
         break;
     case 2:
-        view_schedule();
+        view_schedule(id);
         break;
     case 3:
-        update_schedule();
+        update_schedule(id);
         break;
     case 4:
-        delete_schedule();
+        delete_schedule(id);
+        break;
+    case 5:
+        clear_screen();
+        AgentMenu(id);
+        break;
+    case 6:
+        exit(1);
         break;
     default:
         printf("Please enter a valid option(1-4).");
@@ -173,7 +242,7 @@ void manage_schedules (int id)
 }
 
 
-void create_schedule()
+void create_schedule(int id)
 {
 
     FILE *fp = fopen("Schedule.txt", "a");
@@ -217,14 +286,39 @@ void create_schedule()
     fclose(fp);
 
     printf("\nSchedule created.\n");
+
+    while (1)
+    {
+        int back_exit;
+        printf("Choose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            manage_schedules(id);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
+
 }
 
 
 
-void view_schedule()
+void view_schedule(int id)
 {
 
-    int id;
     int found = 0;
 
     printf("Enter agent Id:");
@@ -269,11 +363,35 @@ void view_schedule()
     {
         printf("No schedules found.\n");
     }
+    while (1)
+    {
+        int back_exit;
+        printf("Choose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            manage_schedules(id);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
 }
 
 
 
-void update_schedule()
+void update_schedule(int agentId)
 {
     int id;
     int found = 0;
@@ -347,10 +465,35 @@ void update_schedule()
         printf("No schedules found.\n");
     }
 
+    while (1)
+    {
+        int back_exit;
+        printf("Choose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            manage_schedules(agentId);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
+
 }
 
 
-void delete_schedule()
+void delete_schedule(int agentId)
 {
 
   int id;
@@ -403,6 +546,31 @@ void delete_schedule()
     if (found)
     {
         printf("\nSchedule with parcel Id %d deleted successfully.\n", id);
+    }
+
+    while (1)
+    {
+        int back_exit;
+        printf("Choose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            manage_schedules(agentId);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
     }
 }
 

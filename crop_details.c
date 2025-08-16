@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "crops_details.h"
 #include "menus.h"
 #include "login.h"
@@ -74,18 +75,36 @@ void add_cropdetails(int id)
             c.fertilizers_used,
             c.pesticides_used);
     fclose(fp);
+
+    update_parcel_crops(c.parcelId);
+
     printf("New Crop Added. \n");
 
-    char back;
-    printf("Enter \"B\" to go back: ");
-    scanf("%c", &back);
-    getchar();
-
-    if(back=='b'|| back=='B')
+    while (1)
     {
-        clear_screen();
-        crop_AddEditDeleteMenu(id);
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            crop_AddEditDeleteMenu(id);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
     }
+
 }
 
 void edit_cropdetails(int id)
@@ -270,15 +289,29 @@ void edit_cropdetails(int id)
 
     printf("Crop details updated successfully!\n");
 
-    char back;
-    printf("Enter \"B\" to go back: ");
-    scanf("%c", &back);
-    getchar();
-
-    if(back=='b'|| back=='B')
+    while (1)
     {
-        clear_screen();
-        crop_AddEditDeleteMenu(id);
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            crop_AddEditDeleteMenu(id);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
     }
 }
 
@@ -286,78 +319,96 @@ void edit_cropdetails(int id)
 void delete_cropdetails(int id)
 {
 
-        FILE *fp;
-        FILE *temp;
-        fp=fopen("Crops.txt", "r");
-        temp=fopen("temp5.txt", "w");
+    FILE *fp;
+    FILE *temp;
+    fp=fopen("Crops.txt", "r");
+    temp=fopen("temp5.txt", "w");
 
-        Crops c,tempCrops;
+    Crops c,tempCrops;
 
-        int chosen_cropId;
+    int chosen_cropId;
 
-        printf("Enter ID of the crop to delete: ");
-        scanf("%d", &chosen_cropId);
-        getchar();
-
-        int id_matched=0;
-
-        while((fscanf(fp,
-                      "%d|%49[^|]|%d|%d|%14[^|]|%14[^|]|%29[^|]|%49[^|]|%49[^\n]\n",
-                      &c.id,
-                      c.crop_name,
-                      &c.parcelId,
-                      &c.farmerId,
-                      c.sowing_date,
-                      c.harvesting_date,
-                      c.current_status,
-                      c.fertilizers_used,
-                      c.pesticides_used) ==9 ))
-        {
-            if(c.id != chosen_cropId)
-            {
-                id_matched=1;
-
-                fprintf(temp,
-                        "%d|%s|%d|%d|%s|%s|%s|%s|%s\n",
-                        c.id,
-                        c.crop_name,
-                        c.parcelId,
-                        c.farmerId,
-                        c.sowing_date,
-                        c.harvesting_date,
-                        c.current_status,
-                        c.fertilizers_used,
-                        c.pesticides_used);
-            }
-
-        }
-
-        if(!id_matched)
-        {
-            printf("Crop %d not found in the system! \n", chosen_cropId);
-            return;
-        }
-
-        fclose(fp);
-        fclose(temp);
-
-        remove("Crops.txt");
-        rename("temp5.txt", "Crops.txt");
-
-        printf("Deleted crop successfully! \n");
-
-        char back;
-    printf("Enter \"B\" to go back: ");
-    scanf("%c", &back);
+    printf("Enter ID of the crop to delete: ");
+    scanf("%d", &chosen_cropId);
     getchar();
 
-    if(back=='b'|| back=='B')
+    int id_matched=0;
+
+    while((fscanf(fp,
+                  "%d|%49[^|]|%d|%d|%14[^|]|%14[^|]|%29[^|]|%49[^|]|%49[^\n]\n",
+                  &c.id,
+                  c.crop_name,
+                  &c.parcelId,
+                  &c.farmerId,
+                  c.sowing_date,
+                  c.harvesting_date,
+                  c.current_status,
+                  c.fertilizers_used,
+                  c.pesticides_used) ==9 ))
     {
-        clear_screen();
-        crop_AddEditDeleteMenu(id);
+        if(c.id != chosen_cropId)
+        {
+
+            fprintf(temp,
+                    "%d|%s|%d|%d|%s|%s|%s|%s|%s\n",
+                    c.id,
+                    c.crop_name,
+                    c.parcelId,
+                    c.farmerId,
+                    c.sowing_date,
+                    c.harvesting_date,
+                    c.current_status,
+                    c.fertilizers_used,
+                    c.pesticides_used);
+        }
+        else
+        {
+            id_matched=1;
+        }
+
     }
 
-
+    if(id_matched==1)
+    {
+        printf("Deleted crop successfully! \n");
+        update_parcel_crops(c.parcelId);
 
     }
+    else
+    {
+        printf("Crop %d not found in the system! \n", chosen_cropId);
+    }
+
+    fclose(fp);
+    fclose(temp);
+
+    remove("Crops.txt");
+    rename("temp5.txt", "Crops.txt");
+
+    while (1)
+    {
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            crop_AddEditDeleteMenu(id);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
+
+}
 

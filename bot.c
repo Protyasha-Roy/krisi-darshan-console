@@ -86,6 +86,7 @@ void bot(int id) {
 
         if(curl) {
             curl_easy_setopt(curl, CURLOPT_URL, full_url);
+            curl_easy_setopt(curl, CURLOPT_CAINFO, "certs/cacert.pem");
             curl_easy_setopt(curl, CURLOPT_POST, 1L);
             curl_easy_setopt(curl, CURLOPT_POSTFIELDS, payload);
             struct curl_slist *headers = NULL;

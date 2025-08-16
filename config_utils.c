@@ -1,8 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include "admin.h"
+#include "menus.h"
 #include "login.h"
 #include "utils.h"
 
-void view_analytics(void)
+void view_analytics(int adminId)
 {
     clear_screen();
 
@@ -86,4 +89,29 @@ void view_analytics(void)
     printf("-----------------------------------\n");
     printf("| Total subsidy applications:   %d |\n", total_subsidy_applications);
     printf("-----------------------------------\n");
+
+    while (1)
+    {
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            adminMenu(adminId);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
 }

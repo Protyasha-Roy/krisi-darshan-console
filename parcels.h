@@ -14,5 +14,6 @@ typedef struct {
 void add_landparcels(int id);
 void edit_landparcels(int id);
 void delete_landparcels(int id);
+void update_parcel_crops(int id);
 
 #endif // PARCELS_H_INCLUDED

@@ -10,6 +10,80 @@
 #include "utils.h"
 #include "bot.h"
 
+void update_AreaAndParcelNumber(int id, float area, int parcel_number)
+{
+    FILE *fp;
+    FILE *temp;
+
+    fp==fopen("Farmers.txt", "r");
+    temp=fopen("temp.txt", "w");
+
+    if(fp==NULL ||temp==NULL)
+    {
+        printf("Error! File not found!");
+        return;
+    }
+
+    Farmer f;
+
+    while((fscanf(fp, "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%f|%f|%d|%99[^|]|%c|%29[^|]|%49[^|]|%d|%19[^\n]\n",
+                  &f.id,
+                  f.fullName,
+                  f.dob,
+                  &f.gender,
+                  f.nid,
+                  f.literacy,
+                  f.mobile,
+                  f.email,
+                  f.address,
+                  &f.postal_code,
+                  &f.farming_experience,
+                  &f.area,
+                  &f.land_parcels,
+                  f.crops,
+                  &f.ownership,
+                  f.bank_number,
+                  f.bank_name,
+                  &f.branch_code,
+                  f.linked_number
+                 )) != EOF)
+    {
+        if(f.id==id)
+        {
+            f.land_parcels+=parcel_number;
+            f.area+=area;
+        }
+
+        fprintf(temp, "%d|%s|%s|%c|%s|%s|%s|%s|%s|%d|%.2f|%.2f|%d|%s|%c|%s|%s|%d|%s\n",
+                f.id,
+                f.fullName,
+                f.dob,
+                f.gender,
+                f.nid,
+                f.literacy,
+                f.mobile,
+                f.email,
+                f.address,
+                f.postal_code,
+                f.farming_experience,
+                f.area,
+                f.land_parcels,
+                f.crops,
+                f.ownership,
+                f.bank_number,
+                f.bank_name,
+                f.branch_code,
+                f.linked_number);
+    }
+
+    fclose(fp);
+    fclose(temp);
+
+    remove("Farmers.txt");
+    rename("temp.txt", "Farmers.txt");
+}
+
+
 
 void edit_personaldetails(Farmer f, int id)
 {
@@ -279,15 +353,29 @@ void edit_personaldetails(Farmer f, int id)
 
     printf("Farmer details updated successfully!\n");
 
-    char back;
-    printf("Enter \"B\" to go back: ");
-    scanf("%c", &back);
-    getchar();
-
-    if(back=='b' || back=='B')
+    while (1)
     {
-        clear_screen();
-        farmer_editmenu(id);
+        int back_exit;
+        printf("\nChoose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            farmer_editmenu(id);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
     }
 }
 
@@ -333,25 +421,44 @@ void personal_details(int id)
         {
             id_matched=1;
 
-            printf("\t\t PERSONAL DETAILS OF FARMER %d\n", id);
-            printf("1.Full name:  %s\n", f.fullName);
-            printf("2.Date of birth:  %s\n", f.dob);
-            printf("3.Gender:  %c\n", f.gender);
-            printf("4.NID:  %s\n", f.nid);
-            printf("5.Literacy level:  %s\n", f.literacy);
-            printf("6.Mobile Number:  %s\n", f.mobile);
-            printf("7.Email address:  %s\n", f.email);
-            printf("8.Address:  %s\n", f.address);
-            printf("9.Postal Code:  %d\n", f.postal_code);
-            printf("10.Farming Experience:  %.2f\n", f.farming_experience);
-            printf("11.Area of Land Parcels:  %.2f\n", f.area);
-            printf("12.Number of Land Parcels:  %d\n", f.land_parcels);
-            printf("13,Types of crops:  %s\n", f.crops);
-            printf("14.Ownership Type:  %c\n", f.ownership);
-            printf("15.Bank Account Number:  %s\n", f.bank_number);
-            printf("16.Bank Name:  %s\n", f.bank_name);
-            printf("17.Branch Code:  %d\n", f.branch_code);
-            printf("18.Linked Number to the Bank:  %s\n", f.linked_number);
+            printf("\n\t\tPERSONAL DETAILS OF FARMER %d\n\n", id);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-30s\n", "1.Full name", f.fullName);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-30s\n", "2.Date of birth", f.dob);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %c\n", "3.Gender", f.gender);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-30s\n", "4.NID", f.nid);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-30s\n", "5.Literacy level", f.literacy);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-30s\n", "6.Mobile Number", f.mobile);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-30s\n", "7.Email address", f.email);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-30s\n", "8.Address", f.address);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %3d\n", "9.Postal Code", f.postal_code);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %4.2f\n", "10.Farming Experience", f.farming_experience);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %4.2f\n", "11.Area of Land Parcels", f.area);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %3d\n", "12.Number of Land Parcels", f.land_parcels);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-30s\n", "13.Types of crops", f.crops);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %c\n", "14.Ownership Type", f.ownership);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-30s\n", "15.Bank Account Number", f.bank_number);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-30s\n", "16.Bank Name", f.bank_name);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %3d\n", "17.Branch Code", f.branch_code);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-30s\n", "18.Linked Number to the Bank", f.linked_number);
+            printf("---------------------------------------------------------------------------------------\n");
             break;
         }
     }
@@ -397,14 +504,23 @@ void farmer_land_parcels (int id)
     {
         if(p.farmerId==id)
         {
-            id_matched=1;
-            printf("Parcel ID:  %d\n", p.id);
-            printf("1.Location of the parcel:  %s\n", p.location);
-            printf("2.Area (in acres):  %.2f\n", p.area);
-            printf("3.Date of Purchase (YYYY-MM-DD):  %s\n", p.dop);
-            printf("4.Soil Type:  %s\n", p.soilType);
-            printf("5.Type of crops grown:  %s\n", p.crops);
-            printf("\n");
+            id_matched = 1;
+
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %3d\n", "Parcel ID", p.id);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-30s\n", "1.Location of the parcel", p.location);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %4.2f\n", "2.Area (in acres)", p.area);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-15s\n", "3.Date of Purchase (YYYY-MM-DD)", p.dop);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-20s\n", "4.Soil Type", p.soilType);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-30s\n", "5.Type of crops grown", p.crops);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("\n\n");
+
         }
     }
 
@@ -459,9 +575,10 @@ void application_schemes(int id)
 }
 
 
-void chatbot(int id) {
+void chatbot(int id)
+{
     clear_screen();
-    printf("Welcome to the chatbot\n");
+    printf("/t/tWelcome to the chatbot\n");
     bot(id);
 }
 
@@ -495,17 +612,27 @@ void track_cropcycle(int id)
     {
         if(c.farmerId==id)
         {
-            id_matched=1;
-            printf("Crop ID: %d\n", c.id);
-            printf("Details: \n");
-            printf("1.Crop name:  %s\n", c.crop_name);
-            printf("2.Parcel ID of the parcel the crop is in:  %d\n", c.parcelId);
-            printf("3.Sowing Date (YYYY-MM-DD):  %s\n", c.sowing_date);
-            printf("4.Harvesting Date (YYYY-MM-DD):  %s\n", c.harvesting_date);
-            printf("5.Current status of the crop: %s\n", c.current_status);
-            printf("6.Fertilizers Used:  %s\n", c.fertilizers_used);
-            printf("7.Pesticides Used:  %s\n", c.pesticides_used);
-            printf("\n");
+            id_matched = 1;
+
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %3d\n", "Crop ID", c.id);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-30s\n", "1.Crop name", c.crop_name);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %3d\n", "2.Parcel ID", c.parcelId);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-15s\n", "3.Sowing Date (YYYY-MM-DD)", c.sowing_date);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-15s\n", "4.Harvesting Date (YYYY-MM-DD)", c.harvesting_date);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-30s\n", "5.Current status of the crop", c.current_status);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-30s\n", "6.Fertilizers Used", c.fertilizers_used);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("%-25s: %-30s\n", "7.Pesticides Used", c.pesticides_used);
+            printf("---------------------------------------------------------------------------------------\n");
+            printf("\n\n");
+
         }
     }
 

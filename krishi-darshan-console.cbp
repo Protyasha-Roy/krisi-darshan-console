@@ -31,9 +31,12 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+<<<<<<< HEAD
 		<Linker>
 			<Add library="curl" />
 		</Linker>
+=======
+>>>>>>> d4ae6c5b6f7158822133d50d1894530c61f8aff6
 		<Unit filename=".gitignore" />
 		<Unit filename="Admins.txt" />
 		<Unit filename="Agents.txt" />

@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include "agents.h"
 #include "assigned_parcel.h"
 #include "utils.h"
 
-void update_parcel_report()
+void update_parcel_report(int agent_id)
 {
     clear_screen();
 
@@ -78,12 +80,37 @@ void update_parcel_report()
 
     if (id_found)
         printf("\nParcel report with ID %d updated successfully.\n", id);
+
+        while (1)
+    {
+        int back_exit;
+        printf("Choose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            manage_report(agent_id);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
 }
 
 
 
 
-void delete_parcel_report()
+void delete_parcel_report(int agentId)
 {
     clear_screen();
 
@@ -138,10 +165,37 @@ void delete_parcel_report()
 
     if (id_delete)
         printf("\nParcel report with ID %d deleted successfully.\n", id);
+
+        while (1)
+    {
+        int back_exit;
+        printf("Choose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            manage_report(agentId);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
+    }
+
+
 }
 
 
-void search_parcel_report()
+void search_parcel_report(int id)
 {
     clear_screen();
 
@@ -192,6 +246,31 @@ void search_parcel_report()
     if(!id_matched)
     {
         printf("Parcel Id %d not found!\n",parcelid);
+    }
+
+    while (1)
+    {
+        int back_exit;
+        printf("Choose an option: \n");
+        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
+        printf("Enter you choice: ");
+        scanf("%d", &back_exit);
+        getchar();
+
+        switch(back_exit)
+        {
+        case 1:
+            clear_screen();
+            manage_report(id);
+            break;
+        case 2:
+            exit(1);
+            break;
+        default:
+            printf("Error! Please enter a valid option!");
+            continue;
+        }
+        break;
     }
 
 }
