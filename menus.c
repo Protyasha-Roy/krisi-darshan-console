@@ -29,18 +29,23 @@ void adminMenu(int id)
     switch(chosenOption)
     {
     case 1:
+        clear_screen();
         manage_farmers_profile(id);
         break;
     case 2:
+        clear_screen();
         manage_land_parcels(id);
         break;
     case 3:
+        clear_screen();
         manage_loan_subsidy(id);
         break;
     case 4:
+        clear_screen();
         manage_field_agents(id);
         break;
     case 5:
+        clear_screen();
         configuration(id);
         break;
     case 6:
@@ -119,47 +124,28 @@ void FarmerMenu(int id)
         switch(selected_option)
         {
         case 1:
+            clear_screen();
             personal_details(id);
             break;
         case 2:
+            clear_screen();
             farmer_land_parcels(id);
             break;
         case 3:
+            clear_screen();
             application_schemes(id);
             break;
         case 4:
+            clear_screen();
             chatbot(id);
             break;
         case 5:
+            clear_screen();
             track_cropcycle(id);
             break;
         case 6:
-            changePass(id);
-
-            while (1)
-    {
-        int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
-        printf("Enter you choice: ");
-        scanf("%d", &back_exit);
-        getchar();
-
-        switch(back_exit)
-        {
-        case 1:
             clear_screen();
-            FarmerMenu(id);
-            break;
-        case 2:
-            exit(1);
-            break;
-        default:
-            printf("Error! Please enter a valid option!");
-            continue;
-        }
-        break;
-    }
+            changePass(id);
             break;
         case 7:
             clear_screen();
@@ -175,6 +161,7 @@ void FarmerMenu(int id)
         break;
     }
 }
+
 
 void AgentMenu(int id)
 {
@@ -196,15 +183,19 @@ void AgentMenu(int id)
         switch(selected_option)
         {
         case 1:
+            clear_screen();
             assigned_parcels(id);
             break;
         case 2:
+            clear_screen();
             upload_report(id);
             break;
         case 3:
+            clear_screen();
             manage_report(id);
             break;
         case 4:
+            clear_screen();
             manage_schedules(id);
             break;
         case 5:

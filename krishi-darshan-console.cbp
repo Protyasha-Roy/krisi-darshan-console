@@ -13,7 +13,12 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="E:/curl-8.15.0_4-win64-mingw/curl-8.15.0_4-win64-mingw/include" />
 				</Compiler>
+				<Linker>
+					<Add library="curl" />
+					<Add directory="E:/curl-8.15.0_4-win64-mingw/curl-8.15.0_4-win64-mingw/lib" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/krishi-darshan-console" prefix_auto="1" extension_auto="1" />
@@ -62,6 +67,10 @@
 		</Unit>
 		<Unit filename="application_schemes.h" />
 		<Unit filename="assigned_parcel.h" />
+		<Unit filename="bot.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="bot.h" />
 		<Unit filename="config_utils.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -109,6 +118,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="parcels.h" />
+		<Unit filename="temp.txt" />
 		<Unit filename="utils.c">
 			<Option compilerVar="CC" />
 		</Unit>

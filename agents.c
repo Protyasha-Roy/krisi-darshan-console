@@ -51,8 +51,15 @@ void assigned_parcels(int agentId)
             printf("Crops:                  %s\n",assignedParcel.crops);
             break;
         }
+    }
 
-        while (1)
+    fclose(fp);
+
+    if(!id_matched)
+    {
+        printf("No assigned parcel found.\n");
+    }
+    while (1)
     {
         int back_exit;
         printf("Choose an option: \n");
@@ -75,16 +82,8 @@ void assigned_parcels(int agentId)
             continue;
         }
         break;
-    }
-    }
 
-    fclose(fp);
-
-    if(!id_matched)
-    {
-        printf("No assigned parcel found.\n");
     }
-
 }
 
 void upload_report(int id)
@@ -214,7 +213,7 @@ void manage_schedules (int id)
     printf("\nChoose an option:");
     scanf("%d",&choosen_opt);
 
-        switch(choosen_opt)
+    switch(choosen_opt)
     {
     case 1:
         create_schedule(id);
@@ -238,13 +237,12 @@ void manage_schedules (int id)
     default:
         printf("Please enter a valid option(1-4).");
         break;
-}
+    }
 }
 
 
 void create_schedule(int id)
 {
-
     FILE *fp = fopen("Schedule.txt", "a");
 
     if (fp == NULL)
@@ -318,7 +316,6 @@ void create_schedule(int id)
 
 void view_schedule(int id)
 {
-
     int found = 0;
 
     printf("Enter agent Id:");
@@ -495,9 +492,8 @@ void update_schedule(int agentId)
 
 void delete_schedule(int agentId)
 {
-
-  int id;
-  int found = 0;
+    int id;
+    int found = 0;
 
     printf("Enter parcel Id to delete: ");
     scanf("%d", &id);
@@ -524,17 +520,17 @@ void delete_schedule(int agentId)
     {
         if (s.parcelId != id)
         {
-          fprintf(temp, "%d|%d|%s|%s|%s|%s\n",
-                 s.parcelId,
-                 s.agentId,
-                 s.farmerName,
-                 s.location,
-                 s.dov,
-                 s.schemeType);
+            fprintf(temp, "%d|%d|%s|%s|%s|%s\n",
+                    s.parcelId,
+                    s.agentId,
+                    s.farmerName,
+                    s.location,
+                    s.dov,
+                    s.schemeType);
 
         }
         else
-          found = 1;
+            found = 1;
     }
 
     fclose(fp);
@@ -573,4 +569,5 @@ void delete_schedule(int agentId)
         break;
     }
 }
+
 

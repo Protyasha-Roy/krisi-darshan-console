@@ -479,6 +479,7 @@ void personal_details(int id)
 
 void farmer_land_parcels (int id)
 {
+    clear_screen();
     FILE *fp = fopen("Parcels.txt", "r");
 
     if(fp==NULL)
@@ -584,6 +585,7 @@ void chatbot(int id)
 
 void track_cropcycle(int id)
 {
+    clear_screen();
     FILE *fp = fopen("Crops.txt", "r");
 
     if(fp==NULL)

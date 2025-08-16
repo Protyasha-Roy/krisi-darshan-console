@@ -10,6 +10,7 @@
 
 void view_loanapplications(int id)
 {
+    clear_screen();
     FILE *fp = fopen("LoanApplication.txt", "r");
 
     if(fp==NULL)
@@ -94,6 +95,7 @@ void view_loanapplications(int id)
 
 void view_subsidyapplications(int id)
 {
+    clear_screen();
     FILE *fp2 = fopen("SubsidyApplication.txt", "r");
 
     if(fp2==NULL)
