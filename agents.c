@@ -38,7 +38,7 @@ void assigned_parcels(int agentId)
             id_matched=1;
 
             printf("\n\t\tPARCEL ID:%d\n", assignedParcel.id);
-
+            printf("---------------------------------------------------------------------------------------\n");
             printf("Parcel's Id:            %d\n",assignedParcel.parcelId);
             printf("Assigned Id:            %d\n",assignedParcel.id);
             printf("Agent's Id:             %d\n",assignedParcel.agentId);
@@ -49,6 +49,7 @@ void assigned_parcels(int agentId)
             printf("Date:                   %s\n",assignedParcel.dop);
             printf("Soil type:              %s\n",assignedParcel.soilType);
             printf("Crops:                  %s\n",assignedParcel.crops);
+            printf("---------------------------------------------------------------------------------------\n");
             break;
         }
     }
@@ -62,9 +63,11 @@ void assigned_parcels(int agentId)
     while (1)
     {
         int back_exit;
-        printf("Choose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -97,27 +100,27 @@ void upload_report(int id)
     }
     UploadReport uploadReport;
 
-    printf("Enter parcel Id:");
+    printf("\t ->Enter parcel Id:");
     scanf("%d",&uploadReport.parcelId);
     getchar();
 
-    printf("Enter farmer's name:");
+    printf("\t ->Enter farmer's name:");
     fgets(uploadReport.farmerName, sizeof(uploadReport.farmerName), stdin);
     uploadReport.farmerName[strcspn(uploadReport.farmerName, "\n")]='\0';
 
-    printf("Enter date of visit:");
+    printf("\t ->Enter date of visit:");
     fgets(uploadReport.dov, sizeof(uploadReport.dov), stdin);
     uploadReport.dov[strcspn(uploadReport.dov, "\n")]='\0';
 
-    printf("Enter observation:");
+    printf("\t ->Enter observation:");
     fgets(uploadReport.observation, sizeof(uploadReport.observation), stdin);
     uploadReport.observation[strcspn(uploadReport.observation, "\n")]='\0';
 
-    printf("Report result:");
+    printf("\t ->Report result:");
     fgets(uploadReport.reportResul, sizeof(uploadReport.reportResul), stdin);
     uploadReport.reportResul[strcspn(uploadReport.reportResul, "\n")]='\0';
 
-    printf("Enter recomendetion:");
+    printf("\t ->Enter recomendetion:");
     fgets(uploadReport.recomendation, sizeof(uploadReport.recomendation), stdin);
     uploadReport.recomendation[strcspn(uploadReport.recomendation, "\n")]='\0';
 
@@ -132,14 +135,16 @@ void upload_report(int id)
 
     fclose(fp);
 
-    printf("Report upload successful.");
+    printf("\t ->Report upload successful.");
 
     while (1)
     {
         int back_exit;
-        printf("Choose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -164,15 +169,19 @@ void manage_report(int id)
 {
     int selected_option;
 
+    while(1)
+    {
     printf("\n");
-    printf("1: Update land parcel report.\n");
-    printf("2: Delete land parcel report.\n");
-    printf("3: Search land parcel report.\n");
-    printf("4. Go back\n");
-    printf("5. Exit\n");
-
-    printf("\nChoose an option: ");
+    printf("\t--------------------------------\n");
+    printf("\t1: Update land parcel report\n");
+    printf("\t2: Delete land parcel report\n");
+    printf("\t3: Search land parcel report\n");
+    printf("\t4. Go Back \n");
+    printf("\t5. Exit \n");
+    printf("\t--------------------------------\n\n");
+    printf("\t-> Choose an option: ");
     scanf("%d", &selected_option);
+    getchar();
 
     switch(selected_option)
     {
@@ -193,8 +202,10 @@ void manage_report(int id)
         exit(1);
         break;
     default:
-        printf("Please enter a valid option(1-3).");
-        break;
+        printf("\n\tError! Please enter a valid input!\n\n");
+        continue;
+    }
+    break;
     }
 
 }
@@ -204,14 +215,20 @@ void manage_schedules (int id)
 {
     int choosen_opt;
 
-    printf("1. Create schedule.\n");
-    printf("2. View schedule.\n");
-    printf("3. Update schedule.\n");
-    printf("4. Delete schedule.\n");
-    printf("5. Go back.\n");
+    while(1)
+    {
+    printf("\t--------------------------------\n");
+    printf("\t1. Create schedule\n");
+    printf("\t2. View schedule\n");
+    printf("\t3. Update schedule\n");
+    printf("\t4. Delete schedule\n");
+    printf("\t5. Go Back \n");
+    printf("\t6. Exit \n");
+    printf("\t--------------------------------\n\n");
 
-    printf("\nChoose an option:");
+    printf("\t-> Choose an option: ");
     scanf("%d",&choosen_opt);
+    getchar();
 
     switch(choosen_opt)
     {
@@ -235,7 +252,9 @@ void manage_schedules (int id)
         exit(1);
         break;
     default:
-        printf("Please enter a valid option(1-4).");
+        printf("\n\tError! Please enter a valid input!\n\n");
+        continue;
+    }
         break;
     }
 }
@@ -253,28 +272,28 @@ void create_schedule(int id)
 
     Schedule s;
 
-    printf("Enter parcel Id: ");
+    printf("\t ->Enter parcel Id: ");
     scanf("%d", &s.parcelId);
     getchar();
 
-    printf("Enter agent's Id: ");
+    printf("\t ->Enter agent's Id: ");
     scanf("%d", &s.agentId);
     getchar();
 
-    printf("\nEnter information about schedule:\n");
+    printf("\n\t ->Enter information about schedule:\n");
     printf("Enter Farmer Name: ");
     fgets(s.farmerName, sizeof(s.farmerName), stdin);
     s.farmerName[strcspn(s.farmerName, "\n")]='\0';
 
-    printf("Enter Location: ");
+    printf("\t ->Enter Location: ");
     fgets(s.location, sizeof(s.location), stdin);
     s.location[strcspn(s.location, "\n")]='\0';
 
-    printf("Enter Date to Visit (DD/MM/YYYY): ");
+    printf("\t ->Enter Date to Visit (DD/MM/YYYY): ");
     fgets(s.dov, sizeof(s.dov), stdin);
     s.dov[strcspn(s.dov, "\n")]='\0';
 
-    printf("Enter Scheme Type: ");
+    printf("\t ->Enter Scheme Type: ");
     fgets(s.schemeType, sizeof(s.schemeType), stdin);
     s.schemeType[strcspn(s.schemeType, "\n")]='\0';
 
@@ -283,14 +302,16 @@ void create_schedule(int id)
 
     fclose(fp);
 
-    printf("\nSchedule created.\n");
+    printf("\n\t ->Schedule created.\n");
 
     while (1)
     {
         int back_exit;
-        printf("Choose an option: \n");
-        printf("1.  Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -304,7 +325,7 @@ void create_schedule(int id)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -318,7 +339,7 @@ void view_schedule(int id)
 {
     int found = 0;
 
-    printf("Enter agent Id:");
+    printf("\t ->Enter agent Id:");
     scanf("%d",&id);
     getchar();
 
@@ -332,7 +353,7 @@ void view_schedule(int id)
 
     Schedule s;
 
-    printf("\nSchedules for agent %d:\n",id);
+    printf("\n\t\tSchedules for agent %d:\n",id);
 
     while (fscanf(fp, "%d|%d|%99[^|]|%99[^|]|%14[^|]|%49[^\n]",
                   &s.parcelId,
@@ -345,11 +366,13 @@ void view_schedule(int id)
         if (s.agentId == id)
         {
             found = 1;
+            printf("---------------------------------------------------------------------------------------\n");
             printf("Parcel Id:         %d\n",s.parcelId);
             printf("Farmer's name:     %s\n",s.farmerName);
             printf("Location:          %s\n",s.location);
             printf("Date to visit:     %s\n",s.dov);
             printf("Scheme type:       %s\n",s.schemeType);
+            printf("---------------------------------------------------------------------------------------\n");
             printf("\n\n");
         }
     }
@@ -358,14 +381,16 @@ void view_schedule(int id)
 
     if (!found)
     {
-        printf("No schedules found.\n");
+        printf("\t ->No schedules found.\n");
     }
     while (1)
     {
         int back_exit;
-        printf("Choose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -379,7 +404,7 @@ void view_schedule(int id)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -393,7 +418,7 @@ void update_schedule(int agentId)
     int id;
     int found = 0;
 
-    printf("Enter parcel Id to update: ");
+    printf("\t ->Enter parcel Id to update: ");
     scanf("%d", &id);
     getchar();
 
@@ -422,23 +447,23 @@ void update_schedule(int agentId)
 
             printf("\nUpdate schedule:\n");
 
-            printf("Enter farmer name: ");
+            printf("\t ->Enter farmer name: ");
             fgets(s.farmerName, sizeof(s.farmerName), stdin);
             s.farmerName[strcspn(s.farmerName, "\n")]='\0';
 
-            printf("Enter location: ");
+            printf("\t ->Enter location: ");
             fgets(s.location, sizeof(s.location), stdin);
             s.location[strcspn(s.location, "\n")]='\0';
 
-            printf("Enter date of visit: ");
+            printf("\t ->Enter date of visit: ");
             fgets(s.dov, sizeof(s.dov), stdin);
             s.dov[strcspn(s.dov, "\n")]='\0';
 
-            printf("Enter scheme type: ");
+            printf("\t ->Enter scheme type: ");
             fgets(s.schemeType, sizeof(s.schemeType), stdin);
             s.schemeType[strcspn(s.schemeType, "\n")]='\0';
 
-            printf("\nSchedule updated!\n");
+            printf("\n \t ->Schedule updated!\n");
             break;
         }
 
@@ -466,9 +491,11 @@ void update_schedule(int agentId)
     while (1)
     {
         int back_exit;
-        printf("Choose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -482,7 +509,7 @@ void update_schedule(int agentId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -496,7 +523,7 @@ void delete_schedule(int agentId)
     int id;
     int found = 0;
 
-    printf("Enter parcel Id to delete: ");
+    printf("\t ->Enter parcel Id to delete: ");
     scanf("%d", &id);
     getchar();
 
@@ -542,15 +569,17 @@ void delete_schedule(int agentId)
 
     if (found==1)
     {
-        printf("\nSchedule with parcel Id %d deleted successfully.\n", id);
+        printf("\n\t ->Schedule with parcel Id %d deleted successfully.\n", id);
     }
 
     while (1)
     {
         int back_exit;
-        printf("Choose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -564,7 +593,7 @@ void delete_schedule(int agentId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;

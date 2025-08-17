@@ -23,7 +23,7 @@ void update_parcel_report(int agent_id)
 
     UploadReport updateReport;
 
-    printf("Enter Parcel ID to update: ");
+    printf("\t ->Enter Parcel ID to update: ");
     scanf("%d", &id);
     getchar();
 
@@ -39,25 +39,25 @@ void update_parcel_report(int agent_id)
         {
             id_found = 1;
 
-            printf("\nUpdate changes:\n");
+            printf("\n\t Update changes:\n");
 
-            printf("Farmer Name: ");
+            printf("\t ->Farmer Name: ");
             fgets(updateReport.farmerName, sizeof(updateReport.farmerName), stdin);
             updateReport.farmerName[strcspn(updateReport.farmerName, "\n")]='\0';
 
-            printf("Date of Visit (DD/MM/YYYY): ");
+            printf("\t ->Date of Visit (DD/MM/YYYY): ");
             fgets(updateReport.dov, sizeof(updateReport.dov), stdin);
             updateReport.dov[strcspn(updateReport.dov, "\n")]='\0';
 
-            printf("Observation: ");
+            printf("\t ->Observation: ");
             fgets(updateReport.observation, sizeof(updateReport.observation), stdin);
             updateReport.observation[strcspn(updateReport.observation, "\n")]='\0';
 
-            printf("Report Result: ");
+            printf("\t ->Report Result: ");
             fgets(updateReport.reportResul, sizeof(updateReport.reportResul), stdin);
             updateReport.reportResul[strcspn(updateReport.reportResul, "\n")]='\0';
 
-            printf("Recommendation: ");
+            printf("\t ->Recommendation: ");
             fgets(updateReport.recomendation, sizeof(updateReport.recomendation), stdin);
             updateReport.recomendation[strcspn(updateReport.recomendation, "\n")]='\0';
         }
@@ -79,14 +79,16 @@ void update_parcel_report(int agent_id)
     rename("Temp_Report.txt", "Land_Parcel_Report.txt");
 
     if (id_found)
-        printf("\nParcel report with ID %d updated successfully.\n", id);
+        printf("\n\t ->Parcel report with ID %d updated successfully.\n", id);
 
-        while (1)
+    while (1)
     {
         int back_exit;
-        printf("Choose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -100,7 +102,7 @@ void update_parcel_report(int agent_id)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -130,7 +132,7 @@ void delete_parcel_report(int agentId)
 
     UploadReport updateReport;
 
-    printf("Enter Parcel ID to delete: ");
+    printf("\t ->Enter Parcel ID to delete: ");
     scanf("%d", &id);
 
     while (fscanf(fp, "%d|%99[^|]|%14[^|]|%499[^|]|%499[^|]|%99[^\n]",
@@ -164,14 +166,16 @@ void delete_parcel_report(int agentId)
     rename("Temp_Report.txt", "Land_Parcel_Report.txt");
 
     if (id_delete)
-        printf("\nParcel report with ID %d deleted successfully.\n", id);
+        printf("\n\t ->Parcel report with ID %d deleted successfully.\n", id);
 
-        while (1)
+    while (1)
     {
         int back_exit;
-        printf("Choose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -185,7 +189,7 @@ void delete_parcel_report(int agentId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -202,7 +206,7 @@ void search_parcel_report(int id)
     int parcelid;
     int id_matched=0;
 
-    printf("\nSearch your land parcel report by id:");
+    printf("\n\t ->Search your land parcel report by id:");
     scanf("%d",&parcelid);
 
 
@@ -231,12 +235,14 @@ void search_parcel_report(int id)
             id_matched=1;
 
             printf("\n\n");
+            printf("---------------------------------------------------------------------------------------\n");
             printf("Land parcel Id:    %d\n",uploadReport.parcelId);
             printf("Farmer's name:     %s\n",uploadReport.farmerName);
             printf("Date of visit:     %s\n",uploadReport.dov);
             printf("Observation:       %s\n",uploadReport.observation);
             printf("Report result:     %s\n",uploadReport.reportResul);
             printf("Recommendation:    %s\n",uploadReport.recomendation);
+            printf("---------------------------------------------------------------------------------------\n");
             break;
         }
     }
@@ -251,9 +257,11 @@ void search_parcel_report(int id)
     while (1)
     {
         int back_exit;
-        printf("Choose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -267,7 +275,7 @@ void search_parcel_report(int id)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;

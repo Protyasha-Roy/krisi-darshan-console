@@ -158,9 +158,11 @@ void delete_landparcels(int id)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -346,9 +348,11 @@ void edit_landparcels(int id)
     while (1)
     {
         int back_exit;
-        printf("Choose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -436,9 +440,11 @@ void add_landparcels(int id)
     while (1)
     {
         int back_exit;
-        printf("Choose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 

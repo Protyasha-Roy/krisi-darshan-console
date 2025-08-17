@@ -70,32 +70,34 @@ void view_analytics(int adminId)
         fclose(parcFile);
     }
 
-    printf("ANALYTICS\n");
-    printf(" _________________________\n");
-    printf("| Total Users:         %d |\n", total_admins + total_agents + total_farmers);
-    printf(" _________________________\n");
-    printf("| Total Farmers:       %d |\n", total_farmers);
-    printf(" _________________________\n");
-    printf("| Total Admins:        %d |\n", total_admins);
-    printf(" _________________________\n");
-    printf("| Total Field agents:  %d |\n", total_agents);
-    printf(" _________________________\n");
-    printf("| Total land parcels:  %d |\n", total_parcels);
-    printf("--------------------------\n\n");
+    printf("\tANALYTICS\n");
+    printf("\t _________________________\n");
+    printf("\t| Total Users:         %d |\n", total_admins + total_agents + total_farmers);
+    printf("\t _________________________\n");
+    printf("\t| Total Farmers:       %d |\n", total_farmers);
+    printf("\t _________________________\n");
+    printf("\t| Total Admins:        %d |\n", total_admins);
+    printf("\t _________________________\n");
+    printf("\t| Total Field agents:  %d |\n", total_agents);
+    printf("\t _________________________\n");
+    printf("\t| Total land parcels:  %d |\n", total_parcels);
+    printf("\t--------------------------\n\n");
 
-    printf("APPLICATIONS\n");
-    printf(" __________________________________\n");
-    printf("| Total loan applications:      %d |\n", total_loan_applications);
-    printf("-----------------------------------\n");
-    printf("| Total subsidy applications:   %d |\n", total_subsidy_applications);
-    printf("-----------------------------------\n");
+    printf(\t"APPLICATIONS\n");
+    printf("\t __________________________________\n");
+    printf("\t| Total loan applications:      %d |\n", total_loan_applications);
+    printf("\t-----------------------------------\n");
+    printf("\t| Total subsidy applications:   %d |\n", total_subsidy_applications);
+    printf("\t-----------------------------------\n");
 
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -109,7 +111,7 @@ void view_analytics(int adminId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;

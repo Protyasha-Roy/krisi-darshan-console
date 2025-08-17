@@ -35,7 +35,8 @@ void list_farmers(int adminId)
                 ) != EOF)
     {
 
-        printf("\t\t PERSONAL DETAILS OF FARMER: %s\n", farmer.fullName);
+        printf("\n\t\t PERSONAL DETAILS OF FARMER: %s\n", farmer.fullName);
+        printf("---------------------------------------------------------------------------------------\n");
         printf("ID:                             %d\n", farmer.id);
         printf("Full name:                      %s\n", farmer.fullName);
         printf("Date of birth:                  %s\n", farmer.dob);
@@ -55,6 +56,7 @@ void list_farmers(int adminId)
         printf("Bank Name:                      %s\n", farmer.bank_name);
         printf("Branch Code:                    %d\n", farmer.branch_code);
         printf("Linked Number to the Bank:      %s\n\n", farmer.linked_number);
+        printf("---------------------------------------------------------------------------------------\n");
     }
 
     fclose(fp);
@@ -62,9 +64,11 @@ void list_farmers(int adminId)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -78,7 +82,7 @@ void list_farmers(int adminId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -93,7 +97,7 @@ void search_by_id(FILE *fp, Farmer farmer, int adminId)
     int id;
     int id_matched = 0;
 
-    printf("Enter farmer's ID: ");
+    printf("\t ->Enter farmer's ID: ");
     scanf("%d", &id);
 
     while((fscanf(fp, "%d|%99[^|]|%14[^|]|%c|%19[^|]|%99[^|]|%19[^|]|%49[^|]|%299[^|]|%d|%f|%f|%d|%99[^|]|%c|%29[^|]|%49[^|]|%d|%19[^\n]\n",
@@ -122,7 +126,8 @@ void search_by_id(FILE *fp, Farmer farmer, int adminId)
         {
             id_matched = 1;
 
-            printf("\t\t PERSONAL DETAILS OF FARMER: %d\n", id);
+            printf("\n\t\t PERSONAL DETAILS OF FARMER: %d\n", id);
+            printf("---------------------------------------------------------------------------------------\n");
             printf("ID:                             %d\n", farmer.id);
             printf("Full name:                      %s\n", farmer.fullName);
             printf("Date of birth:                  %s\n", farmer.dob);
@@ -142,6 +147,7 @@ void search_by_id(FILE *fp, Farmer farmer, int adminId)
             printf("Bank Name:                      %s\n", farmer.bank_name);
             printf("Branch Code:                    %d\n", farmer.branch_code);
             printf("Linked Number to the Bank:      %s\n\n", farmer.linked_number);
+            printf("---------------------------------------------------------------------------------------\n");
             break;
         }
     }
@@ -156,9 +162,11 @@ void search_by_id(FILE *fp, Farmer farmer, int adminId)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -172,7 +180,7 @@ void search_by_id(FILE *fp, Farmer farmer, int adminId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -187,7 +195,7 @@ void search_by_name(FILE *fp, Farmer farmer, int adminId)
     int name_matched = 0;
 
     getchar();
-    printf("Enter farmer's full name exactly: ");
+    printf("\t ->Enter farmer's full name exactly: ");
     fgets(name, 100, stdin);
     name[strcspn(name, "\n")] = '\0';
 
@@ -217,7 +225,8 @@ void search_by_name(FILE *fp, Farmer farmer, int adminId)
         {
             name_matched = 1;
 
-            printf("\t\t PERSONAL DETAILS OF FARMER: %s\n", farmer.fullName);
+            printf("\n\t\t PERSONAL DETAILS OF FARMER: %s\n", farmer.fullName);
+            printf("---------------------------------------------------------------------------------------\n");
             printf("ID:                             %d\n", farmer.id);
             printf("Full name:                      %s\n", farmer.fullName);
             printf("Date of birth:                  %s\n", farmer.dob);
@@ -237,6 +246,7 @@ void search_by_name(FILE *fp, Farmer farmer, int adminId)
             printf("Bank Name:                      %s\n", farmer.bank_name);
             printf("Branch Code:                    %d\n", farmer.branch_code);
             printf("Linked Number to the Bank:      %s\n\n", farmer.linked_number);
+            printf("---------------------------------------------------------------------------------------\n");
             break;
         }
     }
@@ -251,9 +261,11 @@ void search_by_name(FILE *fp, Farmer farmer, int adminId)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -267,7 +279,7 @@ void search_by_name(FILE *fp, Farmer farmer, int adminId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -281,7 +293,7 @@ void search_partially(FILE *fp, Farmer farmer, int adminId)
     int string_matched = 1;
 
     getchar();
-    printf("Enter partial name characters: ");
+    printf("\t ->Enter partial name characters: ");
     fgets(partial_name, 100, stdin);
     partial_name[strcspn(partial_name, "\n")] = '\0';
 
@@ -311,7 +323,8 @@ void search_partially(FILE *fp, Farmer farmer, int adminId)
         {
             string_matched = 1;
 
-            printf("\t\t PERSONAL DETAILS OF FARMER: %s\n", farmer.fullName);
+            printf("\n\t\t PERSONAL DETAILS OF FARMER: %s\n", farmer.fullName);
+            printf("---------------------------------------------------------------------------------------\n");
             printf("ID:                             %d\n", farmer.id);
             printf("Full name:                      %s\n", farmer.fullName);
             printf("Date of birth:                  %s\n", farmer.dob);
@@ -331,6 +344,7 @@ void search_partially(FILE *fp, Farmer farmer, int adminId)
             printf("Bank Name:                      %s\n", farmer.bank_name);
             printf("Branch Code:                    %d\n", farmer.branch_code);
             printf("Linked Number to the Bank:      %s\n\n", farmer.linked_number);
+            printf("---------------------------------------------------------------------------------------\n");
         }
     }
 
@@ -344,9 +358,11 @@ void search_partially(FILE *fp, Farmer farmer, int adminId)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -360,7 +376,7 @@ void search_partially(FILE *fp, Farmer farmer, int adminId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -376,13 +392,14 @@ void search_farmer(int adminId)
     int chosen_option;
 
     clear_screen();
-    printf("1. Search by ID\n");
-    printf("2. Search by name\n");
-    printf("3. Search by partial name\n");
-    printf("4. Go back\n");
-    printf("5. Exit\n");
-
-    printf("Choose an option: ");
+    printf("\t--------------------------------\n");
+    printf("\t1. Search by ID\n");
+    printf("\t2. Search by name\n");
+    printf("\t3. Search by partial name\n");
+    printf("\t4. Go Back \n");
+    printf("\t5. Exit \n");
+    printf("\t--------------------------------\n\n");
+    printf("\t-> Choose an option: ");
     scanf("%d", &chosen_option);
 
     switch(chosen_option)
@@ -404,7 +421,7 @@ void search_farmer(int adminId)
         exit(1);
         break;
     default:
-        printf("Invalid option chosen! Try again");
+        printf("\n\tError! Please enter a valid input!\n\n");
         search_farmer(adminId);
         break;
     }
@@ -412,9 +429,11 @@ void search_farmer(int adminId)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -428,7 +447,7 @@ void search_farmer(int adminId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -450,7 +469,7 @@ void delete_farmer(int adminId)
     Farmer farmer;
     User user;
 
-    printf("Enter farmer's ID: ");
+    printf("\t ->Enter farmer's ID: ");
     scanf("%d", &id);
 
     while (fscanf(fp,
@@ -532,9 +551,11 @@ void delete_farmer(int adminId)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -548,7 +569,7 @@ void delete_farmer(int adminId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;

@@ -40,22 +40,14 @@ void view_loanapplications(int id)
         {
             id_matched=1;
             printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %3d\n", "Loan Application ID", l.id);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %3d\n", "Parcel ID", l.parcelId);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-30s\n", "Loan Purpose", l.loan_purpose);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %4.2f\n", "Loan Amount", l.loan_amount);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-15s\n", "Date applied (YYYY-MM-DD)", l.date_applied);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-20s\n", "Status", l.status);
+            printf("Loan Application ID: %d\n", l.id);
+            printf("Parcel ID: %d\n", l.parcelId);
+            printf("Loan Purpose: %s\n", l.loan_purpose);
+            printf("Loan Amount: %.2f\n", l.loan_amount);
+            printf("Date applied (YYYY-MM-DD): %s\n", l.date_applied);
+            printf("Status: %s\n", l.status);
             printf("---------------------------------------------------------------------------------------\n");
             printf("\n\n");
-
-
-
         }
     }
 
@@ -70,9 +62,11 @@ void view_loanapplications(int id)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -86,7 +80,7 @@ void view_loanapplications(int id)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -125,18 +119,14 @@ void view_subsidyapplications(int id)
         {
             id_matched2=1;
             printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %3d\n", "Subsidy Application ID", s.id);
+            printf("Subsidy Application ID: %d\n", s.id);
+            printf("Parcel ID: %d\n", s.parcelId);
+            printf("Subsidy Purpose: %s\n", s.subsidy_purpose);
+            printf("Subsidy Amount: %.2f\n", s.subsidy_amount);
+            printf("Date applied (YYYY-MM-DD): %s\n", s.date_applied);
+            printf("Status: %s\n", s.status);
             printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %3d\n", "Parcel ID", s.parcelId);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-30s\n", "Subsidy Purpose", s.subsidy_purpose);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %4.2f\n", "Subsidy Amount", s.subsidy_amount);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-15s\n", "Date applied (YYYY-MM-DD)", s.date_applied);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-20s\n", "Status", s.status);
-            printf("---------------------------------------------------------------------------------------\n");
+            printf("\n\n");
             printf("\n\n");
         }
     }
@@ -151,9 +141,11 @@ void view_subsidyapplications(int id)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -167,7 +159,7 @@ void view_subsidyapplications(int id)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -180,17 +172,17 @@ void view_appliedforms(int id)
 {
     int selected_option;
 
-    printf("\nChoose an option: \n");
+    printf("\t--------------------------------\n");
+    printf("\t1: Applied Loan Forms \n");
+    printf("\t2: Applied Subsidy Forms \n");
+    printf("\t3. Go Back \n");
+    printf("\t4. Exit \n");
+    printf("\t--------------------------------\n\n");
+    printf("\t-> Choose an option: ");
 
-    printf("1: Applied Loan Forms \n");
-    printf("2: Applied Subsidy Forms \n");
-    printf("3: Back \n");
-    printf("4. Exit\n");
 
     while (1)
     {
-
-        printf("Enter your choice: ");
         scanf("%d", &selected_option);
         getchar();
 
@@ -211,7 +203,7 @@ void view_appliedforms(int id)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!\n");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -283,21 +275,21 @@ void subsidy_application(int id)
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
 
-    printf("Enter the Parcel ID of the parcel the subsidy is required for: ");
+    printf("\t ->Enter the Parcel ID of the parcel the subsidy is required for: ");
     scanf("%d", &s.parcelId);
     while ((c = getchar()) != '\n' && c != EOF);
 
-    printf("Enter the amount of subsidy required: ");
+    printf("\t ->Enter the amount of subsidy required: ");
     scanf("%f", &s.subsidy_amount);
     while ((c = getchar()) != '\n' && c != EOF);
 
 
-    printf("Enter the purpose of why you require the subsidy: ");
+    printf("\t ->Enter the purpose of why you require the subsidy: ");
     fgets(s.subsidy_purpose, sizeof(s.subsidy_purpose), stdin);
     s.subsidy_purpose[strcspn(s.subsidy_purpose, "\n")] = '\0';
 
 
-    printf("Enter the date of the application(YYYY-MM-DD): ");
+    printf("\t ->Enter the date of the application(YYYY-MM-DD): ");
     fgets(s.date_applied, sizeof(s.date_applied), stdin);
     s.date_applied[strcspn(s.date_applied, "\n")] = '\0';
 
@@ -323,9 +315,11 @@ void subsidy_application(int id)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -339,7 +333,7 @@ void subsidy_application(int id)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -411,21 +405,21 @@ void loan_application(int id)
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
 
-    printf("Enter the Parcel ID of the parcel the loan is required for: ");
+    printf("\t ->Enter the Parcel ID of the parcel the loan is required for: ");
     scanf("%d", &l.parcelId);
     while ((c = getchar()) != '\n' && c != EOF);
 
-    printf("Enter the amount of loan required: ");
+    printf("\t ->Enter the amount of loan required: ");
     scanf("%f", &l.loan_amount);
     while ((c = getchar()) != '\n' && c != EOF);
 
 
-    printf("Enter the purpose of why you require the loan: ");
+    printf("\t ->Enter the purpose of why you require the loan: ");
     fgets(l.loan_purpose, sizeof(l.loan_purpose), stdin);
     l.loan_purpose[strcspn(l.loan_purpose, "\n")] = '\0';
 
 
-    printf("Enter the date of the application(YYYY-MM-DD): ");
+    printf("\t ->Enter the date of the application(YYYY-MM-DD): ");
     fgets(l.date_applied, sizeof(l.date_applied), stdin);
     l.date_applied[strcspn(l.date_applied, "\n")] = '\0';
 
@@ -451,9 +445,11 @@ void loan_application(int id)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -467,7 +463,7 @@ void loan_application(int id)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;

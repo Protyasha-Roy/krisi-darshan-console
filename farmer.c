@@ -142,112 +142,112 @@ void edit_personaldetails(Farmer f, int id)
 
             while(1)
             {
-                printf("Enter the number of the detail you want to edit (1-18): ");
+                printf("\t ->Enter the number of the detail you want to edit (1-18): ");
                 scanf("%d", &personal_detail);
                 getchar();
 
                 switch(personal_detail)
                 {
                 case 1:
-                    printf("Enter new Full Name: ");
+                    printf("\t ->Enter new Full Name: ");
                     fgets(f.fullName, sizeof(f.fullName), stdin);
                     f.fullName[strcspn(f.fullName, "\n")]='\0';
                     break;
                 case 2:
-                    printf("Enter new Date of Birth (YYYY-MM-DD): ");
+                    printf("\t ->Enter new Date of Birth (YYYY-MM-DD): ");
                     fgets(f.dob, sizeof(f.dob), stdin);
                     f.dob[strcspn(f.dob, "\n")]='\0';
                     break;
                 case 3:
-                    printf("Enter new Gender: (M/F/O) ");
+                    printf("\t ->Enter new Gender: (M/F/O) ");
                     scanf(" %c", &f.gender);
                     getchar();
                     break;
                 case 4:
-                    printf("Enter new NID: ");
+                    printf("\t ->Enter new NID: ");
                     fgets(f.nid, sizeof(f.nid), stdin);
                     f.nid[strcspn(f.nid, "\n")]='\0';
                     break;
                 case 5:
-                    printf("Enter new literacy level: ");
+                    printf("\t ->Enter new literacy level: ");
                     fgets(f.literacy, sizeof(f.literacy), stdin);
                     f.literacy[strcspn(f.literacy, "\n")]='\0';
                     break;
                 case 6:
-                    printf("Enter new mobile number: ");
+                    printf("\t ->Enter new mobile number: ");
                     fgets(f.mobile, sizeof(f.mobile), stdin);
                     f.mobile[strcspn(f.mobile, "\n")]='\0';
                     break;
                 case 7:
-                    printf("Enter new email address: ");
+                    printf("\t ->Enter new email address: ");
                     fgets(f.email, sizeof(f.email), stdin);
                     f.email[strcspn(f.email, "\n")]='\0';
                     break;
                 case 8:
-                    printf("Enter new address: ");
+                    printf("\t ->Enter new address: ");
                     fgets(f.address, sizeof(f.address), stdin);
                     f.address[strcspn(f.address, "\n")]='\0';
                     break;
                 case 9:
-                    printf("Enter new postal code: ");
+                    printf("\t ->Enter new postal code: ");
                     scanf("%d", &f.postal_code);
                     getchar();
                     break;
                 case 10:
-                    printf("Enter new farming experience (in years): ");
+                    printf("\t ->Enter new farming experience (in years): ");
                     scanf("%f", &f.farming_experience);
                     getchar();
                     break;
                 case 11:
-                    printf("Enter new area: ");
+                    printf("\t ->Enter new area: ");
                     scanf("%f", &f.area);
                     getchar();
                     break;
                 case 12:
-                    printf("Enter new number of land parcels: ");
+                    printf("\t ->Enter new number of land parcels: ");
                     scanf("%d", &f.land_parcels);
                     getchar();
                     break;
                 case 13:
-                    printf("Enter new crops: ");
+                    printf("\t ->Enter new crops: ");
                     fgets(f.crops, sizeof(f.crops), stdin);
                     f.crops[strcspn(f.crops, "\n")]='\0';
                     break;
                 case 14:
-                    printf("Enter new ownership (O/L/S): ");
+                    printf("\t ->Enter new ownership (O/L/S): ");
                     scanf(" %c", &f.ownership);
                     getchar();
                     break;
                 case 15:
-                    printf("Enter new bank number: ");
+                    printf("\t ->Enter new bank number: ");
                     fgets(f.bank_number, sizeof(f.bank_number), stdin);
                     f.bank_number[strcspn(f.bank_number, "\n")]='\0';
                     break;
                 case 16:
-                    printf("Enter new bank name: ");
+                    printf("\t ->Enter new bank name: ");
                     fgets(f.bank_name, sizeof(f.bank_name), stdin);
                     f.bank_name[strcspn(f.bank_name, "\n")]='\0';
                     break;
                 case 17:
-                    printf("Enter new branch code: ");
+                    printf("\t->Enter new branch code: ");
                     scanf("%d", &f.branch_code);
                     getchar();
                     break;
                 case 18:
-                    printf("Enter new linked number: ");
+                    printf("\t ->Enter new linked number: ");
                     fgets(f.linked_number, sizeof(f.linked_number), stdin);
                     f.linked_number[strcspn(f.linked_number, "\n")]='\0';
                     break;
                 default:
-                    printf("Error! Please enter a valid option! \n");
+                    printf("\n\tError! Please enter a valid input!\n\n");
                     continue;
                 }
                 break;
             }
 
-            printf("Detail updated successfully. \n");
+            printf("\t ->Detail updated successfully. \n");
 
-            printf("Do you want to edit another field? (Y/N): ");
+            printf("\t ->Do you want to edit another field? (Y/N): ");
             scanf(" %c", &continue_editing);
             getchar();
         }
@@ -351,14 +351,16 @@ void edit_personaldetails(Farmer f, int id)
     remove("Farmers.txt");
     rename("temp.txt", "Farmers.txt");
 
-    printf("Farmer details updated successfully!\n");
+    printf("\t ->Farmer details updated successfully!\n");
 
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -372,7 +374,7 @@ void edit_personaldetails(Farmer f, int id)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -421,43 +423,27 @@ void personal_details(int id)
         {
             id_matched=1;
 
-            printf("\n\t\tPERSONAL DETAILS OF FARMER %d\n\n", id);
+            printf("\n\t\t PERSONAL DETAILS OF FARMER: %s\n", f.fullName);
             printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-30s\n", "1.Full name", f.fullName);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-30s\n", "2.Date of birth", f.dob);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %c\n", "3.Gender", f.gender);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-30s\n", "4.NID", f.nid);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-30s\n", "5.Literacy level", f.literacy);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-30s\n", "6.Mobile Number", f.mobile);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-30s\n", "7.Email address", f.email);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-30s\n", "8.Address", f.address);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %3d\n", "9.Postal Code", f.postal_code);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %4.2f\n", "10.Farming Experience", f.farming_experience);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %4.2f\n", "11.Area of Land Parcels", f.area);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %3d\n", "12.Number of Land Parcels", f.land_parcels);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-30s\n", "13.Types of crops", f.crops);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %c\n", "14.Ownership Type", f.ownership);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-30s\n", "15.Bank Account Number", f.bank_number);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-30s\n", "16.Bank Name", f.bank_name);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %3d\n", "17.Branch Code", f.branch_code);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-30s\n", "18.Linked Number to the Bank", f.linked_number);
+            printf("ID:                             %d\n", f.id);
+            printf("1.Full name:                      %s\n", f.fullName);
+            printf("2.Date of birth:                  %s\n", f.dob);
+            printf("3.Gender:                         %c\n", f.gender);
+            printf("4.NID:                            %s\n", f.nid);
+            printf("5.Literacy level:                 %s\n", f.literacy);
+            printf("6.Mobile Number:                  %s\n", f.mobile);
+            printf("7.Email address:                  %s\n", f.email);
+            printf("8.Address:                        %s\n", f.address);
+            printf("9.Postal Code:                    %d\n", f.postal_code);
+            printf("10.Farming Experience:             %.2f\n", f.farming_experience);
+            printf("11.Area of Land Parcels:           %.2f\n", f.area);
+            printf("12.Number of Land Parcels:         %d\n", f.land_parcels);
+            printf("13.Types of crops:                 %s\n", f.crops);
+            printf("14.Ownership Type:                 %c\n", f.ownership);
+            printf("15.Bank Account Number:            %s\n", f.bank_number);
+            printf("16.Bank Name:                      %s\n", f.bank_name);
+            printf("17.Branch Code:                    %d\n", f.branch_code);
+            printf("18.Linked Number to the Bank:      %s\n\n", f.linked_number);
             printf("---------------------------------------------------------------------------------------\n");
             break;
         }
@@ -508,19 +494,14 @@ void farmer_land_parcels (int id)
             id_matched = 1;
 
             printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %3d\n", "Parcel ID", p.id);
+            printf("Parcel ID:  %d\n", p.id);
+            printf("1.Location of the parcel:  %s\n", p.location);
+            printf("2.Area (in acres):  %.2f\n", p.area);
+            printf("3.Date of Purchase (YYYY-MM-DD):  %s\n", p.dop);
+            printf("4.Soil Type:  %s\n", p.soilType);
+            printf("5.Type of crops grown:  %s\n", p.crops);
             printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-30s\n", "1.Location of the parcel", p.location);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %4.2f\n", "2.Area (in acres)", p.area);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-15s\n", "3.Date of Purchase (YYYY-MM-DD)", p.dop);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-20s\n", "4.Soil Type", p.soilType);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-30s\n", "5.Type of crops grown", p.crops);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("\n\n");
+            printf("\n");
 
         }
     }
@@ -545,12 +526,14 @@ void application_schemes(int id)
     while(1)
     {
         int chosen_option;
-        printf("\nChoose an option: \n");
-        printf("1.Apply for Loan \n");
-        printf("2.Apply for Subsidy \n");
-        printf("3.View Applied Forms \n");
-        printf("4.Back \n");
-        printf("Enter your choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1.Apply for Loan \n");
+        printf("\t2.Apply for Subsidy \n");
+        printf("\t3.View Applied Forms \n");
+        printf("\t4. Go Back \n");
+        printf("\t5. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &chosen_option);
 
         switch(chosen_option)
@@ -568,7 +551,7 @@ void application_schemes(int id)
             clear_screen();
             FarmerMenu(id);
         default:
-            printf("Error! Please enter either 1 or 2: ");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -617,21 +600,14 @@ void track_cropcycle(int id)
             id_matched = 1;
 
             printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %3d\n", "Crop ID", c.id);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-30s\n", "1.Crop name", c.crop_name);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %3d\n", "2.Parcel ID", c.parcelId);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-15s\n", "3.Sowing Date (YYYY-MM-DD)", c.sowing_date);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-15s\n", "4.Harvesting Date (YYYY-MM-DD)", c.harvesting_date);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-30s\n", "5.Current status of the crop", c.current_status);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-30s\n", "6.Fertilizers Used", c.fertilizers_used);
-            printf("---------------------------------------------------------------------------------------\n");
-            printf("%-25s: %-30s\n", "7.Pesticides Used", c.pesticides_used);
+            printf("Crop ID: %d\n", c.id);
+            printf("1.Crop name: %s\n", c.crop_name);
+            printf("2.Parcel ID: %d\n", c.parcelId);
+            printf("3.Sowing Date (YYYY-MM-DD): %s\n", c.sowing_date);
+            printf("4.Harvesting Date (YYYY-MM-DD): %s\n", c.harvesting_date);
+            printf("5.Current status of the crop: %s\n", c.current_status);
+            printf("6.Fertilizers Used: %s\n", c.fertilizers_used);
+            printf("7.Pesticides Used: %s\n", c.pesticides_used);
             printf("---------------------------------------------------------------------------------------\n");
             printf("\n\n");
 

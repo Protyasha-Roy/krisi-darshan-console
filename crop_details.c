@@ -31,34 +31,34 @@ void add_cropdetails(int id)
 
     fclose(fp2);
 
-    printf("Enter the details of the new crop: \n\n");
+    printf("\tEnter the details of the new crop: \n\n");
 
     getchar();
-    printf("Enter the name of the new crop: ");
+    printf("\t ->Enter the name of the new crop: ");
     fgets(c.crop_name, sizeof(c.crop_name), stdin);
     c.crop_name[strcspn(c.crop_name, "\n")] = '\0';
 
-    printf("Enter the Parcel ID of the crop in which the crop is sowed: ");
+    printf("\t ->Enter the Parcel ID of the crop in which the crop is sowed: ");
     scanf("%d", &c.parcelId);
     getchar();
 
-    printf("Enter the sowing date of the crop (YYYY-MM-DD): ");
+    printf("\t ->Enter the sowing date of the crop (YYYY-MM-DD): ");
     fgets(c.sowing_date, sizeof(c.sowing_date), stdin);
     c.sowing_date[strcspn(c.sowing_date, "\n")] = '\0';
 
-    printf("Enter the harvesting date of the crop (YYYY-MM-DD): ");
+    printf("\t ->Enter the harvesting date of the crop (YYYY-MM-DD): ");
     fgets(c.harvesting_date, sizeof(c.harvesting_date), stdin);
     c.harvesting_date[strcspn(c.harvesting_date, "\n")] = '\0';
 
-    printf("Enter the current status of the crop: ");
+    printf("\t ->Enter the current status of the crop: ");
     fgets(c.current_status, sizeof(c.current_status), stdin);
     c.current_status[strcspn(c.current_status, "\n")] = '\0';
 
-    printf("Enter the types of fertilizers used: ");
+    printf("\t ->Enter the types of fertilizers used: ");
     fgets(c.fertilizers_used, sizeof(c.fertilizers_used), stdin);
     c.fertilizers_used[strcspn(c.fertilizers_used, "\n")] = '\0';
 
-    printf("Enter the types of pesticides used: ");
+    printf("\t ->Enter the types of pesticides used: ");
     fgets(c.pesticides_used, sizeof(c.pesticides_used), stdin);
     c.pesticides_used[strcspn(c.pesticides_used, "\n")] = '\0';
 
@@ -83,9 +83,11 @@ void add_cropdetails(int id)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -99,7 +101,7 @@ void add_cropdetails(int id)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -167,38 +169,38 @@ void edit_cropdetails(int id)
                 switch(crop_details)
                 {
                 case 1:
-                    printf("Enter name of new crop: ");
+                    printf("\t ->Enter name of new crop: ");
                     fgets(c.crop_name, sizeof(c.crop_name), stdin);
                     c.crop_name[strcspn(c.crop_name, "\n")] = '\0';
                     break;
                 case 2:
-                    printf("Enter the Parcel ID of the new parcel the crop is in: ");
+                    printf("\t ->Enter the Parcel ID of the new parcel the crop is in: ");
                     scanf("%d", &c.parcelId);
                     getchar();
                     break;
                 case 3:
-                    printf("Enter updated date of sowing: ");
+                    printf("\t ->Enter updated date of sowing: ");
                     fgets(c.sowing_date, sizeof(c.sowing_date), stdin);
                     c.sowing_date[strcspn(c.sowing_date, "\n")] = '\0';
                     break;
                 case 4:
-                    printf("Enter updated date of harvesting: ");
+                    printf("\t ->Enter updated date of harvesting: ");
                     fgets(c.harvesting_date, sizeof(c.harvesting_date), stdin);
                     c.harvesting_date[strcspn(c.harvesting_date, "\n")] = '\0';
                     break;
                 case 5:
-                    printf("Enter updated status: ");
+                    printf("\t ->Enter updated status: ");
                     fgets(c.current_status, sizeof(c.current_status), stdin);
                     c.current_status[strcspn(c.current_status, "\n")] = '\0';
 
                     break;
                 case 6:
-                    printf("Enter the new types of fertilizers used: ");
+                    printf("\t ->Enter the new types of fertilizers used: ");
                     fgets(c.fertilizers_used, sizeof(c.fertilizers_used), stdin);
                     c.fertilizers_used[strcspn(c.fertilizers_used, "\n")] = '\0';
                     break;
                 case 7:
-                    printf("Enter the new types of pesticides used: ");
+                    printf("\t ->Enter the new types of pesticides used: ");
                     fgets(c.pesticides_used, sizeof(c.pesticides_used), stdin);
                     c.pesticides_used[strcspn(c.pesticides_used, "\n")] = '\0';
                     break;
@@ -211,14 +213,14 @@ void edit_cropdetails(int id)
 
             printf("Crop detail updated successfully. \n");
 
-            printf("Do you want to edit another field? (Y/N): ");
+            printf("\t ->Do you want to edit another field? (Y/N): ");
             scanf(" %c", &continue_editing);
         }
         while(continue_editing == 'Y' || continue_editing == 'y');
     }
     else
     {
-        printf("Error! Invalid Crop ID!\n");
+        printf("\t ->Error! Invalid Crop ID!\n");
     }
 
     fp=fopen("Crops.txt", "r");
@@ -292,9 +294,11 @@ void edit_cropdetails(int id)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -308,7 +312,7 @@ void edit_cropdetails(int id)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -370,13 +374,13 @@ void delete_cropdetails(int id)
 
     if(id_matched==1)
     {
-        printf("Deleted crop successfully! \n");
+        printf("\t ->Deleted crop successfully! \n");
         update_parcel_crops(c.parcelId);
 
     }
     else
     {
-        printf("Crop %d not found in the system! \n", chosen_cropId);
+        printf("\t ->Crop %d not found in the system! \n", chosen_cropId);
     }
 
     fclose(fp);
@@ -388,9 +392,11 @@ void delete_cropdetails(int id)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -404,7 +410,7 @@ void delete_cropdetails(int id)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;

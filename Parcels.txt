@@ -2,9 +2,6 @@
 1909|1461801856|Lalmonirhat, Rangpur|150.000000|2025-07-30|Sandy|Carrots
 15565|1461801856|Chandpur, Chittagong|50.000000|2025-03-07|Sandy|Tomatoes
 28339|1461801856|Bogura, Rajshahi|20.000000|2025-02-09|Loamy|Cabbage
-<<<<<<< HEAD
 18379|1461801856|Narayanganj, Dhaka|100.000000|2025-06-21|Clay|Rice
 19375|17890|Narayanganj, Dhaka|20.000000|2020-05-06|Clay|Rice
-=======
 23942159|1461801856|jahangirnaga|123.000000|12-24-2423|O|jute
->>>>>>> origin/main

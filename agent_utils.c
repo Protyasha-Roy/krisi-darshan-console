@@ -55,9 +55,11 @@ void list_agents(int adminId)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -201,9 +203,11 @@ void add_agent(int adminId)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -273,7 +277,8 @@ void update_agent(int adminId)
         }
     }
 
-    if (!found) {
+    if (!found)
+    {
         printf("\n\tAgent with ID %d not found.\n\n", id);
         fclose(fp);
         fclose(temp);
@@ -470,9 +475,11 @@ void update_agent(int adminId)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -580,9 +587,11 @@ void delete_agent(int adminId)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -611,6 +620,7 @@ void search_agent_by_id(FILE *fp, Agent agent, int adminId)
     int id;
     int id_matched = 0;
 
+    getchar();
     printf("\t-> Enter agent's ID: ");
     scanf("%d", &id);
 
@@ -664,14 +674,16 @@ void search_agent_by_id(FILE *fp, Agent agent, int adminId)
         printf("\n\tAgent with ID: %d not found!\n\n", id);
     }
 
+    getchar();
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
-        getchar();
 
         switch(back_exit)
         {
@@ -752,11 +764,12 @@ void search_agent_by_name(FILE *fp, Agent agent, int adminId)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
-        getchar();
 
         switch(back_exit)
         {
@@ -777,19 +790,23 @@ void search_agent_by_name(FILE *fp, Agent agent, int adminId)
 
 void search_agent(int adminId)
 {
+    clear_screen();
     FILE *fp = fopen("Agents.txt", "r");
 
     Agent agent;
 
     int chosen_option;
 
-    clear_screen();
-    printf("1. Search by ID\n");
-    printf("2. Search by name\n");
-    printf("3. Go back\n");
-    printf("4. Exit\n");
+    printf("\t--------------------------------\n");
+    printf("\t1. Search by ID \n");
+    printf("\t2. Search by name\n");
+    printf("\t3. Go back\n");
+    printf("\t4. Exit\n");
+    printf("\t--------------------------------\n\n");
+    getchar();
     printf("\t-> Choose an option: ");
     scanf("%d", &chosen_option);
+
 
     switch(chosen_option)
     {
@@ -811,6 +828,7 @@ void search_agent(int adminId)
         break;
     }
 
+    getchar();
     while (1)
     {
         int back_exit;
