@@ -31,13 +31,9 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-<<<<<<< HEAD
 		<Linker>
 			<Add library="curl" />
 		</Linker>
-		<Unit filename=".gitignore" />
-=======
->>>>>>> ab6278867aa303f0656db6c9466e87df7b39618a
 		<Unit filename="Admins.txt" />
 		<Unit filename="Agents.txt" />
 		<Unit filename="Assigned_Parcel.txt" />
@@ -71,7 +67,6 @@
 		<Unit filename="bot.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="bot.exe" />
 		<Unit filename="bot.h" />
 		<Unit filename="config_utils.c">
 			<Option compilerVar="CC" />
@@ -120,7 +115,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="parcels.h" />
-		<Unit filename="temp.txt" />
 		<Unit filename="utils.c">
 			<Option compilerVar="CC" />
 		</Unit>
