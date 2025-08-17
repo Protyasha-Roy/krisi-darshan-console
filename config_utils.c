@@ -83,7 +83,7 @@ void view_analytics(int adminId)
     printf("\t| Total land parcels:  %d |\n", total_parcels);
     printf("\t--------------------------\n\n");
 
-    printf(\t"APPLICATIONS\n");
+    printf("\tAPPLICATIONS\n");
     printf("\t __________________________________\n");
     printf("\t| Total loan applications:      %d |\n", total_loan_applications);
     printf("\t-----------------------------------\n");
