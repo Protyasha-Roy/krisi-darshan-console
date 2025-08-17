@@ -13,12 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="E:/curl-8.15.0_4-win64-mingw/curl-8.15.0_4-win64-mingw/include" />
 				</Compiler>
-				<Linker>
-					<Add library="curl" />
-					<Add directory="E:/curl-8.15.0_4-win64-mingw/curl-8.15.0_4-win64-mingw/lib" />
-				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/krishi-darshan-console" prefix_auto="1" extension_auto="1" />
@@ -36,12 +31,9 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-<<<<<<< HEAD
 		<Linker>
 			<Add library="curl" />
 		</Linker>
-=======
->>>>>>> d4ae6c5b6f7158822133d50d1894530c61f8aff6
 		<Unit filename=".gitignore" />
 		<Unit filename="Admins.txt" />
 		<Unit filename="Agents.txt" />
@@ -101,7 +93,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="land_parcel_utils.h" />
-		<Unit filename="load_subsidy_utils.c">
+		<Unit filename="loan_subsidy_utils.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="loan_subsidy_utils.h" />
