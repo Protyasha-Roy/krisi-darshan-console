@@ -52,9 +52,11 @@ void list_assigned_land_parcels(int adminId)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -68,7 +70,7 @@ void list_assigned_land_parcels(int adminId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -114,9 +116,11 @@ void list_unassigned_land_parcels(int adminId)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -130,7 +134,7 @@ void list_unassigned_land_parcels(int adminId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -151,7 +155,7 @@ void assign_field_agent(int adminId)
     Parcel parcel;
 
     getchar();
-    printf("Enter land parcel ID: ");
+    printf("\t ->Enter land parcel ID: ");
     scanf("%d", &parcelId);
 
     if(parcelId)
@@ -205,16 +209,18 @@ void assign_field_agent(int adminId)
             assigned.crops
            );
 
-    printf("Successfully assigned agent to land parcel.\n");
+    printf("\t ->Successfully assigned agent to land parcel.\n");
 
     fclose(fp);
 
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -228,7 +234,7 @@ void assign_field_agent(int adminId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -255,7 +261,7 @@ void delete_field_agent(int adminId)
 
     AssignedParcel assigned;
 
-    printf("Enter assigned ID to delete: ");
+    printf("\t ->Enter assigned ID to delete: ");
     scanf("%d", &id);
 
      while (fscanf(fp, "%d|%d|%d|%d|%c|%99[^|]|%f|%14[^|]|%29[^|]|%49[^\n]",
@@ -287,7 +293,7 @@ void delete_field_agent(int adminId)
         }
     }
 
-    printf("Assigned parcel deleted successfully.\n");
+    printf("\t ->Assigned parcel deleted successfully.\n");
 
     fclose(fp);
     fclose(temp);
@@ -298,10 +304,11 @@ void delete_field_agent(int adminId)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
-        scanf("%d", &back_exit);
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         getchar();
 
         switch(back_exit)
@@ -314,7 +321,7 @@ void delete_field_agent(int adminId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;

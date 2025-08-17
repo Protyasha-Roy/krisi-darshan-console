@@ -36,6 +36,8 @@ void login(int option, int id, char password[])
     clear_screen();
     int loggedIn;
 
+    while(1)
+    {
     switch(option)
     {
     case 1:
@@ -52,9 +54,11 @@ void login(int option, int id, char password[])
         break;
 
     default:
-        printf("\n\tInvalid Option chosen!\n\n");
-        break;
+        printf("\n\tError! Please enter a valid input!\n\n");
+        continue;
     }
+    break;
+}
 }
 
 void loginForm(int option)
@@ -206,9 +210,11 @@ void registration() {
     while (1)
     {
         int back_exit;
-        printf("Choose an option: \n");
-        printf("1. Go back\n2. Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -222,10 +228,9 @@ void registration() {
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
     }
-    printf("\n\tRegistration is complete. ID is: %d. Use this ID to login.\n\n", user.id);
 }

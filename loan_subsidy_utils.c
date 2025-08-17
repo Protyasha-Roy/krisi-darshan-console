@@ -15,11 +15,11 @@ void update_loan_status(int adminId)
     int id;
     char status[30];
 
-    printf("Enter application id: ");
+    printf("\t ->Enter application id: ");
     scanf("%d", &id);
 
     getchar();
-    printf("Enter status: ");
+    printf("\t ->Enter status: ");
     fgets(status, 30, stdin);
 
     while((fscanf(fp, "%d|%d|%d|%99[^|]|%19[^|]|%f|%199[^|]|%14[^|]|%29[^\n]",
@@ -71,14 +71,16 @@ void update_loan_status(int adminId)
     remove("LoanApplication.txt");
     rename("temp.txt", "LoanApplication.txt");
 
-    printf("Status updated successfully!");
+    printf("\t ->Status updated successfully!");
 
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -92,7 +94,7 @@ void update_loan_status(int adminId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -124,6 +126,7 @@ void list_loan_applications(int adminId)
                   loan.date_applied,
                   loan.status) != EOF))
     {
+        printf("---------------------------------------------------------------------------------------\n");
         printf("Application's ID:             %d\n", loan.id);
         printf("Parcel ID:                    %d\n", loan.parcelId);
         printf("Farmer ID:                    %d\n", loan.farmerId);
@@ -133,6 +136,7 @@ void list_loan_applications(int adminId)
         printf("Loan Purpose:                 %s\n", loan.loan_purpose);
         printf("Date applied (YYYY-MM-DD):    %s\n", loan.date_applied);
         printf("Status:                       %s\n", loan.status);
+        printf("---------------------------------------------------------------------------------------\n");
         printf("\n");
     }
 
@@ -142,13 +146,15 @@ void list_loan_applications(int adminId)
     int chosenOption;
 
     ("OPTIONS:");
-    printf("1. Update status of a loan application\n");
-    printf("2. Back\n");
-    printf("3. Exit\n");
+    printf("\t--------------------------------\n");
+    printf("\t1. Update status of a loan application\n");
+    printf("\t2. Go Back \n");
+    printf("\t3. Exit \n");
+    printf("\t--------------------------------\n\n");
+    printf("\t-> Choose an option: ");
 
     while(1)
     {
-        printf("Choose an option: ");
         scanf("%d", &chosenOption);
         getchar();
 
@@ -164,7 +170,7 @@ void list_loan_applications(int adminId)
             exit(1);
             break;
         default:
-            printf("Invalid option chosen. Please select a valid option.");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -242,9 +248,11 @@ void update_subsidy_status(int adminId)
     while (1)
     {
         int back_exit;
-        printf("\nChoose an option: \n");
-        printf("1. 'B' - Go back\n2. 'E' - Exit: \n");
-        printf("Enter you choice: ");
+        printf("\t--------------------------------\n");
+        printf("\t1. Go Back \n");
+        printf("\t2. Exit \n");
+        printf("\t--------------------------------\n\n");
+        printf("\t-> Choose an option: ");
         scanf("%d", &back_exit);
         getchar();
 
@@ -258,7 +266,7 @@ void update_subsidy_status(int adminId)
             exit(1);
             break;
         default:
-            printf("Error! Please enter a valid option!");
+            printf("\n\tError! Please enter a valid input!\n\n");
             continue;
         }
         break;
@@ -290,6 +298,7 @@ void list_subsidy_applications(int adminId)
                   subsidy.status) != EOF))
     {
         printf("\t\t APPLIED SUBSIDY FORMS OF FARMER: %s\n\n", subsidy.farmerName);
+        printf("---------------------------------------------------------------------------------------\n");
         printf("Application's ID:             %d\n", subsidy.id);
         printf("Parcel ID:                    %d\n", subsidy.parcelId);
         printf("Farmer ID:                    %d\n", subsidy.farmerId);
@@ -299,6 +308,7 @@ void list_subsidy_applications(int adminId)
         printf("Subsidy purpose:              %s\n", subsidy.subsidy_purpose);
         printf("Date applied (YYYY-MM-DD):    %s\n", subsidy.date_applied);
         printf("Status:                       %s\n", subsidy.status);
+        printf("---------------------------------------------------------------------------------------\n");
         printf("\n");
     }
 
@@ -307,12 +317,15 @@ void list_subsidy_applications(int adminId)
 
     int chosenOption;
 
+    while(1)
+    {
     ("OPTIONS:");
-    printf("1. Update status of a subsidy application\n");
-    printf("2. Back\n");
-    printf("3. Exit\n");
-
-    printf("Choose an option: ");
+    printf("\t--------------------------------\n");
+    printf("\t1. Update status of a subsidy application\n");
+    printf("\t2. Go Back \n");
+    printf("\t3. Exit \n");
+    printf("\t--------------------------------\n\n");
+    printf("\t-> Choose an option: ");
     scanf("%d", &chosenOption);
 
     switch(chosenOption)
@@ -327,7 +340,9 @@ void list_subsidy_applications(int adminId)
         exit(1);
         break;
     default:
-        printf("Invalid option chosen. Please select a valid option.");
-        break;
+        printf("\n\tError! Please enter a valid input!\n\n");
+        continue;
     }
+    break;
+}
 }
