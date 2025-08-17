@@ -38,27 +38,27 @@ void login(int option, int id, char password[])
 
     while(1)
     {
-    switch(option)
-    {
-    case 1:
-        loggedIn = checkIdPassword("Users.txt", "r", 'f', id, password);
-        loggedIn ?  FarmerMenu(id) : (printf("\n\tID or password is wrong. Try again!\n\n"), loginForm(1));
-        break;
-    case 2:
-        loggedIn = checkIdPassword("Users.txt", "r", 't', id, password);
-        loggedIn ?  AgentMenu(id) : (printf("\n\tID or password is wrong. Try again!\n\n"), loginForm(2));
-        break;
-    case 3:
-        loggedIn = checkIdPassword("Users.txt", "r", 'a', id, password);
-        loggedIn ? adminMenu(id) : (printf("\n\tID or password is wrong. Try again!\n\n"), loginForm(3));
-        break;
+        switch(option)
+        {
+        case 1:
+            loggedIn = checkIdPassword("Users.txt", "r", 'f', id, password);
+            loggedIn ?  FarmerMenu(id) : (printf("\n\tID or password is wrong. Try again!\n\n"), loginForm(1));
+            break;
+        case 2:
+            loggedIn = checkIdPassword("Users.txt", "r", 't', id, password);
+            loggedIn ?  AgentMenu(id) : (printf("\n\tID or password is wrong. Try again!\n\n"), loginForm(2));
+            break;
+        case 3:
+            loggedIn = checkIdPassword("Users.txt", "r", 'a', id, password);
+            loggedIn ? adminMenu(id) : (printf("\n\tID or password is wrong. Try again!\n\n"), loginForm(3));
+            break;
 
-    default:
-        printf("\n\tError! Please enter a valid input!\n\n");
-        continue;
+        default:
+            printf("\n\tError! Please enter a valid input!\n\n");
+            continue;
+        }
+        break;
     }
-    break;
-}
 }
 
 void loginForm(int option)
@@ -76,7 +76,8 @@ void loginForm(int option)
     login(option, user.id, user.password);
 }
 
-void registration() {
+void registration()
+{
     clear_screen();
     FILE *fp;
     FILE *fp2;
@@ -87,9 +88,11 @@ void registration() {
     Farmer farmer;
     User user;
 
-    do {
+    do
+    {
         farmer.id = generateId(0, 2147483640);
-    } while(checkIdDuplication(fp2, farmer.id) == 1);
+    }
+    while(checkIdDuplication(fp2, farmer.id) == 1);
 
     user.id = farmer.id;
     user.type = 'f';
@@ -178,27 +181,27 @@ void registration() {
     user.password[strcspn(user.password, "\n")] = '\0';
 
     fprintf(fp,
-        "%d|%s|%s|%c|%s|%s|%s|%s|%s|%d|%.2f|%.2f|%d|%s|%c|%s|%s|%d|%s\n",
-        farmer.id,
-        farmer.fullName,
-        farmer.dob,
-        farmer.gender,
-        farmer.nid,
-        farmer.literacy,
-        farmer.mobile,
-        farmer.email,
-        farmer.address,
-        farmer.postal_code,
-        farmer.farming_experience,
-        farmer.area,
-        farmer.land_parcels,
-        farmer.crops,
-        farmer.ownership,
-        farmer.bank_number,
-        farmer.bank_name,
-        farmer.branch_code,
-        farmer.linked_number
-    );
+            "%d|%s|%s|%c|%s|%s|%s|%s|%s|%d|%.2f|%.2f|%d|%s|%c|%s|%s|%d|%s\n",
+            farmer.id,
+            farmer.fullName,
+            farmer.dob,
+            farmer.gender,
+            farmer.nid,
+            farmer.literacy,
+            farmer.mobile,
+            farmer.email,
+            farmer.address,
+            farmer.postal_code,
+            farmer.farming_experience,
+            farmer.area,
+            farmer.land_parcels,
+            farmer.crops,
+            farmer.ownership,
+            farmer.bank_number,
+            farmer.bank_name,
+            farmer.branch_code,
+            farmer.linked_number
+           );
 
     fprintf(fp2, "%d %s %c\n", user.id, user.password, user.type);
 
